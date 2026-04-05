@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>SUN - Sociedad Uruguaya de Nefrología</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener("click", function(e) {
+    const targetId = this.getAttribute("href").substring(1);
+    const target = document.getElementById(targetId);
+
+    if (target) {
+      e.preventDefault();
+
+      const offset = 170;
+      const top = target.offsetTop - offset;
+
+      window.scrollTo({
+        top: top,
+        behavior: "smooth"
+      });
+    }
+  });
+});
+</script>
+<body>
+
+  <!-- 🔥 COLUMNA GLOBAL -->
+  <div class="columna-bg"></div>
+
+<header class="header">
+  <div class="container header-content">
+
+    <!-- 🔼 NUEVA FILA: REDES -->
+    <div class="header-top">
+      <div class="social">
+        <a href="https://www.instagram.com/sociedad_uruguaya_nefrologia/" target="_blank">
+          <img src="img/redes-sociales-01.png" alt="Instagram">
+        </a>
+
+        <a href="https://x.com/SunUruguay/" target="_blank">
+          <img src="img/redes-sociales-02.png" alt="X">
+        </a>
+
+        <a href="#">
+          <img src="img/redes-sociales-03.png" alt="Red 3">
+        </a>
+
+        <a href="#">
+          <img src="img/redes-sociales-04.png" alt="Red 4">
+        </a>
+      </div>
+    </div>
+
+    <!-- 🔽 FILA ORIGINAL -->
+    <div class="header-bottom">
+      <div class="logo">
+        <a href="index.html">
+          <img src="img/logo sun.png" alt="Logo SUN">
+        </a>
+      </div>
+
+      <nav class="nav">
+    <a href="#inicio">Inicio</a>
+<a href="#accesos-rapidos">Accesos</a>
+<a href="#institucional">Institucional</a>
+<a href="#cientifico">Científico</a>
+<a href="#novedades">Novedades</a>
+<a href="#congresos">Eventos</a>
+<a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+
+  </div>
+</header>
+
+ <section id="inicio" class="hero">
+  
+  <div class="hero-bg">
+    <img src="img/hero-animado.gif" alt="Hero principal">
+  </div>
+
+  <div class="container hero-content">
+    <div class="hero-card">
+      <h1>Sociedad Uruguaya de Nefrología</h1>
+      <p>
+        Promoviendo el desarrollo científico, la formación médica y el cuidado integral de la salud renal en Uruguay.
+      </p>
+
+     <a href="afiliaciones.html" 
+   class="btn-afiliarse">
+  <img src="img/boton-de-afiliaciones-1.gif" alt="Afiliarse">
+  <span>AFILIARSE</span>
+</a>
+
+    </div>
+  </div>
+
+</section>
+
+  <!-- ACCESOS RÁPIDOS -->
+<section id="accesos-rapidos"> 
+  <div class="container">
+
+    <h2 class="titulo-seccion">Recursos y actividades</h2>
+
+    <div class="accesos-grid">
+
+      <a href="#cientifico" class="acceso-card">
+        <div class="acceso-icono">
+          <img src="icons/guias.svg" alt="Guías clínicas">
+        </div>
+        <h3>Guías clínicas</h3>
+        <p>Protocolos y recomendaciones actualizadas</p>
+      </a>
+
+      <a href="congresos.html" class="acceso-card">
+        <div class="acceso-icono">
+          <img src="icons/eventos.svg" alt="Eventos">
+        </div>
+        <h3>Eventos</h3>
+        <p>Cursos, congresos y actividades</p>
+      </a>
+
+      <a href="novedades.html" class="acceso-card"> 
+        <div class="acceso-icono">
+          <img src="icons/novedades.svg" alt="Novedades">
+        </div>
+        <h3>Novedades</h3>
+        <p>Actualidad en nefrología</p>
+      </a>
+
+      <a href="#contacto" class="acceso-card">
+        <div class="acceso-icono">
+          <img src="icons/contacto.svg" alt="Contacto">
+        </div>
+        <h3>Contacto</h3>
+        <p>Consultas e información institucional</p>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+  <!-- INSTITUCIONAL -->
+  <section id="institucional" class="institucional">
+    <div class="container institucional-content">
+
+      <div class="inst-left">
+        <img src="img/misión y visón.jpg" alt="Misión y Visión">
+      </div>
+
+      <div class="inst-center">
+        <h2>Quiénes Somos</h2>
+        <p>
+         
+La Sociedad Uruguaya de Nefrología 
+es una comunidad de profesionales comprometidos con el cuidado de la salud renal, que trabaja para impulsar el conocimiento, la formación médica y una mejor atención para los pacientes en todo el país.<br>
+
+Además, promueve la investigación, el intercambio académico y la actualización continua, fortaleciendo la colaboración entre especialistas y contribuyendo a mejorar la calidad de la atención y la prevención de las enfermedades renales.
+        </p>
+      </div>
+
+      <div class="inst-right">
+        <h2>Comisión Directiva<br>2025 - 2027</h2>
+        <img src="img/comisin-directiva.gif?v=2" class="img-directiva" alt="Comisión Directiva">
+        <div class="contenedor-boton">
+  <a href="institucional.html" class="boton-seccion">Leer más</a>
+</div>
+      </div>
+    
+
+    </div>
+  </section>
+  
+<!-- CIENTÍFICO -->
+<section id="cientifico" class="cientifico">
+  <div class="container">
+
+    <h2 class="titulo-seccion">Área Científica</h2>
+
+    <div class="cientifico-grid">
+
+      <a href="cientifico.html#tarjeta-guias" class="cientifico-card split-card">
+        <div class="card-img" style="background-image: url('img/cientifico-1.jpg');"></div>
+        <div class="card-text">
+          <h3>Guías clínicas</h3>
+          <p>Recomendaciones y protocolos actualizados</p>
+        </div>
+      </a>
+
+      <a href="cientifico.html#tarjeta-clinica" class="cientifico-card split-card">
+        <div class="card-img" style="background-image: url('img/cientifico-3.jpg');"></div>
+        <div class="card-text">
+          <h3>Casos clínicos</h3>
+          <p>Análisis y discusión de casos</p>
+        </div>
+      </a>
+
+      <a href="cientifico.html#tarjeta-publicaciones" class="cientifico-card split-card">
+        <div class="card-img" style="background-image: url('img/cientifico-2.jpg');"></div>
+        <div class="card-text">
+          <h3>Publicaciones</h3>
+          <p>Artículos y producción académica</p>
+        </div>
+      </a>
+
+      <a href="cientifico.html#tarjeta-webinars" class="cientifico-card split-card">
+        <div class="card-img" style="background-image: url('img/cientifico-4.jpg');"></div>
+        <div class="card-text">
+          <h3>Webinars</h3>
+          <p>Charlas y contenido audiovisual</p>
+        </div>
+      </a>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- NOVEDADES -->
+<section id="novedades" class="novedades">
+  <div class="container novedades-content">
+
+    <!-- Columna izquierda -->
+    <div class="nov-item">
+      <img src="img/foto nuevo centro.jpg" alt="Nuevo centro">
+      <p>
+        Nuevo Centro de Enfermedad Renal Crónica Avanzada de la Udelar:
+        «Una política de Estado que nos trasciende a todos»
+      </p>
+    </div>
+
+    <!-- Columna centro -->
+    <div class="nov-item">
+      <img src="img/centro de enfermedad renal.jpg" alt="Centro de enfermedad renal">
+      <p>
+        Se inauguró el Centro de Enfermedad Renal Crónica Avanzada del Hospital de Clínicas, que incluye un servicio de diálisis.
+      </p>
+    <div class="contenedor-boton">
+  <a href="novedades.html#novedad-destacada" class="boton-seccion">
+  Ver novedades
+</a>
+</div>
+    </div>
+
+    <!-- Columna derecha -->
+    <div class="nov-item">
+      <img src="img/Dia-Mundial-Rinon-2026.png" alt="Día Mundial del Riñón"> 
+    <div class="contenedor-boton">
+  <a href="novedades.html" class="boton-seccion">Leer más</a>
+</div>
+</div> 
+   
+
+  </div>
+</section>
+<section class="congresos" id="congresos">
+  <div class="container congresos-content">
+
+    <!-- IZQUIERDA -->
+    <div class="cong-item">
+      <img src="img/logo congreso 2026.jpg" alt="">
+      <p>
+        El objetivo de este encuentro es propiciar una actualización científica del más alto nivel en el campo de la nefrología.
+      </p>
+    </div>
+
+    <!-- CENTRO -->
+    <div class="cong-item">
+      <img src="img/logo congreso tokio.png" alt="">
+      <p>
+        Diseñado para inspirar, informar y conectar a profesionales de la atención renal de todas las regiones y disciplinas.
+      </p>
+    <div class="contenedor-boton">
+  <a href="congresos.html#congresos-listado" class="boton-seccion">Ver congresos</a>
+</div>
+    </div>
+
+    <!-- DERECHA -->
+    <div class="cong-item">
+      <img src="img/calendario.jpg" alt="">
+      <h2>Calendario<br> Cursos y Congresos 2026</h2>
+    <div class="contenedor-boton">
+  <a href="congresos.html#congreso-principal" class="boton-seccion">Ver calendario</a>
+</div>
+    </div>
+
+  <!-- SOCIOS -->
+</section>
+<section class="contacto" id="contacto">
+  <div class="container contacto-content">
+
+    <div class="contacto-info">
+      <h2>Contacto</h2>
+      <p>Si tenés consultas o querés afiliarte, completá el formulario y nos comunicaremos a la brevedad.</p>
+     <br><h2>Socios</h2>
+    <p>Formá parte de la Sociedad Uruguaya de Nefrología y accedé a beneficios académicos y científicos.</p>
+
+    <a href="afiliaciones.html" 
+       class="boton-seccion" 
+       target="_blank">
+   Afiliarse
+  </a>
+  </div>
+
+    <form class="contacto-form">
+      <input type="text" placeholder="Nombre" required>
+      <input type="email" placeholder="Email" required>
+      <textarea placeholder="Mensaje" rows="5" required></textarea>
+      
+      <button type="submit" class="boton-seccion btn-enviar">Enviar</button>
+    </form>
+
+  </div>
+</section>
+<footer class="footer">
+  <div class="container footer-content">
+
+    <div class="footer-left">
+      <img src="img/logo byn.png" alt="SUN">
+      </div>
+
+    <div class="footer-center">
+      <p>SITIOS DE INTERES</P>
+      <P>https://www.nefrologia.hc.edu.uy/</P>
+      <P>https://www.asn-online.org/</P>
+      <P>https://nefrologiaaldia.org/</P>
+      <P>https://www.theisn.org/</P>
+      </div>
+
+    <div class="footer-right">
+      <p>Lord Ponsonby 2430</p>
+      <p>Montevideo, Uruguay</p>
+      <p>092 539 901</p>
+      <p>info@sun.org.uy</p>
+      </div>
+
+  </div>
+</footer>
+</body>
+</html>

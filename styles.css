@@ -1,0 +1,1263 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  padding-top: 170px;
+  position: relative; /* 🔥 necesario para la columna */
+}
+
+/* CONTENEDOR */
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ================= HEADER ================= */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 170px;
+  z-index: 1000;
+  background: white;
+  display: flex;
+  align-items: center;
+}
+
+/* HEADER EN DOS FILAS */
+.header-content {
+  display: flex;
+  flex-direction: column;
+}
+
+/* FILA SUPERIOR (REDES) */
+.header-top {
+  display: flex;
+  justify-content: flex-end;
+  padding: 5px 0;
+  height: 30px; /* 🔥 fijás altura estable */
+}
+
+/* ICONOS */
+.social {
+  display: flex;
+  gap: 12px;
+}
+
+.social img {
+  height: 28px; /* probá entre 22 y 26 según cómo lo veas */
+  width: auto;
+  display: block;
+  opacity: 0.85;
+  transition: 0.3s;
+}
+
+.social img:hover {
+  opacity: 1;
+}
+
+.header-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 140px; /* 🔥 agregar esto */
+}
+
+.logo img {
+  height: 90px;
+}
+
+.nav {
+  display: flex;
+  gap: 40px;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
+}
+
+/* ================= 🔥 COLUMNA ================= */
+
+.columna-bg {
+  position: absolute;
+  top: 0;
+  right: 10%;
+  width: 470px;
+  height: 100%;
+  
+  background: rgba(237, 236, 236, 0.6);
+  backdrop-filter: blur(8px);
+
+  z-index: 2;
+}
+
+/* ================= HERO ================= */
+
+.hero {
+position: relative;
+height: 500px;
+display: flex;
+align-items: center;
+overflow: hidden;
+}
+
+.slides {
+  display: flex;
+  height: 100%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* 🔥 ESTA LÍNEA SOLUCIONA TODO */
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* mantiene proporción y recorta */
+}
+
+/* CONTENIDO */
+.hero-content {
+  position: relative;
+  z-index: 3;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* CARD */
+.hero-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 50px;
+}
+
+/* TEXTOS */
+.hero-card h1 {
+  font-size: 50px;
+  line-height: 1.15;
+  margin-bottom: 20px;
+}
+.hero-card p {
+  font-size: 15px;
+  line-height: 1,5;
+  margin-bottom: 25px;
+}
+.hero-card p {
+  font-size: 16px;
+  margin-bottom: 30px;
+  color: #555;
+}
+
+/* BOTÓN */
+.btn-afiliarse {
+  position: relative;
+  display: inline-block;
+}
+
+.btn-afiliarse img {
+  width: 320px;
+  display: block;
+}
+
+.btn-afiliarse span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+/* ================= INSTITUCIONAL ================= */
+
+.institucional {
+  padding: 100px 0;
+  position: relative;
+  z-index: 3; /* 👈 arriba de la columna */
+}
+
+.institucional-content {
+  display: grid;
+  grid-template-columns: 1fr 0.8fr 1.2fr;
+  gap: 40px 100px;
+  align-items: stretch;
+}
+
+.institucional-content > div {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.inst-left img {
+  width: 120%;
+  height: auto;
+  display: block;
+  border-radius: 4px; /* opcional, queda más pro */
+}
+
+.inst-center {
+  text-align: justify
+} 
+
+.inst-center h2 {
+  font-size: 32px;
+  margin-bottom: 0px;
+}
+
+.inst-center p {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #555;
+  margin-bottom: 17px;
+}
+
+.inst-right h2 {
+  font-size: 32px;
+  margin-bottom: 35px;
+  text-align: left ; 
+}
+
+
+.inst-right img {
+  width: 220px;
+}
+
+.img-directiva {
+  transform: scale(1.1);
+}
+/* ================= NOVEDADES ================= */
+
+.novedades {
+  padding: 35px 0;
+  position: relative;
+  background-color: #d3d7df; /* 👈 AQUÍ */ 
+}
+.novedades-content {
+  position: relative;
+  z-index: 3;
+}
+
+.novedades::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #d3d7df;
+  z-index: 0;
+}
+.novedades-content {
+  display: grid;
+  grid-template-columns: 0.9fr 0.9fr 1.2fr;
+  gap: 40px 60px;
+  align-items: stretch;
+  position: relative ;   /* 👈 agregar */  
+  z-index: 3 ;
+}
+
+/* ITEM */
+.nov-item img {
+  width: 85%;
+  height: auto;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.cong-item p {
+  font-size: 18px;
+  line-height: 1.4;
+  color: #222;
+}
+/* ================= CONGRESOS ================= */
+
+.congresos {
+  padding: 120px 0;
+  position: relative;
+  background-color: #fff; /* 👈 AQUÍ */ 
+}
+.congresos-content {
+  position: relative;
+  z-index: 3;
+}
+
+.congresos::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  z-index: 0;
+}
+.congresos-content {
+  display: grid;
+  grid-template-columns: 0.9fr 0.9fr 1.2fr;
+  gap: 40px 60px;
+  align-items: stretch;
+  position: relative ;   /* 👈 agregar */  
+  z-index: 3 ;
+}
+
+/* ITEMS */
+
+.cong-item img {
+  width: 90%;
+  height: auto;
+  display: block;
+  margin-bottom: 20px;
+}
+
+/* DERECHO (calendario) */
+
+.cong-item h2 {
+  font-size: 26px;
+  line-height: 1.3;
+}
+/* ================= CONTACTO ================= */
+
+.contacto {
+  padding: 80px 0;
+  background-color: #f5f5f5;
+  position: relative;
+  z-index: 3;
+}
+
+.contacto-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.contacto-info h2 {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.contacto-info p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* FORM */
+
+.contacto-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contacto-form input,
+.contacto-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  background: transparent;
+  font-size: 14px;
+}
+
+.contacto-form input:focus,
+.contacto-form textarea:focus {
+  outline: none;
+  border-bottom: 2px solid #000;
+}
+
+/* BOTÓN */
+
+.btn-enviar {
+  margin-top: 10px;
+  padding: 14px;
+  border: none;
+  background: #2cb2fa;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-enviar:hover {
+  background: #2cb2fa;
+}
+/* SCROLL OFFSET */
+section {
+  scroll-margin-top: 172px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1200px) {
+  .columna-bg {
+    width: 300px;
+    right: 5%;
+  }
+}
+
+@media (max-width: 900px) {
+
+  /* 🔥 ocultar columna */
+  .columna-bg {
+    display: none;
+  }
+
+  /* 🔥 grids a 1 columna */
+  .institucional-content,
+  .novedades-content,
+  .congresos-content,
+  .contacto-content {
+    grid-template-columns: 1fr;
+  }
+
+  /* 🔥 hero centrado */
+  .hero-content {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .hero-card {
+    max-width: 100%;
+  }
+
+  /* 🔥 header más compacto */
+  .header {
+    height: auto;
+    padding: 20px 0;
+  }
+
+  body {
+    padding-top: 140px;
+  }
+}
+
+/* ===== BOTONES DE SECCIONES ===== */
+
+.boton-seccion {
+  display: inline-block;              /* 👈 importante */
+  padding: 10px 20px;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  background-image: url('img/boton-de-secciones.gif'); /* ajustá ruta si hace falta */
+  background-size: cover;
+  background-position: center;
+  border-radius: 6px;
+  min-width: 140px;
+  text-align: center;
+  margin-left: auto;           /* 👈 clave: lo empuja a la derecha */
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.boton-seccion:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+.contenedor-boton {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: auto;
+}
+.boton-seccion {
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+}
+.btn-enviar {
+  width: 600px;
+  margin: 0 auto;   /* 👈 lo centra */
+  display: block;
+}
+
+.nov-item h3 {
+  font-weight: normal;
+}
+.nov-item,
+.cong-item {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+/* ================= FOOTER ================= */
+
+.footer {
+  position: relative;
+  padding: 100px 0;
+  background: #cbd5da;
+  z-index: 3;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+  margin-bottom: 0;
+}
+
+/* IZQUIERDA */
+
+.footer-left img {
+  width: 200px;
+  margin-bottom: 10px;
+}
+
+.footer-left p {
+  font-size: 16px;
+  color: #555;
+}
+
+/* CENTRO */
+
+.footer-center {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.footer-center p {
+  font-size: 14px;
+  color: #555;
+  gap: 3px;
+ }
+
+/* DERECHA */
+
+.footer-right p {
+  font-size: 14px;
+  color: #555;
+  gap: 3px;
+ }
+ .section {
+  padding: 80px 0;
+}
+
+.section-content {
+  display: flex;
+  align-items: stretch;
+  gap: 40px;
+}
+.section-left img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 8px;
+}
+
+.section-center {
+  flex: 1;
+}
+
+.section-right {
+  min-width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bloque {
+  margin-bottom: 30px;
+}
+
+.bloque h2 {
+  margin-bottom: 10px;
+}
+
+.bloque p {
+  color: #555;
+  line-height: 1.5;
+  text-align: justify;
+}
+.nav-btn-img {
+  width: 48px;
+  height: 48px;
+  background-image: url("./img/boton-de-secciones.gif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  border-radius: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
+}
+.nav-btn:hover {
+  opacity: 0.8;
+}
+.alt-bg {
+  background-color: #f5f5f5; /* mismo gris que novedades */
+}
+.col-left {
+  height: 100%;
+}
+.section-3col {
+  display: grid;
+  grid-template-columns: 2fr 0,6fr 0,6fr;
+  gap: 40px;
+  align-items: start; /* 👈 CAMBIO IMPORTANTE */
+}
+#mision-vision .col-right {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+#mision-vision .nav-btn-img {
+  margin-top: auto;
+  align-self: flex-end; /* 👈 ESTE es el correcto */
+  margin-bottom: 10px;
+}
+#mision-vision {
+  min-height: 550px; /* probá 450 / 500 / 550 según diseño */
+  display: flex;
+  align-items: stretch;
+}
+#mision-vision .section-content {
+  flex: 1; /* 👈 hace que ocupe toda la altura */
+}
+.section h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+.section p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #555;
+  text-align: justify;
+}
+/* ===== SECCION COMISION ===== */
+
+.white-bg {
+  background-color: #ffffff;
+}
+
+#comision-1 {
+  min-height: 500px;
+  display: flex;
+}
+
+#comision-1 .section-content {
+  flex: 1;
+}
+
+#comision-1 .col-right {
+  display: flex;
+  flex-direction: column;
+}
+
+#comision-1 .comision-nav {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+  align-self: flex-end;
+}
+#comision-2 {
+  min-height: 500px;
+  display: flex;
+}
+
+#comision-2 .section-content {
+  flex: 1;
+}
+
+#comision-2 .col-right {
+  display: flex;
+  flex-direction: column;
+}
+
+#comision-2 .comision-nav {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+  align-self: flex-end;
+}
+#comision-3 {
+  min-height: 500px;
+  display: flex;
+}
+
+#comision-3 .section-content {
+  flex: 1;
+}
+
+#comision-3 .col-right {
+  display: flex;
+  flex-direction: column;
+}
+
+#comision-3 .comision-nav {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+  align-self: flex-end;
+}
+#comision-4 {
+  min-height: 500px;
+  display: flex;
+}
+
+#comision-4 .section-content {
+  flex: 1;
+}
+
+#comision-4 .col-right {
+  display: flex;
+  flex-direction: column;
+}
+
+#comision-4 .comision-nav {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+  align-self: flex-end;
+}
+#comision-5 {
+  min-height: 500px;
+  display: flex;
+}
+
+#comision-5 .section-content {
+  flex: 1;
+}
+
+#comision-5 .col-right {
+  display: flex;
+  flex-direction: column;
+}
+
+#comision-5 .comision-nav {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+  align-self: flex-end;
+}
+#accesos-rapidos {
+  padding: 80px 20px;
+  min-height: 480px;
+  background: #e7edef;
+}
+
+.titulo-seccion {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 28px;
+}
+
+.accesos-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+}
+
+.acceso-card {
+  display: block;
+  padding: 35px;
+  background: white;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #333;
+
+  transition: all 0.3s ease;
+  border: 1px solid #eee;
+}
+
+.acceso-card h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.acceso-card p {
+  font-size: 14px;
+  color: #666;
+}
+
+/* 🔥 hover elegante */
+.acceso-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.grid-accesos {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.acceso {
+  padding: 12px 20px;
+  background: #d3dbdd;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+#cientifico, #socios {
+  padding: 80px 20px;
+}
+@media (max-width: 900px) {
+  .accesos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .accesos-grid {
+    grid-template-columns: 1fr;
+  }
+}
+#accesos-rapidos {
+  position: relative;
+  z-index: 2;
+}
+.btn-afiliar-contacto {
+  display: inline-block;
+  margin-top: 15px;
+}
+.cientifico {
+  padding: 80px 20px;
+  min-height: 500px;
+}
+
+.cientifico-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.cientifico-card {
+  display: block;
+  padding: 30px;
+  background: white;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #333;
+  border: 1px solid #eee;
+  transition: all 0.3s ease;
+}
+
+.cientifico-card h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.cientifico-card p {
+  font-size: 14px;
+  color: #666;
+}
+
+.cientifico-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+@media (max-width: 900px) {
+  .cientifico-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .cientifico-grid {
+    grid-template-columns: 1fr;
+  }
+}
+#cientifico {
+  position: relative;
+
+  background-image: url("img/cientifico.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* 🔥 EFECTO */
+  z-index: 2;
+}
+
+#cientifico .container {
+  position: relative;
+  z-index: 2;
+}
+#cientifico::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.45); /* o negro suave */
+  z-index: 2;
+}
+#accesos-rapidos {
+  position: relative;
+
+  background-image: url("img/cientifico.jpg"); /* misma imagen */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+
+  z-index: 2;
+}
+#accesos-rapidos::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.45); /* igual que científico */
+  z-index: 2;
+}
+#accesos-rapidos .container {
+  position: relative;
+  z-index: 2;
+}
+@media (max-width: 768px) {
+  #accesos-rapidos {
+    background-attachment: scroll;
+  }
+}
+.split-card {
+  display: flex;
+  height: 100px;
+  border-radius: 10px;
+  overflow: hidden;
+  text-decoration: none;
+  align-items: stretch ; /* 🔥 CLAVE */ 
+}
+
+/* MITAD IMAGEN */
+.card-img {
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+/* MITAD TEXTO */
+.card-text {
+  width: 70%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.08); /* 🔥 color institucional */
+  color: #666;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+  padding: 20px;
+}
+
+/* TEXTO */
+.card-text h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.card-text p {
+  font-size: 14px;
+  opacity: 0.9;
+}
+.split-card:hover .card-img {
+  transform: scale(1.05);
+  transition: 0.4s;
+}
+.card-img {
+  transition: transform 0.4s ease;
+}
+@media (max-width: 768px) {
+  .split-card {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .card-img,
+  .card-text {
+    width: 100%;
+    height: 100px;
+  }
+}
+.split-card {
+  display: flex;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  text-decoration: none;
+}
+.cientifico-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+
+  grid-auto-rows: 200px; /* 👈 fuerza TODAS las cards */
+}
+.split-card {
+  display: flex;
+  height: 100%;
+}
+
+.card-img,
+.card-text {
+  height: 100%; /* 👈 ESTO ES LO QUE TE FALTA */
+}
+.cientifico-card.split-card {
+  padding: 0 !important;
+  height: 100%;
+  display: flex;
+}
+/* ===== NOVEDADES V2 (SECCIÓN NUEVA, NO ROMPE NADA) ===== */
+
+.novedades-v2 {
+  width: 100%;
+}
+
+/* CARD BASE */
+.nov-card {
+  display: flex;
+  background: #f5f5f5;
+  border-radius: 10px;
+  overflow: hidden;
+  gap: 20px;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* HOVER */
+.nov-card:hover {
+  transform: translateY(-3px);
+}
+
+.nov-card:hover h3,
+.nov-card:hover h2 {
+  text-decoration: underline;
+}
+
+/* IMAGEN */
+.nov-img {
+  width: 40%;
+  min-height: 180px;
+  background-size: cover;
+  background-position: center;
+}
+
+/* TEXTO */
+.nov-text {
+  width: 60%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.nov-text h2 {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.nov-text h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.nov-text p {
+  font-size: 14px;
+  color: #555;
+  text-align: justify;
+}
+
+/* PRINCIPAL */
+.nov-principal {
+  margin-bottom: 40px;
+}
+
+.nov-principal .nov-card {
+  height: 450px;
+}
+
+/* LISTADO EN 2 COLUMNAS */
+.nov-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  margin-bottom: 25px;
+  height: 300px;
+}
+
+/* ALTERNANCIA */
+.nov-row .nov-card:nth-child(2) {
+  flex-direction: row-reverse;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+
+  .nov-row {
+    grid-template-columns: 1fr;
+  }
+
+  .nov-card {
+    flex-direction: column !important;
+  }
+
+  .nov-img {
+    width: 100%;
+    height: 160px;
+  }
+
+  .nov-text {
+    width: 100%;
+  }
+}
+.novedades-v2 {
+  max-width: 1250px; /* probá 1000–1200 según tu gusto */
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.nov-card {
+  box-shadow: 0 6px 12px rgba(0,0,0,0.09);
+}
+/* evitar borde negro y cambios raros al llegar por el link */
+#novedad-destacada:focus,
+#novedad-destacada:target {
+  outline: none;
+}
+
+/* evitar que cambie tamaño */
+#novedad-destacada {
+  transform: none;
+}
+#novedad-destacada {
+  scroll-margin-top: 180px;
+}
+.nov@media (max-width: 768px) {
+  .hero-slider {
+    height: 300px;
+  }
+}-text {
+  background-color: #f5f5f5;
+  padding: 20px;
+  border-radius: 0 0 12px 12px;
+}
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.acceso-card {
+  text-align: center;
+}
+
+.acceso-icono {
+  width: 55px;
+  height: 55px;
+  margin: 0 auto 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.acceso-icono img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.acceso-icono {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+#congreso-principal,
+#congresos-listado {
+  scroll-margin-top: 120px;
+}
+#congreso-principal:focus {
+  outline: none;
+}
+#congreso-principal,
+#congresos-listado {
+  scroll-margin-top: 180px;
+}
+.acceso-card,
+.nov-card {
+  text-decoration: none;
+  color: inherit;
+}
+.nov-card:focus,
+.nov-card:active {
+  outline: none;
+}
+#tarjeta-guias,
+#tarjeta-clinica,
+#tarjeta-publicaciones,
+#tarjeta-webinars {
+  scroll-margin-top: 190px;
+}
+/* Solo botones de las tarjetas científicas */
+#cientifico .nov-card .nov-text > .nav-btn-img {
+  width: 48px;
+  height: 48px;
+  background-image: url("./img/boton-de-secciones.gif");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  border-radius: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+/* Hover solo para esos botones */
+#cientifico .nov-card .nov-text > .nav-btn-img:hover {
+  opacity: 0.8;
+}
+h1, h2, h3, h4 {
+  font-family: 'Montserrat', sans-serif;
+}
+
+h2 {
+  font-weight: 700;
+}
+
+h3 {
+  font-weight: 900;
+}
+
+p {
+  font-family: Arial, sans-serif;
+}
+.nov-item p,
+.cong-item p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #555;
+}

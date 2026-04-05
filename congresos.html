@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Institucional - SUN</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- HEADER (MISMO QUE INDEX) -->
+<header class="header">
+  <div class="container header-content">
+
+    <!-- 🔼 NUEVA FILA: REDES -->
+    <div class="header-top">
+      <div class="social">
+        <a href="https://www.instagram.com/sociedad_uruguaya_nefrologia/" target="_blank">
+          <img src="img/redes-sociales-01.png" alt="Instagram">
+        </a>
+
+        <a href="https://x.com/SunUruguay/" target="_blank">
+          <img src="img/redes-sociales-02.png" alt="X">
+        </a>
+
+        <a href="#">
+          <img src="img/redes-sociales-03.png" alt="Red 3">
+        </a>
+
+        <a href="#">
+          <img src="img/redes-sociales-04.png" alt="Red 4">
+        </a>
+      </div>
+    </div>
+
+    <!-- 🔽 FILA ORIGINAL -->
+    <div class="header-bottom">
+      <div class="logo">
+        <a href="index.html">
+          <img src="img/logo sun.png" alt="Logo SUN">
+        </a>
+      </div>
+
+      <nav class="nav">
+    <a href="index.html#inicio">Inicio</a>
+<a href="index.html#accesos-rapidos">Accesos</a>
+<a href="index.html#institucional">Institucional</a>
+<a href="index.html#cientifico">Científico</a>
+<a href="index.html#novedades">Novedades</a>
+<a href="index.html#congresos">Eventos</a>
+<a href="index.html#contacto">Contacto</a>
+      </nav>
+    </div>
+
+  </div>
+</header>
+
+  <!-- CONTENIDO -->
+ <!-- PRINCIPAL -->
+  <section id="congresos">
+
+  <div class="container">
+
+    <!-- PRINCIPAL -->
+    <div class="nov-principal">
+      <a href="#" class="nov-card horizontal" id="congreso-principal">        
+        <div class="nov-img" style="background-image: url('img/auditorio.jpg');"></div>
+        
+        <div class="nov-text">
+          <h2>Principales Congresos y Encuentros 2026</h2>
+          <p>Marzo 6-7 (Montevideo, Uruguay): Primer Encuentro Internacional Nefrológico 2026 (SLANH, Médica Uruguaya, Mayo Clinic). Venue: Hotel Hyatt Centric. Enfocado en enfermedad renal crónica y avances en diálisis.<br><br>
+
+Marzo 4-7 (Internacional/LATAM): Séptimo Congreso GEMAV - Primer Congreso GEMAV LATAM. Congreso internacional de acceso vascular.<br><br>
+
+Abril 17-18 (Argentina): Séptimo congreso de la región SAR (Sociedad Argentina de Reumatología - posible cruce con afecciones renales/autoinmunes, confirmar agenda nefrológica específica).<br><br>
+
+Octubre 1-2 (Montevideo, Uruguay): XIV Congreso Uruguayo de Nefrología y jornadas asociadas. Lugar: Centro de Convenciones Radisson.<br><br>
+
+Octubre 28-31 (Mar del Plata, Argentina): XIV Congreso ALANEPE (Asociación Latinoamericana de Nefrología Pediátrica)<br><br>
+
+Marzo 26 (Virtual): Seminario para Nefrólogos Jóvenes 2026 - Anatomía patológica, organizado por Alanepe (Asociación Latinoamericana de Nefrología Pediátrica).</p>
+        </div>
+
+      </a>
+    </div>
+
+    <!-- LISTADO -->
+    <div class="nov-listado" id="congresos-listado">
+      <div class="nov-row">
+
+        <a href="#" class="nov-card" id="congreso-destacado">
+          <div class="nov-img" style="background-image: url('img/congreso.jpg');"></div>
+          <div class="nov-text">
+            <h3>Congreso Latinoamericano de Nefrología</h3>
+            <p>Especialistas de toda la región se reunirán en una nueva edición del congreso latinoamericano, donde se abordarán temas clave como enfermedad renal crónica, diálisis y trasplante. El evento busca fortalecer la integración científica regional y compartir experiencias clínicas de alto impacto.</p>
+          </div>
+        </a>
+
+        <a href="#" class="nov-card" id="congreso-yokohama">
+          <div class="nov-img" style="background-image: url('img/yokohama.jpg');"></div>
+          <div class="nov-text">
+            <h3>Congreso Mundial de Nefrología – Yokohama</h3>
+            <p>La ciudad de Yokohama será sede del próximo Congreso Mundial de Nefrología, uno de los eventos más importantes a nivel global. Investigadores y profesionales de la salud presentarán avances en investigación, innovación terapéutica y estrategias de prevención en salud renal.</p>
+          </div>
+        </a>
+
+      </div>
+
+    </div>
+
+  </div> <!-- 👈 ACÁ CIERRA EL CONTAINER -->
+
+</section>
+
+  <!-- SCRIPT (MISMO QUE INDEX) -->
+  <script>
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener("click", function(e) {
+    const targetId = this.getAttribute("href").substring(1);
+    const target = document.getElementById(targetId);
+
+    if (target) {
+      e.preventDefault();
+
+      const offset = 170;
+      const top = target.offsetTop - offset;
+
+      window.scrollTo({
+        top: top,
+        behavior: "smooth"
+      });
+    }
+  });
+});
+</script>
+<footer class="footer">
+  <div class="container footer-content">
+
+    <div class="footer-left">
+      <img src="img/logo byn.png" alt="SUN">
+      </div>
+
+    <div class="footer-center">
+      <p>SITIOS DE INTERES</P>
+      <P>https://www.nefrologia.hc.edu.uy/</P>
+      <P>https://www.asn-online.org/</P>
+      <P>https://nefrologiaaldia.org/</P>
+      <P>https://www.theisn.org/</P>
+      </div>
+
+    <div class="footer-right">
+      <p>Lord Ponsonby 2430</p>
+      <p>Montevideo, Uruguay</p>
+      <p>092 539 901</p>
+      <p>info@sun.org.uy</p>
+      </div>
+
+  </div>
+</footer>
+</body>
+</html>
