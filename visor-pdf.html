@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visor de Publicaciones - Sociedad Uruguaya de Nefrología</title>
+  
+  <!-- Bootstrap 5 CSS e Iconos -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+
+  <!-- Librería StPageFlip CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/css/page-flip.min.css">
+
+  <style>
+    /* Cabezal estilizado a 120px de alto */
+    .header-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 0.375rem;
+      height: 120px; /* Altura fija reducida */
+    }
+
+    .header-img {
+      height: 100%;
+      object-fit: cover;
+      width: 100%;
+      display: block;
+    }
+
+    .header-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      top: 0;
+      padding: 1rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .header-overlay h1 {
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+      font-size: 1.5rem; /* Ajustado para la altura de 120px */
+    }
+
+    /* Área del Flipbook con más amplitud horizontal */
+    .flipbook-viewport {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      min-height: 580px;
+      background-color: #f8f9fa;
+      border-radius: 0.375rem;
+      padding: 25px 15px;
+      overflow: hidden;
+    }
+
+    #loading-status {
+      position: absolute;
+      font-weight: 600;
+      z-index: 50;
+    }
+
+    .flipbook-container {
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+      border-radius: 4px;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      background-color: #ffffff;
+    }
+
+    .flipbook-container.loaded {
+      opacity: 1;
+    }
+
+    .page {
+      background-color: #ffffff;
+      box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+    }
+
+    .page canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  </style>
+</head>
+<body class="bg-light">
+
+  <!-- Ampliado a 1300px para aprovechamiento de pantalla -->
+  <main class="container-fluid my-4 px-3 px-md-5" style="max-width: 1300px;">
+    
+    <!-- Botón de retorno -->
+    <nav aria-label="breadcrumb" class="mb-3">
+      <a href="novedades.html#novedad-destacada" class="btn btn-sm btn-outline-secondary">
+        <i class="bi bi-arrow-left"></i> Volver a Información a Pacientes
+      </a>
+    </nav>
+
+    <!-- Ficha Principal estilo Documento Ampliada -->
+    <article class="bg-white p-3 p-md-4 rounded shadow-sm border">
+      
+      <!-- Encabezado con cabezal compacto (120px) -->
+      <header class="border-bottom pb-3 mb-3">
+        <div class="header-container mb-2">
+          <img src="img/cientifico.jpg" alt="Publicación SUN" class="header-img">
+          
+          <div class="header-overlay">
+            <span class="badge bg-primary mb-1" style="font-size: 0.75rem;">Publicación Interactiva</span>
+            <h1 class="fw-bold text-white mb-0" id="doc-title-text">Revista SUN</h1>
+          </div>
+        </div>
+
+        <p class="text-muted small mb-0">Podés hojear el documento en pantalla a doble página o descargarlo en formato PDF original.</p>
+      </header>
+
+      <!-- BARRA DE CONTROLES Y HERRAMIENTAS -->
+      <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 bg-light p-3 rounded border mb-3">
+        <div class="d-flex align-items-center gap-2">
+          <button id="btn-prev" class="btn btn-sm btn-primary fw-bold">
+            <i class="bi bi-chevron-left"></i> Anterior
+          </button>
+          <span id="page-num" class="badge bg-secondary px-3 py-2 fs-6">Cargando...</span>
+          <button id="btn-next" class="btn btn-sm btn-primary fw-bold">
+            Siguiente <i class="bi bi-chevron-right"></i>
+          </button>
+        </div>
+
+        <div class="d-flex align-items-center gap-2">
+          <button id="btn-fullscreen" class="btn btn-sm btn-outline-dark fw-bold">
+            <i class="bi bi-arrows-angle-expand"></i> Pantalla Completa
+          </button>
+          <a id="btn-download" href="#" download class="btn btn-sm btn-success fw-bold">
+            <i class="bi bi-download"></i> Descargar PDF
+          </a>
+        </div>
+      </div>
+
+      <!-- ÁREA DEL LIBRO INTERACTIVO HORIZONTAL (MAXIMIZADA) -->
+      <section class="flipbook-viewport border">
+        <div id="loading-status" class="alert alert-info mb-0">
+          <i class="bi bi-arrow-repeat spin me-2"></i> Procesando documento interactivo...
+        </div>
+        <div id="my-flipbook" class="flipbook-container"></div>
+      </section>
+
+      <!-- Pie de página de la ficha -->
+      <footer class="border-top pt-3 mt-3 d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <span class="text-muted small">Sociedad Uruguaya de Nefrología</span>
+        <a href="index.html" class="btn btn-sm btn-outline-primary fw-bold">
+          Sitio Oficial SUN <i class="bi bi-box-arrow-up-right ms-1"></i>
+        </a>
+      </footer>
+
+    </article>
+
+  </main>
+
+  <!-- JS de Bootstrap 5 -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- LIBRERÍAS DE FLIPBOOK (PDF.js + StPageFlip) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
+
+  <script>
+    // Configurar Worker de PDF.js
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+
+    // Obtener ruta del PDF desde la URL o valor por defecto
+    const urlParams = new URLSearchParams(window.location.search);
+    const pdfPath = urlParams.get('doc') || 'pdf/estatutos.pdf';
+
+    document.getElementById('btn-download').href = pdfPath;
+
+    let pageFlip = null;
+
+    async function initPDFViewer() {
+      const loadingEl = document.getElementById('loading-status');
+      const container = document.getElementById('my-flipbook');
+
+      try {
+        const loadingTask = pdfjsLib.getDocument(pdfPath);
+        const pdfDoc = await loadingTask.promise;
+        const totalPages = pdfDoc.numPages;
+
+        for (let pageNum = 1; pageNum <= totalPages; pageNum++) {
+          const page = await pdfDoc.getPage(pageNum);
+          const viewport = page.getViewport({ scale: 1.5 });
+
+          const pageDiv = document.createElement('div');
+          pageDiv.className = 'page';
+
+          const canvas = document.createElement('canvas');
+          const context = canvas.getContext('2d');
+          canvas.height = viewport.height;
+          canvas.width = viewport.width;
+
+          pageDiv.appendChild(canvas);
+          container.appendChild(pageDiv);
+
+          await page.render({ canvasContext: context, viewport: viewport }).promise;
+        }
+
+        const firstPage = await pdfDoc.getPage(1);
+        const view = firstPage.getViewport({ scale: 1.0 });
+
+        // Inicialización optimizada para ancho extendido (maxWidth ajustado a 1100px)
+        pageFlip = new St.PageFlip(container, {
+          width: view.width,
+          height: view.height,
+          size: "stretch",
+          minWidth: 320,
+          maxWidth: 1100,
+          minHeight: 400,
+          maxHeight: 1400,
+          maxShadowOpacity: 0.5,
+          showCover: true,
+          usePortrait: false, // Forzado horizontal a 2 páginas
+          mobileScrollSupport: false
+        });
+
+        pageFlip.loadFromHTML(document.querySelectorAll('.page'));
+
+        loadingEl.style.display = 'none';
+        container.classList.add('loaded');
+
+        updatePageIndicator();
+
+        pageFlip.on('flip', () => {
+          updatePageIndicator();
+        });
+
+      } catch (error) {
+        console.error('Error al cargar el PDF:', error);
+        loadingEl.className = 'alert alert-danger mb-0';
+        loadingEl.innerHTML = '<i class="bi bi-exclamation-triangle-fill me-2"></i> Error al cargar el PDF. Recuerda probarlo subiendo los cambios a GitHub Pages u online.';
+      }
+    }
+
+    function updatePageIndicator() {
+      if (!pageFlip) return;
+      const current = pageFlip.getCurrentPageIndex() + 1;
+      const total = pageFlip.getPageCount();
+      document.getElementById('page-num').innerText = `Pág. ${current} de ${total}`;
+    }
+
+    // Controles de navegación
+    document.getElementById('btn-prev').addEventListener('click', () => {
+      if (pageFlip) pageFlip.flipPrev();
+    });
+
+    document.getElementById('btn-next').addEventListener('click', () => {
+      if (pageFlip) pageFlip.flipNext();
+    });
+
+    document.getElementById('btn-fullscreen').addEventListener('click', () => {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+      } else {
+        if (document.exitFullscreen) document.exitFullscreen();
+      }
+    });
+
+    window.addEventListener('DOMContentLoaded', initPDFViewer);
+  </script>
+</body>
+</html>
