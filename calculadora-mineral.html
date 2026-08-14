@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Metabolismo Mineral y Óseo - Sociedad Uruguaya de Nefrología</title>
+  <!-- Bootstrap 5 CSS / Iconos -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  
+  <style>
+    .header-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 0.375rem;
+    }
+
+    .header-img {
+      max-height: 250px;
+      object-fit: cover;
+      width: 100%;
+      display: block;
+    }
+
+    /* Overlay para superponer el título con sombreado */
+    .header-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.5rem;
+      
+    }
+
+    .header-overlay h1 {
+      /* Sombreado de texto explícito */
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
+
+    .card-resultado {
+      transition: all 0.3s ease;
+      border: 1px solid #dee2e6;
+    }
+    .val-destacado {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #0d6efd;
+    }
+    .badge-kdigo {
+      font-size: 0.85rem;
+      padding: 6px 10px;
+    }
+  </style>
+</head>
+<body class="bg-light">
+
+  <main class="container my-5" style="max-width: 900px;">
+    
+    <!-- Botón de retorno -->
+    <nav aria-label="breadcrumb" class="mb-4">
+      <a href="calculadora.html" class="btn btn-sm btn-outline-secondary">
+        <i class="bi bi-arrow-left"></i> Volver a Calculadoras
+      </a>
+    </nav>
+
+    <!-- Ficha Principal estilo Documento / Recomendaciones -->
+    <article class="bg-white p-4 p-md-5 rounded shadow-sm border">
+      
+      <!-- Encabezado con estética unificada -->
+      <header class="border-bottom pb-3 mb-4">
+        
+        <!-- Cabezal con imagen y título superpuesto -->
+        <div class="header-container mb-3">
+          <img src="img/cientifico.jpg" alt="Encabezado SUN" class="header-img">
+          
+          <div class="header-overlay">
+            <span class="badge bg-primary mb-2">Herramienta Clínica</span>
+            <h1 class="h2 fw-bold text-white mb-0">Calculadora de Metabolismo Mineral (CKD-MBD)</h1>
+          </div>
+        </div>
+
+        <p class="text-muted mb-0">Cálculo de Calcio Corregido por Albúmina y Producto Calcio-Fósforo para la evaluación de riesgo metabólico y vascular.</p>
+      </header>
+
+      <!-- Formulario de Entrada de Datos -->
+      <section class="p-4 bg-light rounded border mb-4">
+        <h5 class="fw-bold mb-3 text-secondary"><i class="bi bi-person-vcard"></i> Parámetros de Laboratorio</h5>
+        
+        <form id="mineralForm" onsubmit="event.preventDefault(); ejecutarCalculosMineral();">
+          <div class="row g-3">
+            
+            <div class="col-md-4">
+              <label for="caMedido" class="form-label fw-semibold">Calcio Total (mg/dL)</label>
+              <input type="number" step="0.1" min="2" max="20" class="form-control" id="caMedido" placeholder="Ej: 8.2" required>
+            </div>
+
+            <div class="col-md-4">
+              <label for="albumina" class="form-label fw-semibold">Albúmina Sérica (g/dL)</label>
+              <input type="number" step="0.1" min="1" max="7" class="form-control" id="albumina" placeholder="Ej: 3.0" required>
+            </div>
+
+            <div class="col-md-4">
+              <label for="fosforo" class="form-label fw-semibold">Fósforo Sérico (mg/dL)</label>
+              <input type="number" step="0.1" min="0.5" max="20" class="form-control" id="fosforo" placeholder="Ej: 5.8" required>
+            </div>
+
+            <div class="col-12 d-flex align-items-center">
+              <p class="text-muted small mb-0"><i class="bi bi-info-circle"></i> La corrección del calcio es fundamental en pacientes con hipoalbuminemia para reflejar adecuadamente la fracción iónica libre.</p>
+            </div>
+
+            <div class="col-12 mt-4">
+              <button type="submit" class="btn btn-primary w-100 fw-bold py-2">
+                <i class="bi bi-calculator"></i> Calcular Parámetros Minerales
+              </button>
+            </div>
+
+          </div>
+        </form>
+      </section>
+
+      <!-- Sección de Resultados: Las 3 Tablas / Tarjetas -->
+      <section id="seccionResultados" class="d-none">
+        <h5 class="fw-bold mb-3 text-secondary"><i class="bi bi-bar-chart-line"></i> Evaluación de Riesgo Metabólico</h5>
+        
+        <div class="row g-3">
+          
+          <!-- Tabla / Bloque 1: Calcio Corregido -->
+          <div class="col-md-4">
+            <div class="card card-resultado h-100 shadow-sm">
+              <div class="card-header bg-primary text-white text-center fw-bold">
+                Calcio Corregido
+              </div>
+              <div class="card-body text-center d-flex flex-column justify-content-between">
+                <div>
+                  <span class="text-muted small d-block mb-1">Ajustado por Albúmina</span>
+                  <div class="val-destacado" id="valCaCorregido">--</div>
+                  <span class="text-muted small">mg/dL</span>
+                </div>
+                <div class="mt-3">
+                  <div id="badgeCa" class="badge badge-kdigo bg-secondary text-wrap">--</div>
+                </div>
+              </div>
+              <div class="card-footer bg-transparent text-muted small text-center border-top-0">
+                Fórmula: $Ca_{medido} + 0.8 \times (4.0 - Albúmina)$
+              </div>
+            </div>
+          </div>
+
+          <!-- Tabla / Bloque 2: Producto Ca x P -->
+          <div class="col-md-4">
+            <div class="card card-resultado h-100 shadow-sm">
+              <div class="card-header bg-dark text-white text-center fw-bold">
+                Producto Ca × P
+              </div>
+              <div class="card-body text-center d-flex flex-column justify-content-between">
+                <div>
+                  <span class="text-muted small d-block mb-1">Riesgo de Calcificación</span>
+                  <div class="val-destacado text-dark" id="valProductoCap">--</div>
+                  <span class="text-muted small">mg²/dL²</span>
+                </div>
+                <div class="mt-3">
+                  <div id="badgeCap" class="badge badge-kdigo bg-secondary text-wrap">--</div>
+                </div>
+              </div>
+              <div class="card-footer bg-transparent text-muted small text-center border-top-0">
+                Límite de seguridad KDOQI: &lt; 55 mg²/dL²
+              </div>
+            </div>
+          </div>
+
+          <!-- Tabla / Bloque 3: Estado del Fósforo -->
+          <div class="col-md-4">
+            <div class="card card-resultado h-100 shadow-sm">
+              <div class="card-header bg-secondary text-white text-center fw-bold">
+                Fósforo Sérico
+              </div>
+              <div class="card-body text-center d-flex flex-column justify-content-between">
+                <div>
+                  <span class="text-muted small d-block mb-1">Valor Medido</span>
+                  <div class="val-destacado text-secondary" id="valFosforo">--</div>
+                  <span class="text-muted small">mg/dL</span>
+                </div>
+                <div class="mt-3">
+                  <div id="badgeFosforo" class="badge badge-kdigo bg-secondary text-wrap">--</div>
+                </div>
+              </div>
+              <div class="card-footer bg-transparent text-muted small text-center border-top-0">
+                Rango objetivo en ERC G5D: 3.5 - 5.5 mg/dL
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Tabla Resumen Objetivos KDIGO / KDOQI (Referencias) -->
+        <div class="table-responsive mt-4">
+          <table class="table table-bordered table-sm align-middle text-center small">
+            <thead class="table-light">
+              <tr>
+                <th>Parámetro</th>
+                <th>Rango de Referencia</th>
+                <th>Objetivo en Diálisis (ERC G5D)</th>
+                <th>Riesgo Clínico</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="table-success">
+                <td><strong>Calcio Corregido</strong></td>
+                <td>8.5 - 10.2 mg/dL</td>
+                <td>8.4 - 9.5 mg/dL</td>
+                <td>Hipercalcemia favorece calcificación vascular</td>
+              </tr>
+              <tr class="table-warning">
+                <td><strong>Fósforo Sérico</strong></td>
+                <td>2.5 - 4.5 mg/dL</td>
+                <td>3.5 - 5.5 mg/dL</td>
+                <td>Hiperfosfatemia incrementa mortalidad cardiovascular</td>
+              </tr>
+              <tr class="table-danger">
+                <td><strong>Producto Ca × P</strong></td>
+                <td>&lt; 40 mg²/dL²</td>
+                <td>&lt; 55 mg²/dL²</td>
+                <td>&gt; 55 mg²/dL²: Alto riesgo de calcipilaxis y calcificación metastásica</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </section>
+
+      <!-- Pie de página con Referencias y Descargo de Responsabilidad -->
+      <footer class="border-top pt-3 mt-4 text-muted small">
+        <p class="mb-1"><strong>Referencias:</strong></p>
+        <ul class="mb-2 ps-3">
+          <li>KDIGO Clinical Practice Guideline Update for the Diagnosis, Evaluation, Prevention, and Treatment of CKD-MBD (2017).</li>
+          <li>KDOQI Clinical Practice Guidelines for Bone Metabolism and Disease in Chronic Kidney Disease (2003).</li>
+        </ul>
+        <p class="mb-0"><strong>Nota:</strong> Esta herramienta está destinada únicamente al uso orientativo por parte de profesionales de la salud. Los resultados deben interpretarse en combinación con los niveles de PTH intacta.</p>
+      </footer>
+
+    </article>
+
+  </main>
+
+  <!-- Lógica en JavaScript Nativo -->
+  <script>
+    function ejecutarCalculosMineral() {
+      const caMedido = parseFloat(document.getElementById('caMedido').value);
+      const albumina = parseFloat(document.getElementById('albumina').value);
+      const fosforo = parseFloat(document.getElementById('fosforo').value);
+
+      if (!caMedido || !albumina || !fosforo) return;
+
+      // 1. Calcio Corregido por Albúmina (Fórmula de Payne)
+      // Ca_corregido = Ca_medido + 0.8 * (4.0 - Albúmina)
+      const caCorregido = caMedido + 0.8 * (4.0 - albumina);
+
+      // 2. Producto Calcio - Fósforo (usando el calcio corregido)
+      const productoCap = caCorregido * fosforo;
+
+      // Despliegue de Valores
+      document.getElementById('valCaCorregido').innerText = caCorregido.toFixed(2);
+      document.getElementById('valProductoCap').innerText = productoCap.toFixed(1);
+      document.getElementById('valFosforo').innerText = fosforo.toFixed(1);
+
+      // Asignar Badges
+      aplicarBadgeCa('badgeCa', caCorregido);
+      aplicarBadgeCap('badgeCap', productoCap);
+      aplicarBadgeFosforo('badgeFosforo', fosforo);
+
+      // Mostrar la sección de resultados
+      document.getElementById('seccionResultados').classList.remove('d-none');
+    }
+
+    function aplicarBadgeCa(elementId, val) {
+      const el = document.getElementById(elementId);
+      if (val >= 8.5 && val <= 10.2) {
+        el.innerText = 'Normal (8.5 - 10.2)';
+        el.className = 'badge badge-kdigo bg-success';
+      } else if (val < 8.5) {
+        el.innerText = 'Hipocalcemia (< 8.5)';
+        el.className = 'badge badge-kdigo bg-warning text-dark';
+      } else {
+        el.innerText = 'Hipercalcemia (> 10.2)';
+        el.className = 'badge badge-kdigo bg-danger';
+      }
+    }
+
+    function aplicarBadgeCap(elementId, val) {
+      const el = document.getElementById(elementId);
+      if (val < 55) {
+        el.innerText = 'En Rango Seguro (< 55)';
+        el.className = 'badge badge-kdigo bg-success';
+      } else {
+        el.innerText = 'Riesgo Calcificación (≥ 55)';
+        el.className = 'badge badge-kdigo bg-danger';
+      }
+    }
+
+    function aplicarBadgeFosforo(elementId, val) {
+      const el = document.getElementById(elementId);
+      if (val >= 2.5 && val <= 4.5) {
+        el.innerText = 'Normal (2.5 - 4.5)';
+        el.className = 'badge badge-kdigo bg-success';
+      } else if (val > 4.5 && val <= 5.5) {
+        el.innerText = 'Elevación Leve (4.6 - 5.5)';
+        el.className = 'badge badge-kdigo bg-warning text-dark';
+      } else if (val < 2.5) {
+        el.innerText = 'Hipofosfatemia (< 2.5)';
+        el.className = 'badge badge-kdigo bg-info text-dark';
+      } else {
+        el.innerText = 'Hiperfosfatemia (> 5.5)';
+        el.className = 'badge badge-kdigo bg-danger';
+      }
+    }
+  </script>
+
+</body>
+</html>

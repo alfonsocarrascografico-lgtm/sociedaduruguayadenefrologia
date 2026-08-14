@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Becas Otorgadas - Sociedad Uruguaya de Nefrología</title>
+  <!-- Bootstrap 5 CSS e Iconos -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  
+  <style>
+    .header-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 0.375rem;
+    }
+
+    .header-img {
+      max-height: 250px;
+      object-fit: cover;
+      width: 100%;
+      display: block;
+    }
+
+    /* Overlay para superponer el título con sombreado */
+    .header-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.5rem;
+      
+    }
+
+    .header-overlay h1 {
+      /* Sombreado de texto explícito */
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
+
+    .accordion-button:not(.collapsed) {
+      background-color: #f8f9fa;
+      color: #212529;
+      font-weight: 600;
+    }
+    .accordion-button:focus {
+      box-shadow: none;
+      border-color: rgba(0,0,0,.125);
+    }
+  </style>
+</head>
+<body class="bg-light">
+
+  <main class="container my-5" style="max-width: 900px;">
+    
+    <!-- Botón de retorno -->
+    <nav aria-label="breadcrumb" class="mb-4">
+      <a href="becas.html#congresos-listado-1" class="btn btn-sm btn-outline-secondary">
+        <i class="bi bi-arrow-left"></i> Volver a Becas
+      </a>
+    </nav>
+
+    <!-- Ficha Principal estilo Documento -->
+    <article class="bg-white p-4 p-md-5 rounded shadow-sm border">
+      
+      <!-- Encabezado con estética unificada -->
+      <header class="border-bottom pb-3 mb-4">
+        
+        <!-- Cabezal con imagen y título superpuesto -->
+        <div class="header-container mb-3">
+          <img src="img/cientifico.jpg" alt="Becas Otorgadas SUN" class="header-img">
+          
+          <div class="header-overlay">
+            <span class="badge bg-primary mb-2">Período 2026-2027</span>
+            <h1 class="h2 fw-bold text-white mb-0">Becas Otorgadas</h1>
+          </div>
+        </div>
+
+        <p class="text-muted mb-0">Listado oficial de beneficiarios y beneficios asignados durante el presente período académico por la SUN.</p>
+      </header>
+
+      <!-- Introducción Contextual -->
+      <section class="mb-4 text-muted">
+        <p class="mb-0">
+          La <strong>Sociedad Uruguaya de Nefrología</strong> felicita a los profesionales seleccionados en las convocatorias del presente año lectivo por su dedicación y compromiso con la excelencia científica y el desarrollo de la nefrología nacional.
+        </p>
+      </section>
+
+      <!-- Listado Desplegable (Accordion por Beca Otorgada) -->
+      <section class="accordion accordion-flush" id="accordionBecasOtorgadas">
+
+        <!-- Beca 1 -->
+        <div class="accordion-item border rounded mb-3">
+          <h2 class="accordion-header" id="headingOtorgada1">
+            <button class="accordion-button collapsed fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOtorgada1" aria-expanded="false" aria-controls="collapseOtorgada1">
+              <i class="bi bi-person-check-fill text-primary me-2"></i> Beca de Perfeccionamiento en Nefrología Clínica
+            </button>
+          </h2>
+          <div id="collapseOtorgada1" class="accordion-collapse collapse" aria-labelledby="headingOtorgada1" data-bs-parent="#accordionBecasOtorgadas">
+            <div class="accordion-body text-muted">
+              <ul class="mb-0 ps-3">
+                <li class="mb-2"><strong>Beneficiario:</strong> Dra. María González</li>
+                <li class="mb-2"><strong>Destino / Proyecto:</strong> Pasantía de formación en Nefro-Oncología, Hospital Clínic de Barcelona.</li>
+                <li class="mb-0"><strong>Beneficio recibido:</strong> Cobertura de pasajes aéreos, viáticos mensuales de estadía por 3 meses e inscripción al programa del centro receptor.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Beca 2 -->
+        <div class="accordion-item border rounded mb-3">
+          <h2 class="accordion-header" id="headingOtorgada2">
+            <button class="accordion-button collapsed fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOtorgada2" aria-expanded="false" aria-controls="collapseOtorgada2">
+              <i class="bi bi-person-check-fill text-primary me-2"></i> Beca de Asistencia a Congresos Internacionales
+            </button>
+          </h2>
+          <div id="collapseOtorgada2" class="accordion-collapse collapse" aria-labelledby="headingOtorgada2" data-bs-parent="#accordionBecasOtorgadas">
+            <div class="accordion-body text-muted">
+              <ul class="mb-0 ps-3">
+                <li class="mb-2"><strong>Beneficiario:</strong> Dr. Juan Pérez</li>
+                <li class="mb-2"><strong>Evento / Trabajo:</strong> Congreso SLANH. Trabajo presentado: <em>"Análisis del Registro Nacional de Biopsias Renales"</em>.</li>
+                <li class="mb-0"><strong>Beneficio recibido:</strong> Financiación completa del costo de matrícula del evento y alojamiento durante las jornadas del congreso.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Beca 3 -->
+        <div class="accordion-item border rounded mb-3">
+          <h2 class="accordion-header" id="headingOtorgada3">
+            <button class="accordion-button collapsed fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOtorgada3" aria-expanded="false" aria-controls="collapseOtorgada3">
+              <i class="bi bi-person-check-fill text-primary me-2"></i> Beca de Apoyo a la Investigación en Salud Renal
+            </button>
+          </h2>
+          <div id="collapseOtorgada3" class="accordion-collapse collapse" aria-labelledby="headingOtorgada3" data-bs-parent="#accordionBecasOtorgadas">
+            <div class="accordion-body text-muted">
+              <ul class="mb-0 ps-3">
+                <li class="mb-2"><strong>Beneficiario:</strong> Dr. Carlos Rodríguez</li>
+                <li class="mb-2"><strong>Proyecto:</strong> Estudio epidemiológico sobre la progresión de la enfermedad renal crónica en etapa temprana.</li>
+                <li class="mb-0"><strong>Beneficio recibido:</strong> Fondo de estímulo económico a la investigación y acceso a la plataforma informática de procesamiento de datos.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Pie de página institucional -->
+      <footer class="border-top pt-3 mt-4 d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <span class="text-muted small">Para más información sobre las becas y resoluciones académicas.</span>
+        <a href="mailto:contacto@sun.org.uy" class="btn btn-sm btn-outline-secondary fw-bold">
+          Secretaría SUN <i class="bi bi-envelope-fill ms-1"></i>
+        </a>
+      </footer>
+
+    </article>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

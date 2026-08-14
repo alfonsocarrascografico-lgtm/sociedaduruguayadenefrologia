@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Trastornos del Sodio - Sociedad Uruguaya de Nefrología</title>
+  <!-- Bootstrap 5 CSS / Iconos -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  
+  <style>
+    .header-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 0.375rem;
+    }
+
+    .header-img {
+      max-height: 250px;
+      object-fit: cover;
+      width: 100%;
+      display: block;
+    }
+
+    /* Overlay para superponer el título con sombreado */
+    .header-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.5rem;
+      
+    }
+
+    .header-overlay h1 {
+      /* Sombreado de texto explícito */
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
+
+    .card-resultado {
+      transition: all 0.3s ease;
+      border: 1px solid #dee2e6;
+    }
+    .val-destacado {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #0d6efd;
+    }
+    .badge-kdigo {
+      font-size: 0.85rem;
+      padding: 6px 10px;
+    }
+  </style>
+</head>
+<body class="bg-light">
+
+  <main class="container my-5" style="max-width: 900px;">
+    
+    <!-- Botón de retorno -->
+    <nav aria-label="breadcrumb" class="mb-4">
+      <a href="calculadora.html" class="btn btn-sm btn-outline-secondary">
+        <i class="bi bi-arrow-left"></i> Volver a Calculadoras
+      </a>
+    </nav>
+
+    <!-- Ficha Principal estilo Documento / Recomendaciones -->
+    <article class="bg-white p-4 p-md-5 rounded shadow-sm border">
+      
+      <!-- Encabezado con estética unificada -->
+      <header class="border-bottom pb-3 mb-4">
+        
+        <!-- Cabezal con imagen y título superpuesto -->
+        <div class="header-container mb-3">
+          <img src="img/cientifico.jpg" alt="Encabezado SUN" class="header-img">
+          
+          <div class="header-overlay">
+            <span class="badge bg-primary mb-2">Herramienta Clínica</span>
+            <h1 class="h2 fw-bold text-white mb-0">Calculadora de Trastornos del Sodio</h1>
+          </div>
+        </div>
+
+        <p class="text-muted mb-0">Estimación del Agua Corporal Total y Cambio en la Natremia por Litro de Solución (Fórmula de Adrogué-Madias).</p>
+      </header>
+
+      <!-- Formulario de Entrada de Datos -->
+      <section class="p-4 bg-light rounded border mb-4">
+        <h5 class="fw-bold mb-3 text-secondary"><i class="bi bi-person-vcard"></i> Datos del Paciente y Solución Infundida</h5>
+        
+        <form id="sodioForm" onsubmit="event.preventDefault(); ejecutarCalculosSodio();">
+          <div class="row g-3">
+            
+            <div class="col-md-3">
+              <label for="naActual" class="form-label fw-semibold">Sodio Actual (mEq/L)</label>
+              <input type="number" step="1" min="90" max="180" class="form-control" id="naActual" placeholder="Ej: 118" required>
+            </div>
+
+            <div class="col-md-3">
+              <label for="weight" class="form-label fw-semibold">Peso (kg)</label>
+              <input type="number" step="0.1" min="20" max="250" class="form-control" id="weight" placeholder="Ej: 70" required>
+            </div>
+
+            <div class="col-md-3">
+              <label for="ageGroup" class="form-label fw-semibold">Grupo de Edad</label>
+              <select class="form-select" id="ageGroup" required>
+                <option value="adult">Adulto (&lt; 65 años)</option>
+                <option value="elderly">Adulto Mayor (≥ 65 años)</option>
+              </select>
+            </div>
+
+            <div class="col-md-3">
+              <label for="sex" class="form-label fw-semibold">Sexo Biológico</label>
+              <select class="form-select" id="sex" required>
+                <option value="female">Femenino</option>
+                <option value="male">Masculino</option>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <label for="solucion" class="form-label fw-semibold">Solución a Infundir</label>
+              <select class="form-select" id="solucion" required>
+                <option value="154">Cloruro de Sodio 0.9% (154 mEq/L Na)</option>
+                <option value="513">Cloruro de Sodio 3% Hipertónico (513 mEq/L Na)</option>
+                <option value="77">Cloruro de Sodio 0.45% (77 mEq/L Na)</option>
+                <option value="0">Dextrosa 5% en Agua / Agua libre (0 mEq/L Na)</option>
+                <option value="130">Ringer Lactato (130 mEq/L Na)</option>
+              </select>
+            </div>
+
+            <div class="col-md-6">
+              <label for="naDeseado" class="form-label fw-semibold">Meta Sugerida de Corrección (24 hs)</label>
+              <input type="number" step="1" min="1" max="12" class="form-control" id="metaCorrec" value="8" required>
+              <div class="form-text">Límite recomendado: Máximo 8 - 10 mEq/L en 24 horas.</div>
+            </div>
+
+            <div class="col-12 mt-4">
+              <button type="submit" class="btn btn-primary w-100 fw-bold py-2">
+                <i class="bi bi-calculator"></i> Calcular Corrección de Sodio
+              </button>
+            </div>
+
+          </div>
+        </form>
+      </section>
+
+      <!-- Sección de Resultados: Las 3 Tablas / Tarjetas -->
+      <section id="seccionResultados" class="d-none">
+        <h5 class="fw-bold mb-3 text-secondary"><i class="bi bi-bar-chart-line"></i> Estimación del Plan de Infusión</h5>
+        
+        <div class="row g-3">
+          
+          <!-- Tabla / Bloque 1: Cambio por Litro -->
+          <div class="col-md-4">
+            <div class="card card-resultado h-100 shadow-sm">
+              <div class="card-header bg-primary text-white text-center fw-bold">
+                Δ Na+ por Litro
+              </div>
+              <div class="card-body text-center d-flex flex-column justify-content-between">
+                <div>
+                  <span class="text-muted small d-block mb-1">Impacto de 1 Litro infundido</span>
+                  <div class="val-destacado" id="valDeltaNa">--</div>
+                  <span class="text-muted small">mEq/L por Litro</span>
+                </div>
+                <div class="mt-3">
+                  <div id="badgeDelta" class="badge badge-kdigo bg-secondary text-wrap">--</div>
+                </div>
+              </div>
+              <div class="card-footer bg-transparent text-muted small text-center border-top-0">
+                Fórmula de Adrogué - Madias
+              </div>
+            </div>
+          </div>
+
+          <!-- Tabla / Bloque 2: Volumen Requerido -->
+          <div class="col-md-4">
+            <div class="card card-resultado h-100 shadow-sm">
+              <div class="card-header bg-dark text-white text-center fw-bold">
+                Volumen para Meta 24h
+              </div>
+              <div class="card-body text-center d-flex flex-column justify-content-between">
+                <div>
+                  <span class="text-muted small d-block mb-1">Volumen Total Calculado</span>
+                  <div class="val-destacado text-dark" id="valVolumen">--</div>
+                  <span class="text-muted small">mL en 24 horas</span>
+                </div>
+                <div class="mt-3">
+                  <span class="badge bg-light text-dark border" id="valRitmoGoteo">-- mL/hora</span>
+                </div>
+              </div>
+              <div class="card-footer bg-transparent text-muted small text-center border-top-0">
+                Para lograr el cambio deseado
+              </div>
+            </div>
+          </div>
+
+          <!-- Tabla / Bloque 3: Agua Corporal Total -->
+          <div class="col-md-4">
+            <div class="card card-resultado h-100 shadow-sm">
+              <div class="card-header bg-secondary text-white text-center fw-bold">
+                Agua Corporal Total
+              </div>
+              <div class="card-body text-center d-flex flex-column justify-content-between">
+                <div>
+                  <span class="text-muted small d-block mb-1">Estimación de ACT</span>
+                  <div class="val-destacado text-secondary" id="valAct">--</div>
+                  <span class="text-muted small">Litros (L)</span>
+                </div>
+                <div class="mt-3">
+                  <div id="badgeAct" class="badge badge-kdigo bg-secondary text-wrap">--</div>
+                </div>
+              </div>
+              <div class="card-footer bg-transparent text-muted small text-center border-top-0">
+                Ajustado por sexo y rango etario
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Tabla Resumen Metas y Límites Clínicos (Referencias) -->
+        <div class="table-responsive mt-4">
+          <table class="table table-bordered table-sm align-middle text-center small">
+            <thead class="table-light">
+              <tr>
+                <th>Diagnóstico</th>
+                <th>Límite de Corrección (24h)</th>
+                <th>Riesgo de Sobrecorrección</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="table-danger">
+                <td><strong>Hiponatremia Grave / Sintomática</strong></td>
+                <td>8 - 10 mEq/L (Máx 12 mEq/L)</td>
+                <td>Síndrome de Desmielinización Osmótica (Mielinolisis Pontina)</td>
+              </tr>
+              <tr class="table-warning">
+                <td><strong>Hiponatremia de Alto Riesgo (Cirrosis, Alcoholismo, Desnutrición)</strong></td>
+                <td>4 - 6 mEq/L</td>
+                <td>Alto riesgo de desmielinización con pequeños incrementos</td>
+              </tr>
+              <tr class="table-success">
+                <td><strong>Hipernatremia</strong></td>
+                <td>≤ 10 mEq/L en 24 horas</td>
+                <td>Edema cerebral si la corrección es demasiado rápida</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </section>
+
+      <!-- Pie de página con Referencias y Descargo de Responsabilidad -->
+      <footer class="border-top pt-3 mt-4 text-muted small">
+        <p class="mb-1"><strong>Referencias:</strong></p>
+        <ul class="mb-2 ps-3">
+          <li>Adrogué HJ, Madias NE. Hypernatremia / Hyponatremia. N Engl J Med. 2000.</li>
+          <li>Spasovski G, et al. Clinical practice guideline on diagnosis and treatment of hyponatremia. Eur J Endocrinol. 2014.</li>
+        </ul>
+        <p class="mb-0"><strong>Nota:</strong> Esta herramienta está destinada únicamente al uso orientativo por parte de profesionales de la salud. Los cálculos no reemplazan los controles seriados de laboratorio.</p>
+      </footer>
+
+    </article>
+
+  </main>
+
+  <!-- Lógica en JavaScript Nativo -->
+  <script>
+    function ejecutarCalculosSodio() {
+      const naActual = parseFloat(document.getElementById('naActual').value);
+      const weight = parseFloat(document.getElementById('weight').value);
+      const ageGroup = document.getElementById('ageGroup').value;
+      const sex = document.getElementById('sex').value;
+      const naInfusate = parseFloat(document.getElementById('solucion').value);
+      const metaCorrec = parseFloat(document.getElementById('metaCorrec').value);
+
+      if (!naActual || !weight || !metaCorrec) return;
+
+      // 1. Cálculo del Agua Corporal Total (ACT)
+      let factorAct = 0.60;
+      if (sex === 'male') {
+        factorAct = (ageGroup === 'elderly') ? 0.50 : 0.60;
+      } else {
+        factorAct = (ageGroup === 'elderly') ? 0.45 : 0.50;
+      }
+
+      const act = weight * factorAct;
+
+      // 2. Cálculo Fórmula de Adrogué-Madias
+      const deltaNa1L = (naInfusate - naActual) / (act + 1);
+
+      // 3. Cálculo del Volumen a infusionar para cumplir la meta deseada
+      let volumenLitros = 0;
+      let ritmoGoteo = 0;
+
+      if (Math.abs(deltaNa1L) > 0.01) {
+        volumenLitros = metaCorrec / Math.abs(deltaNa1L);
+        ritmoGoteo = (volumenLitros * 1000) / 24; // mL / hora
+      }
+
+      // Despliegue de Valores
+      const signo = deltaNa1L > 0 ? '+' : '';
+      document.getElementById('valDeltaNa').innerText = signo + deltaNa1L.toFixed(2);
+      document.getElementById('valVolumen').innerText = (volumenLitros * 1000).toFixed(0);
+      document.getElementById('valRitmoGoteo').innerText = ritmoGoteo.toFixed(0) + ' mL/hora';
+      document.getElementById('valAct').innerText = act.toFixed(1);
+
+      // Asignar Badges
+      aplicarBadgeDelta('badgeDelta', deltaNa1L);
+      aplicarBadgeAct('badgeAct', factorAct);
+
+      // Mostrar resultados
+      document.getElementById('seccionResultados').classList.remove('d-none');
+    }
+
+    function aplicarBadgeDelta(elementId, val) {
+      const el = document.getElementById(elementId);
+      if (val > 0) {
+        el.innerText = 'Corrección de Hiponatremia';
+        el.className = 'badge badge-kdigo bg-primary';
+      } else if (val < 0) {
+        el.innerText = 'Corrección de Hipernatremia';
+        el.className = 'badge badge-kdigo bg-info text-dark';
+      } else {
+        el.innerText = 'Sin impacto natrémico';
+        el.className = 'badge badge-kdigo bg-secondary';
+      }
+    }
+
+    function aplicarBadgeAct(elementId, factor) {
+      const el = document.getElementById(elementId);
+      const porcentaje = (factor * 100).toFixed(0);
+      el.innerText = `Factor ACT: ${porcentaje}% del peso`;
+      el.className = 'badge badge-kdigo bg-secondary';
+    }
+  </script>
+
+</body>
+</html>

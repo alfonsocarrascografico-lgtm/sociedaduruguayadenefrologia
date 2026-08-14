@@ -3,17 +3,39 @@
 <head>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
   <meta charset="UTF-8">
-  <title>Institucional - SUN</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Científico - SUN</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Botones estilo "Ver novedades" para sección científica */
+    .btn-cientifico {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 24px;
+      background-image: url('img/boton-de-secciones.gif');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-radius: 8px;
+      color: white;
+      font-size: 18px;
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+      margin-top: 10px;
+    }
+    .btn-cientifico:hover {
+      opacity: 0.8;
+    }
+  </style>
 </head>
 
 <body>
 
-  <!-- HEADER (MISMO QUE INDEX) -->
+<!-- HEADER -->
 <header class="header">
   <div class="container header-content">
 
-    <!-- 🔼 NUEVA FILA: REDES -->
     <div class="header-top">
       <div class="social">
         <a href="https://www.instagram.com/sociedad_uruguaya_nefrologia/" target="_blank">
@@ -24,31 +46,34 @@
           <img src="img/redes-sociales-02.png" alt="X">
         </a>
 
-        <a href="#">
-          <img src="img/redes-sociales-03.png" alt="Red 3">
+        <a href="https://wa.me/59892539901" target="_blank">
+          <img src="img/redes-sociales-03.png" alt="WhatsApp">
         </a>
 
-        <a href="#">
-          <img src="img/redes-sociales-04.png" alt="Red 4">
+        <a href="index.html#contacto">
+          <img src="img/redes-sociales-04.png" alt="Contacto">
         </a>
       </div>
     </div>
 
-    <!-- 🔽 FILA ORIGINAL -->
     <div class="header-bottom">
       <div class="logo">
         <a href="index.html">
-          <img src="img/logo sun.png" alt="Logo SUN">
+          <img src="img/LOGO-SUN.jpg" alt="Logo SUN">
         </a>
       </div>
 
-      <nav class="nav">
-    <a href="index.html#inicio">Inicio</a>
-<a href="index.html#accesos-rapidos">Accesos</a>
-<a href="index.html#institucional">Institucional</a>
-<a href="index.html#cientifico">Científico</a>
-<a href="index.html#novedades">Novedades</a>
-<a href="index.html#congresos">Eventos</a>
+      <!-- 🔥 BOTÓN HAMBURGUESA -->
+      <div class="hamburger">☰</div>
+
+        <nav class="nav">
+<a href="index.html#institucional">Sobre SUN</a>
+<a href="index.html#accesos-rapidos">Recursos Médicos</a>
+<a href="index.html#socios">Socios</a>
+<a href="index.html#cientifico">Grupos de trabajo</a>
+<a href="index.html#becas">Becas</a>
+<a href="index.html#novedades">Información a pacientes</a>
+<a href="index.html#congresos">Congresos y cursos</a>
 <a href="index.html#contacto">Contacto</a>
       </nav>
     </div>
@@ -66,32 +91,82 @@
 
     <!-- CENTRO -->
     <div class="col col-center">
-      <h2>Historia</h2>
+         <h2>Misión</h2>
       <p>
+        Somos una asociación civil científica que impulsa apasionarse por el progreso y divulgación de la Nefrología facilitando la vinculación entre sus asociados y colaborando en la solución de problemas asistenciales y sociales relacionados con la disciplina. 
+      </p><br>
+      <h2> Visión </h2>
         <p>
-        La Sociedad Uruguaya de Nefrología surge con el objetivo de fortalecer el desarrollo de la especialidad en el país, generando un espacio de encuentro entre profesionales comprometidos con el estudio y tratamiento de las enfermedades renales.<br><br> Desde sus inicios, ha impulsado la formación continua y el intercambio de conocimiento.
-
-Con el paso del tiempo, ha consolidado su papel como referente en el ámbito médico nacional, promoviendo actividades científicas y acompañando los avances de la nefrología, siempre con el foco en mejorar la atención y calidad de vida de los pacientes.
-      </p>
+          Buscamos ser un referente nacional e internacional para la mejora continua de los cuidados relacionados con la salud renal contando con la participación activa de sus diferentes grupos de interés (pacientes, profesionales, sociedades, instituciones…).
+        </p>
+     
       </p>
     </div>
 
     <!-- DERECHA -->
     <div class = "col col-right" > 
-      <h2>Misión</h2>
+    <h2>Valores:</h2>
       <p>
-        Promover el desarrollo de la nefrología en Uruguay mediante la formación continua de sus profesionales, el impulso a la investigación científica y la difusión de buenas prácticas clínicas, contribuyendo a la mejora de la salud renal de la población.
-      </p><br>
-      <h2> Visión </h2>
         <p>
-          Ser una institución de referencia a nivel nacional y regional en el ámbito de la nefrología, reconocida por su excelencia académica, su compromiso con la innovación y su apoyo al bienestar de la sociedad.
-        </p>
-      <a href="#comision-1" class="nav-btn-img">›</a>
+        Profesionalismo y rigor científico:
+        </p><br>
+              <p>
+Ética, inclusividad y diversidad: La SUN promoverá el acceso al conocimiento para
+tod@s, rechazando la discriminación en todas sus formas. Incluirá enfoques para
+mejorar la participación y representación de las mujeres en la especialidad.
+      </p><br>
+              <p>
+Transparencia e integridad:
+      </p><br>
+              <p>
+Sostenibilidad: La SUN incorporará los principios de la sostenibilidad en sus prácticas y
+participaciones.
+      </p><br>
+              <p>
+Conciencia ambiental: Fomentar prácticas de atención médica renal ambientalmente
+responsables.
+      </p>
+      <a href="#historia" class="nav-btn-img">›</a>
     </div>
 
 
   </div>
+  
 </section>
+<!-- SECCIÓN HISTORIA -->
+<section id="historia" class="section white-bg">
+  <div class="container section-content">
+
+    <!-- IZQUIERDA -->
+    <div class="col col-left">
+      <img src="img/historia.jpg" alt="Historia de la SUN">
+    </div>
+
+    <!-- CENTRO -->
+    <div class="col col-center">
+      <h2>Historia</h2>
+      <p>
+        En el año 1982 la Sociedad Uruguaya de Nefrología fue fundada con el propósito de promover el desarrollo, la investigación y la docencia de la especialidad en el Uruguay, consolidando un espacio de encuentro e intercambio científico para los profesionales de la salud renal.
+      </p>
+    </div>
+
+    <!-- DERECHA -->
+    <div class="col col-right">
+      <h2>Trayectoria</h2>
+      <p>
+        A lo largo de los años, la Sociedad Uruguaya de Nefrología ha liderado iniciativas fundamentales en la prevención, diagnóstico y tratamiento de las enfermedades renales, posicionándose como un referente académico e institucional a nivel nacional y regional.
+      </p>
+      
+      <!-- Contenedor de navegación con ambas flechas -->
+      <div class="comision-nav">
+        <a href="#mision-vision" class="nav-btn-img">‹</a>
+        <a href="#comision-1" class="nav-btn-img">›</a>
+      </div>
+    </div> <!-- 🔥 Cierre de la columna derecha que faltaba -->
+
+  </div>
+</section>
+
 <section id="comision-1" class="section white-bg">
   <div class="container section-content">
 
@@ -105,8 +180,8 @@ Con el paso del tiempo, ha consolidado su papel como referente en el ámbito mé
       <p><strong>Cargo:</strong> Presidenta</p>
       <p><strong>Especialidad:</strong> Nefrología</p>
       <p><strong>Formación:</strong> Médica especialista en Nefrología (Uruguay)</p>
-      <p><strong>Áreas de interés:</strong> Enfermedad renal crónica, prevención y educación en salud renal</p>
-      <p><strong>Actividad profesional:</strong> Se desempeña en el ámbito clínico asistencial y participa activamente en la promoción de la salud renal a nivel nacional.</p>
+      <p><strong>Áreas de interés:</strong> Enfermedades renales hereditarias (con énfasis en PQRAD). Nefrología clínica.  Terapias de Reemplazo Renal en el paciente crítico.</p>
+      <p><strong>Actividad profesional:</strong> Se desempeña en el ámbito clínico asistencial como Líder del Servicio de Nefrología en una Institución de Asistencia Médica Privada de Tercer Nivel Asistencial en la ciudad de Montevideo. Es Directora de un Centro de Hemodiálisis Crónica en la misma ciudad.</p>
     </div>
 
     <div class="col col-right">
@@ -117,7 +192,7 @@ Con el paso del tiempo, ha consolidado su papel como referente en el ámbito mé
       </p>
 
       <div class="comision-nav">
-        <a href="#mision-vision" class="nav-btn-img">‹</a>
+        <a href="#historia" class="nav-btn-img">‹</a>
         <a href="#comision-2" class="nav-btn-img">›</a>
       </div>
     </div>
@@ -255,50 +330,154 @@ Con el paso del tiempo, ha consolidado su papel como referente en el ámbito mé
 
   </div>
 </section>
-  <!-- SCRIPT (MISMO QUE INDEX) -->
- <script>
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener("click", function(e) {
-    const targetId = this.getAttribute("href").substring(1);
-    const target = document.getElementById(targetId);
 
+<footer class="site-footer">
+  <div class="footer-container">
+    
+    <!-- COLUMNA 1: Logo y Contacto -->
+    <div class="footer-col footer-info">
+      <img src="img/LOGO-BN.png" alt="Sociedad Uruguaya de Nefrología" class="footer-logo">
+     <div class="footer-info">
+  <p><strong>Sociedad Uruguaya de Nefrología</strong></p>
+  
+  <p class="contacto-item">
+    <!-- Ícono Ubicación (estilo pin circular) -->
+    <svg class="icono-contacto" viewBox="0 0 24 24">
+      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+    </svg>
+    <span>Lord Ponsonby 2430, Montevideo, Uruguay</span>
+  </p>
+
+  <p class="contacto-item">
+    <!-- Ícono Teléfono -->
+    <svg class="icono-contacto" viewBox="0 0 24 24">
+      <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+    </svg>
+    <span>+598 92 539 901</span>
+  </p>
+
+  <p class="contacto-item">
+    <!-- Ícono Email -->
+    <svg class="icono-contacto" viewBox="0 0 24 24">
+      <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+    </svg>
+    <span>contacto@sun.org.uy</span>
+  </p>
+</div>
+    </div>
+
+    <!-- COLUMNA 2: Secciones del Sitio -->
+    <div class="footer-col footer-links">
+      <p><strong>SECCIONES DEL SITIO</strong></p>
+      <ul>
+        <li><a href="index.html#accesos-rapidos">Recursos Médicos</a><li>
+        <li><a href="index.html#socios">Socios</a></li>
+        <li><a href="index.html#cientifico">Grupos de trabajo</a></li>
+        <li><a href="index.html#becas">Becas</a></li>
+        <li><a href="index.html#novedades">Información a pacientes</a></li>
+        <li><a href="index.html#congresos">Congresos y cursos</a></li>
+      </ul>
+    </div>
+
+    <!-- COLUMNA 3: Sitios de Interés -->
+    <div class="footer-col footer-external">
+      <p><strong>SITIOS DE INTERÉS</strong></p>
+      <ul>
+        <li>
+          <a href="https://www.gub.uy/ministerio-salud-publica/buscar?search_api_fulltext=nefrologia&search-in-site=MSP" target="_blank" rel="noopener noreferrer">
+            Ministerio de Salud Pública
+          </a>
+        </li>
+        <li>
+          <a href="https://hc.edu.uy/index.php/imaes-nefrologia.html" target="_blank" rel="noopener noreferrer">
+            Cátedra de Nefrología Hospital de Clínicas
+          </a>
+        </li>
+        <li>
+          <a href="https://www.fnr.gub.uy/home-salud-renal/" target="_blank" rel="noopener noreferrer">
+            Programa de Salud Renal Uruguay (PSRU)
+          </a>
+        </li>
+        <li>
+          <a href="https://saludrenal.uy/" target="_blank" rel="noopener noreferrer">
+            Salud Renal – Uruguay
+          </a>
+        </li>
+        <li>
+          <a href="https://slanh.net" target="_blank" rel="noopener noreferrer">
+            Sociedad Latinoamericana de Nefrología e Hipertensión (SLANH)
+          </a>
+        </li>
+         <li>
+          <a href="https://www.theisn.org/" target="_blank" rel="noopener noreferrer">
+            Sociedad Internacional de Nefrología (ISN)
+          </a>
+        </li>
+        <li>
+          <a href="https://www.senefro.org/modules.php?name=home&lang=ES" target="_blank" rel="noopener noreferrer">
+            Sociedad Española de Nefrología (SEN)
+          </a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- LÍNEA FINAL: Firma y Copyright -->
+  <div class="footer-bottom">
+    <p>© 2026 SUN - Sociedad Uruguaya de Nefrología | Desarrollado por Alfonso Carrasco Gráfico</p>
+  </div>
+</footer>
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+  const getOffset = () => window.innerWidth <= 768 ? 80 : 172;
+
+  // 👉 Si viene con hash desde otra página
+  const hash = window.location.hash;
+  if (hash) {
+    const target = document.querySelector(hash);
     if (target) {
-      e.preventDefault();
-
-      const offset = 170;
-      const top = target.offsetTop - offset;
-
-      window.scrollTo({
-        top: top,
-        behavior: "smooth"
-      });
+      const top = target.offsetTop - getOffset();
+      window.scrollTo({ top: top, behavior: "smooth" });
     }
+  }
+
+  // 👉 Scroll interno
+  document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function(e) {
+      const url = new URL(this.href);
+      const targetId = url.hash.substring(1);
+      const target = document.getElementById(targetId);
+
+      if (target) {
+        e.preventDefault();
+        const top = target.offsetTop - getOffset();
+        window.scrollTo({
+          top: top,
+          behavior: "smooth"
+        });
+      }
+    });
   });
 });
 </script>
-<footer class="footer">
-  <div class="container footer-content">
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const hamburger = document.querySelector('.hamburger');
+  const nav = document.querySelector('.nav');
 
-    <div class="footer-left">
-      <img src="img/logo byn.png" alt="SUN">
-      </div>
+  if (hamburger && nav) {
+    hamburger.addEventListener('click', () => {
+      nav.classList.toggle('active');
+    });
 
-    <div class="footer-center">
-      <p>SITIOS DE INTERES</P>
-      <P>https://www.nefrologia.hc.edu.uy/</P>
-      <P>https://www.asn-online.org/</P>
-      <P>https://nefrologiaaldia.org/</P>
-      <P>https://www.theisn.org/</P>
-      </div>
-
-    <div class="footer-right">
-      <p>Lord Ponsonby 2430</p>
-      <p>Montevideo, Uruguay</p>
-      <p>092 539 901</p>
-      <p>info@sun.org.uy</p>
-      </div>
-
-  </div>
-</footer>
+    document.querySelectorAll('.nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('active');
+      });
+    });
+  }
+});
+</script>
 </body>
 </html>

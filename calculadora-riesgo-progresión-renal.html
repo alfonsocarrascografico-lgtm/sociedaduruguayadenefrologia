@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Riesgo y Progresión Renal (KFRE) - Sociedad Uruguaya de Nefrología</title>
+  <!-- Bootstrap 5 CSS / Iconos -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  
+  <style>
+    .header-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 0.375rem;
+    }
+
+    .header-img {
+      max-height: 250px;
+      object-fit: cover;
+      width: 100%;
+      display: block;
+    }
+
+    /* Overlay para superponer el título con sombreado */
+    .header-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.5rem;
+      
+    }
+
+    .header-overlay h1 {
+      /* Sombreado de texto explícito */
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
+
+    .card-resultado {
+      transition: all 0.3s ease;
+      border: 1px solid #dee2e6;
+    }
+    .val-destacado {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #060606;
+    }
+    .badge-kdigo {
+      font-size: 0.85rem;
+      padding: 6px 10px;
+    }
+  </style>
+</head>
+<body class="bg-light">
+
+  <main class="container my-5" style="max-width: 900px;">
+    
+    <!-- Botón de retorno -->
+    <nav aria-label="breadcrumb" class="mb-4">
+      <a href="calculadora.html" class="btn btn-sm btn-outline-secondary">
+        <i class="bi bi-arrow-left"></i> Volver a Calculadoras
+      </a>
+    </nav>
+
+    <!-- Ficha Principal estilo Documento / Recomendaciones -->
+    <article class="bg-white p-4 p-md-5 rounded shadow-sm border">
+      
+      <!-- Encabezado con estética unificada -->
+      <header class="border-bottom pb-3 mb-4">
+        
+        <!-- Cabezal con imagen y título superpuesto -->
+        <div class="header-container mb-3">
+          <img src="img/cientifico.jpg" alt="Encabezado SUN" class="header-img">
+          
+          <div class="header-overlay">
+            <span class="badge bg-primary mb-2">Herramienta Clínica</span>
+            <h1 class="h2 fw-bold text-white mb-0">Riesgo y Progresión Renal (KFRE)</h1>
+          </div>
+        </div>
+
+        <p class="text-muted mb-0">Estimación de la probabilidad de progresión a Falla Renal (necesidad de diálisis o trasplante) a 2 y 5 años mediante la Kidney Failure Risk Equation de 4 variables.</p>
+      </header>
+
+      <!-- Formulario de Entrada de Datos -->
+      <section class="p-4 bg-light rounded border mb-4">
+        <h5 class="fw-bold mb-3 text-secondary"><i class="bi bi-person-vcard"></i> Parámetros del Paciente (ERC Estadíos G3-G5)</h5>
+        
+        <form id="kfreForm" onsubmit="event.preventDefault(); ejecutarCalculosKFRE();">
+          <div class="row g-3">
+            
+            <div class="col-md-3">
+              <label for="edad" class="form-label fw-semibold">Edad (años)</label>
+              <input type="number" step="1" min="18" max="100" class="form-control" id="edad" placeholder="Ej: 65" required>
+            </div>
+
+            <div class="col-md-3">
+              <label for="sexo" class="form-label fw-semibold">Sexo Biológico</label>
+              <select class="form-select" id="sexo" required>
+                <option value="male">Masculino</option>
+                <option value="female">Femenino</option>
+              </select>
+            </div>
+
+            <div class="col-md-3">
+              <label for="tfge" class="form-label fw-semibold">TFGe (mL/min/1.73m²)</label>
+              <input type="number" step="0.1" min="5" max="59" class="form-control" id="tfge" placeholder="Ej: 28" required>
+            </div>
+
+            <div class="col-md-3">
+              <label for="uacr" class="form-label fw-semibold">UACR (mg/g)</label>
+              <input type="number" step="1" min="1" max="10000" class="form-control" id="uacr" placeholder="Ej: 350" required>
+              <div class="form-text">Relación Albúmina/Creatinina urinaria.</div>
+            </div>
+
+            <div class="col-12 d-flex align-items-center">
+              <p class="text-muted small mb-0"><i class="bi bi-info-circle"></i> La ecuación de 4 variables ha sido validada para pacientes adultos con Enfermedad Renal Crónica en estadíos G3 a G5.</p>
+            </div>
+
+            <div class="col-12 mt-4">
+              <button type="submit" class="btn btn-primary w-100 fw-bold py-2">
+                <i class="bi bi-calculator"></i> Calcular Riesgo de Progresión
+              </button>
+            </div>
+
+          </div>
+        </form>
+      </section>
+
+      <!-- Sección de Resultados: Las 3 Tablas / Tarjetas -->
+      <section id="seccionResultados" class="d-none">
+        <h5 class="fw-bold mb-3 text-secondary"><i class="bi bi-bar-chart-line"></i> Estimación de Riesgo de Falla Renal</h5>
+        
+        <div class="row g-3">
+          
+          <!-- Tabla / Bloque 1: Riesgo a 2 Años -->
+          <div class="col-md-4">
+            <div class="card card-resultado h-100 shadow-sm">
+              <div class="card-header bg-primary text-white text-center fw-bold">
+                Riesgo a 2 Años
+              </div>
+              <div class="card-body text-center d-flex flex-column justify-content-between">
+                <div>
+                  <span class="text-muted small d-block mb-1">Probabilidad de TRR</span>
+                  <div class="val-destacado" id="valRiesgo2a">--</div>
+                  <span class="text-muted small">Porcentaje (%)</span>
+                </div>
+                <div class="mt-3">
+                  <div id="badgeRiesgo2a" class="badge badge-kdigo bg-secondary text-wrap">--</div>
+                </div>
+              </div>
+              <div class="card-footer bg-transparent text-muted small text-center border-top-0">
+                Planificación a corto plazo
+              </div>
+            </div>
+          </div>
+
+          <!-- Tabla / Bloque 2: Riesgo a 5 Años -->
+          <div class="col-md-4">
+            <div class="card card-resultado h-100 shadow-sm">
+              <div class="card-header bg-dark text-white text-center fw-bold">
+                Riesgo a 5 Años
+              </div>
+              <div class="card-body text-center d-flex flex-column justify-content-between">
+                <div>
+                  <span class="text-muted small d-block mb-1">Probabilidad de TRR</span>
+                  <div class="val-destacado text-dark" id="valRiesgo5a">--</div>
+                  <span class="text-muted small">Porcentaje (%)</span>
+                </div>
+                <div class="mt-3">
+                  <div id="badgeRiesgo5a" class="badge badge-kdigo bg-secondary text-wrap">--</div>
+                </div>
+              </div>
+              <div class="card-footer bg-transparent text-muted small text-center border-top-0">
+                Criterio de derivación y preparación
+              </div>
+            </div>
+          </div>
+
+          <!-- Tabla / Bloque 3: Categoria KDIGO (CGA) -->
+          <div class="col-md-4">
+            <div class="card card-resultado h-100 shadow-sm">
+              <div class="card-header bg-secondary text-white text-center fw-bold">
+                Estratificación KDIGO
+              </div>
+              <div class="card-body text-center d-flex flex-column justify-content-between">
+                <div>
+                  <span class="text-muted small d-block mb-1">Estadío G / Categoría A</span>
+                  <div class="val-destacado text-secondary" id="valEstadioKdigo">--</div>
+                  <span class="text-muted small" id="valAlbuminuriaTexto">--</span>
+                </div>
+                <div class="mt-3">
+                  <div id="badgeKdigo" class="badge badge-kdigo bg-secondary text-wrap">--</div>
+                </div>
+              </div>
+              <div class="card-footer bg-transparent text-muted small text-center border-top-0">
+                Basado en TFGe y UACR
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Tabla Resumen Umbrales de Manejo Clínico (Referencias) -->
+        <div class="table-responsive mt-4">
+          <table class="table table-bordered table-sm align-middle text-center small">
+            <thead class="table-light">
+              <tr>
+                <th>Riesgo a 5 Años</th>
+                <th>Estratificación</th>
+                <th>Recomendación de Manejo Clínico</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="table-success">
+                <td><strong>&lt; 3 %</strong></td>
+                <td>Riesgo Bajo</td>
+                <td>Manejo por Medicina General / Nefrología de control anual.</td>
+              </tr>
+              <tr class="table-warning">
+                <td><strong>3 % - 15 %</strong></td>
+                <td>Riesgo Moderado</td>
+                <td>Criterio de derivación a Nefrología. Optimización de nefroprotección.</td>
+              </tr>
+              <tr class="table-danger">
+                <td><strong>&gt; 15 %</strong></td>
+                <td>Riesgo Alto / Muy Alto</td>
+                <td>Planificación de Acceso Vascular / Diálisis peritoneal o lista de Trasplante Renal Preemptivo.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </section>
+
+      <!-- Pie de página con Referencias y Descargo de Responsabilidad -->
+      <footer class="border-top pt-3 mt-4 text-muted small">
+        <p class="mb-1"><strong>Referencias:</strong></p>
+        <ul class="mb-2 ps-3">
+          <li>Tangri N, et al. Multinational Assessment of Accuracy of Equations for Predicting Risk of Kidney Failure. JAMA. 2016.</li>
+          <li>KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of Chronic Kidney Disease. Kidney Int.</li>
+        </ul>
+        <p class="mb-0"><strong>Nota:</strong> Esta herramienta está destinada únicamente al uso orientativo por parte de profesionales de la salud. Los resultados deben contextualizarse con la clínica del paciente.</p>
+      </footer>
+
+    </article>
+
+  </main>
+
+  <!-- Lógica en JavaScript Nativo -->
+  <script>
+    function ejecutarCalculosKFRE() {
+      const edad = parseFloat(document.getElementById('edad').value);
+      const sexo = document.getElementById('sexo').value;
+      const tfge = parseFloat(document.getElementById('tfge').value);
+      const uacr = parseFloat(document.getElementById('uacr').value);
+
+      if (!edad || !tfge || !uacr) return;
+
+      // Factores de Ecuación KFRE (4 variables) - Tangri et al. JAMA 2016 (Calibración No-Norteamérica)
+      const esHombre = (sexo === 'male') ? 1 : 0;
+
+      // Variables centradas
+      const edadCentrada = (edad - 70.3) / 10;
+      const esHombreCentrado = esHombre - 0.56;
+      const tfgeCentrada = (tfge - 35.8) / 5;
+      const uacrLogCentrada = Math.log(uacr) - 5.12;
+
+      // Coeficientes para 2 Años
+      const beta2a = (-0.2201 * edadCentrada) + (0.2582 * esHombreCentrado) - (0.5567 * tfgeCentrada) + (0.4510 * uacrLogCentrada);
+      const s0_2a = 0.9832; // Supervivencia base a 2 años
+      const riesgo2a = (1 - Math.pow(s0_2a, Math.exp(beta2a))) * 100;
+
+      // Coeficientes para 5 Años
+      const beta5a = (-0.2230 * edadCentrada) + (0.2705 * esHombreCentrado) - (0.5898 * tfgeCentrada) + (0.4700 * uacrLogCentrada);
+      const s0_5a = 0.9365; // Supervivencia base a 5 años
+      const riesgo5a = (1 - Math.pow(s0_5a, Math.exp(beta5a))) * 100;
+
+      // Despliegue de Valores
+      document.getElementById('valRiesgo2a').innerText = riesgo2a.toFixed(1) + '%';
+      document.getElementById('valRiesgo5a').innerText = riesgo5a.toFixed(1) + '%';
+
+      // Determinación de Categoria KDIGO
+      let estadioG = 'G3a';
+      if (tfge < 15) estadioG = 'G5';
+      else if (tfge < 30) estadioG = 'G4';
+      else if (tfge < 45) estadioG = 'G3b';
+      else if (tfge < 60) estadioG = 'G3a';
+
+      let estadioA = 'A1';
+      let albTexto = 'Normoalbuminuria';
+      if (uacr > 300) {
+        estadioA = 'A3';
+        albTexto = 'Albuminuria Severa';
+      } else if (uacr >= 30) {
+        estadioA = 'A2';
+        albTexto = 'Albuminuria Moderada';
+      }
+
+      document.getElementById('valEstadioKdigo').innerText = `${estadioG} ${estadioA}`;
+      document.getElementById('valAlbuminuriaTexto').innerText = albTexto;
+
+      // Asignar Badges
+      aplicarBadgeRiesgo('badgeRiesgo2a', riesgo2a);
+      aplicarBadgeRiesgo('badgeRiesgo5a', riesgo5a);
+      aplicarBadgeKdigo('badgeKdigo', estadioG, estadioA);
+
+      // Mostrar resultados
+      document.getElementById('seccionResultados').classList.remove('d-none');
+    }
+
+    function aplicarBadgeRiesgo(elementId, riesgo) {
+      const el = document.getElementById(elementId);
+      if (riesgo < 3) {
+        el.innerText = 'Riesgo Bajo (< 3%)';
+        el.className = 'badge badge-kdigo bg-success';
+      } else if (riesgo <= 15) {
+        el.innerText = 'Riesgo Moderado (3 - 15%)';
+        el.className = 'badge badge-kdigo bg-warning text-dark';
+      } else {
+        el.innerText = 'Riesgo Alto (> 15%)';
+        el.className = 'badge badge-kdigo bg-danger';
+      }
+    }
+
+    function aplicarBadgeKdigo(elementId, g, a) {
+      const el = document.getElementById(elementId);
+      if (g === 'G5' || a === 'A3' || g === 'G4') {
+        el.innerText = 'Alto Riesgo de Progresión';
+        el.className = 'badge badge-kdigo bg-danger';
+      } else if (g === 'G3b' || a === 'A2') {
+        el.innerText = 'Riesgo Moderado de Progresión';
+        el.className = 'badge badge-kdigo bg-warning text-dark';
+      } else {
+        el.innerText = 'Riesgo Leve de Progresión';
+        el.className = 'badge badge-kdigo bg-success';
+      }
+    }
+  </script>
+
+</body>
+</html>

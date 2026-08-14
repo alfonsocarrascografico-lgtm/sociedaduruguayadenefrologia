@@ -3,17 +3,53 @@
 <head>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
   <meta charset="UTF-8">
-  <title>Institucional - SUN</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Científico - SUN</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Botones estilo "Ver novedades" para sección científica */
+    .btn-cientifico {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 24px;
+      background-image: url('img/boton-de-secciones.gif');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border-radius: 8px;
+      color: white;
+      font-size: 18px;
+      text-decoration: none;
+      transition: opacity 0.3s ease;
+      margin-top: 10px;
+    }
+    .btn-cientifico:hover {
+      opacity: 0.8;
+    }
+
+    /* Ajustes para íconos de contacto */
+    .contacto-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .icono-contacto {
+      width: 18px;
+      height: 18px;
+      fill: #3d3d3d;
+      flex-shrink: 0;
+    }
+  </style>
 </head>
 
 <body>
 
-  <!-- HEADER (MISMO QUE INDEX) -->
+<!-- HEADER -->
 <header class="header">
   <div class="container header-content">
 
-    <!-- 🔼 NUEVA FILA: REDES -->
     <div class="header-top">
       <div class="social">
         <a href="https://www.instagram.com/sociedad_uruguaya_nefrologia/" target="_blank">
@@ -24,31 +60,34 @@
           <img src="img/redes-sociales-02.png" alt="X">
         </a>
 
-        <a href="#">
-          <img src="img/redes-sociales-03.png" alt="Red 3">
+        <a href="https://wa.me/59892539901" target="_blank">
+          <img src="img/redes-sociales-03.png" alt="WhatsApp">
         </a>
 
-        <a href="#">
-          <img src="img/redes-sociales-04.png" alt="Red 4">
+        <a href="index.html#contacto">
+          <img src="img/redes-sociales-04.png" alt="Contacto">
         </a>
       </div>
     </div>
 
-    <!-- 🔽 FILA ORIGINAL -->
     <div class="header-bottom">
       <div class="logo">
         <a href="index.html">
-          <img src="img/logo sun.png" alt="Logo SUN">
+          <img src="img/LOGO-SUN.jpg" alt="Logo SUN">
         </a>
       </div>
 
+      <!-- BOTÓN HAMBURGUESA -->
+      <div class="hamburger">☰</div>
+
       <nav class="nav">
-    <a href="index.html#inicio">Inicio</a>
-<a href="index.html#accesos-rapidos">Accesos</a>
-<a href="index.html#institucional">Institucional</a>
-<a href="index.html#cientifico">Científico</a>
-<a href="index.html#novedades">Novedades</a>
-<a href="index.html#congresos">Eventos</a>
+        <a href="index.html#institucional">Sobre SUN</a>
+<a href="index.html#accesos-rapidos">Recursos Médicos</a>
+<a href="index.html#socios">Socios</a>
+<a href="index.html#cientifico">Grupos de trabajo</a>
+<a href="index.html#becas">Becas</a>
+<a href="index.html#novedades">Información a pacientes</a>
+<a href="index.html#congresos">Congresos y cursos</a>
 <a href="index.html#contacto">Contacto</a>
       </nav>
     </div>
@@ -56,107 +95,231 @@
   </div>
 </header>
 
-  <!-- CONTENIDO -->
- <!-- PRINCIPAL -->
-  <section id="congresos">
-
+<!-- CONTENIDO PRINCIPAL -->
+<section id="congresos" class="seccion-destacada">
   <div class="container">
-
-    <!-- PRINCIPAL -->
     <div class="nov-principal">
       <a href="#" class="nov-card horizontal" id="congreso-principal">        
         <div class="nov-img" style="background-image: url('img/auditorio.jpg');"></div>
         
         <div class="nov-text">
           <h2>Principales Congresos y Encuentros 2026</h2>
-          <p>Marzo 6-7 (Montevideo, Uruguay): Primer Encuentro Internacional Nefrológico 2026 (SLANH, Médica Uruguaya, Mayo Clinic). Venue: Hotel Hyatt Centric. Enfocado en enfermedad renal crónica y avances en diálisis.<br><br>
-
-Marzo 4-7 (Internacional/LATAM): Séptimo Congreso GEMAV - Primer Congreso GEMAV LATAM. Congreso internacional de acceso vascular.<br><br>
-
-Abril 17-18 (Argentina): Séptimo congreso de la región SAR (Sociedad Argentina de Reumatología - posible cruce con afecciones renales/autoinmunes, confirmar agenda nefrológica específica).<br><br>
-
-Octubre 1-2 (Montevideo, Uruguay): XIV Congreso Uruguayo de Nefrología y jornadas asociadas. Lugar: Centro de Convenciones Radisson.<br><br>
-
-Octubre 28-31 (Mar del Plata, Argentina): XIV Congreso ALANEPE (Asociación Latinoamericana de Nefrología Pediátrica)<br><br>
-
-Marzo 26 (Virtual): Seminario para Nefrólogos Jóvenes 2026 - Anatomía patológica, organizado por Alanepe (Asociación Latinoamericana de Nefrología Pediátrica).</p>
+          <p>
+            Marzo 6-7 (Montevideo, Uruguay): Primer Encuentro Internacional Nefrológico 2026 (SLANH, Médica Uruguaya, Mayo Clinic). Venue: Hotel Hyatt Centric. Enfocado en enfermedad renal crónica y avances en diálisis.<br><br>
+            Marzo 4-7 (Internacional/LATAM): Séptimo Congreso GEMAV - Primer Congreso GEMAV LATAM. Congreso internacional de acceso vascular.<br><br>
+            Abril 17-18 (Argentina): Séptimo congreso de la región SAR (Sociedad Argentina de Reumatología - posible cruce con afecciones renales/autoinmunes, confirmar agenda nefrológica específica).<br><br>
+            Octubre 1-2 (Montevideo, Uruguay): XIV Congreso Uruguayo de Nefrología y jornadas asociadas. Lugar: Centro de Convenciones Radisson.<br><br>
+            Octubre 28-31 (Mar del Plata, Argentina): XIV Congreso ALANEPE (Asociación Latinoamericana de Nefrología Pediátrica)<br><br>
+            Marzo 26 (Virtual): Seminario para Nefrólogos Jóvenes 2026 - Anatomía patológica, organizado por Alanepe (Asociación Latinoamericana de Nefrología Pediátrica).
+          </p>
         </div>
-
       </a>
     </div>
+  </div>
+</section>
 
-    <!-- LISTADO -->
-    <div class="nov-listado" id="congresos-listado">
+<!-- SECCIÓN LISTADO CONGRESOS (FONDO ANCHO COMPLETO 100%) -->
+<section class="section alt-bg">
+  
+  <!-- CONTENEDOR 1: Bloque original de congresos -->
+  <div class="container section-content">
+    <div class="nov-listado" id="congresos-listado-1">
       <div class="nov-row">
 
-        <a href="#" class="nov-card" id="congreso-destacado">
-          <div class="nov-img" style="background-image: url('img/congreso.jpg');"></div>
+        <a href="https://atenea.com.uy/eventos/xiv-congreso-uruguayo-de-nefrologia" target="_blank" rel="noopener noreferrer" class="nov-card">
+          <div class="nov-img" style="background-image: url('img/afiche-con-logo-smu.jpg');"></div>
           <div class="nov-text">
-            <h3>Congreso Latinoamericano de Nefrología</h3>
-            <p>Especialistas de toda la región se reunirán en una nueva edición del congreso latinoamericano, donde se abordarán temas clave como enfermedad renal crónica, diálisis y trasplante. El evento busca fortalecer la integración científica regional y compartir experiencias clínicas de alto impacto.</p>
+            <h3>XIV Congreso Uruguayo de Nefrología 2026</h3>
+            <p>El próximo gran evento en Uruguay es el XIV Congreso Uruguayo de Nefrología, que se realizará del 1 al 2 de octubre de 2026 en el Centro de Convenciones del Radisson Montevideo Victoria Plaza Hotel.<br><br>Acceda al sitio del congreso</p>
           </div>
         </a>
 
-        <a href="#" class="nov-card" id="congreso-yokohama">
-          <div class="nov-img" style="background-image: url('img/yokohama.jpg');"></div>
+        <a href="https://can2026.com.ar/" target="_blank" rel="noopener noreferrer" class="nov-card">
+          <div class="nov-img" style="background-image: url('img/698381561_971750632279406_152289327295394215_n.jpg');"></div>
           <div class="nov-text">
-            <h3>Congreso Mundial de Nefrología – Yokohama</h3>
-            <p>La ciudad de Yokohama será sede del próximo Congreso Mundial de Nefrología, uno de los eventos más importantes a nivel global. Investigadores y profesionales de la salud presentarán avances en investigación, innovación terapéutica y estrategias de prevención en salud renal.</p>
+            <h3>XXVI Congreso Argentino de Nefrología (CAN 2026)</h3>
+            <p>Se realizará del 18 al 21 de noviembre de 2026 en la ciudad de Neuquén, organizado por la Sociedad Argentina de Nefrología (SAN).<br><br>Acceda al sitio del congreso</p>
           </div>
         </a>
 
       </div>
-
     </div>
+  </div>
 
-  </div> <!-- 👈 ACÁ CIERRA EL CONTAINER -->
+  <!-- CONTENEDOR 2: Nuevos bloques de congresos -->
+  <div class="container section-content" style="margin-top: 30px;">
+    <div class="nov-listado" id="congresos-listado-2">
+      <div class="nov-row">
+
+        <a href="https://www.theisn.org/wcn/" target="_blank" rel="noopener noreferrer" class="nov-card">
+          <div class="nov-img" style="background-image: url('img/congreso-wcn-2027.jpeg');"></div>
+          <div class="nov-text">
+            <h3>WCN'27</h3>
+            <p>¡Comienza la cuenta regresiva para abril de 2027 ! ¡Nos vemos en Kuala Lumpur !<br>El programa WCN'27 está diseñado para ayudar a los profesionales de la atención renal a explorar los cambios que se están produciendo en el sector y lo que esto significa para la investigación, la práctica y la atención al paciente.<br><br>Acceda al sitio del congreso</p>
+          </div>
+        </a>
+
+        <a href="https://congresoslanh.org" target="_blank" rel="noopener noreferrer" class="nov-card">
+          <div class="nov-img" style="background-image: url('img/congreso-slanh-2027.jpeg');"></div>
+          <div class="nov-text">
+            <h3>Congreso SLANH 2027</h3>
+            <p>En Panamá del 25 al 28 de agosto, será el principal encuentro científico de la nefrología latinoamericana. Este espacio académico promoverá el intercambio de experiencias, la actualización en nuevas terapias y tecnologías, y la discusión de los desafíos actuales en el cuidado renal, fortaleciendo la colaboración regional y el desarrollo de la especialidad en toda Latinoamérica.<br><br>Acceda al sitio del congreso</p>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </div>
 
 </section>
 
-  <!-- SCRIPT (MISMO QUE INDEX) -->
-  <script>
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener("click", function(e) {
-    const targetId = this.getAttribute("href").substring(1);
-    const target = document.getElementById(targetId);
+<!-- FOOTER (FONDO ANCHO COMPLETO 100%) -->
+<footer class="site-footer">
+  <div class="footer-container">
+    
+    <!-- COLUMNA 1: Logo y Contacto -->
+    <div class="footer-col footer-info">
+      <img src="img/LOGO-BN.png" alt="Sociedad Uruguaya de Nefrología" class="footer-logo">
+      <p><strong>Sociedad Uruguaya de Nefrología</strong></p>
+      
+      <p class="contacto-item">
+        <svg class="icono-contacto" viewBox="0 0 24 24">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+        </svg>
+        <span>Lord Ponsonby 2430, Montevideo, Uruguay</span>
+      </p>
 
+      <p class="contacto-item">
+        <svg class="icono-contacto" viewBox="0 0 24 24">
+          <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+        </svg>
+        <span>+598 92 539 901</span>
+      </p>
+
+      <p class="contacto-item">
+        <svg class="icono-contacto" viewBox="0 0 24 24">
+          <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+        <span>contacto@sun.org.uy</span>
+      </p>
+    </div>
+
+    <!-- COLUMNA 2: Secciones del Sitio -->
+    <div class="footer-col footer-links">
+      <p><strong>SECCIONES DEL SITIO</strong></p>
+      <ul>
+        <li><a href="index.html#accesos-rapidos">Recursos Médicos</a><li>
+        <li><a href="index.html#socios">Socios</a></li>
+        <li><a href="index.html#cientifico">Grupos de trabajo</a></li>
+        <li><a href="index.html#becas">Becas</a></li>
+        <li><a href="index.html#novedades">Información a pacientes</a></li>
+        <li><a href="index.html#congresos">Congresos y cursos</a></li>
+      </ul>
+    </div>
+
+    <!-- COLUMNA 3: Sitios de Interés -->
+    <div class="footer-col footer-external">
+      <p><strong>SITIOS DE INTERÉS</strong></p>
+      <ul>
+        <li>
+          <a href="https://www.gub.uy/ministerio-salud-publica/buscar?search_api_fulltext=nefrologia&search-in-site=MSP" target="_blank" rel="noopener noreferrer">
+            Ministerio de Salud Pública
+          </a>
+        </li>
+        <li>
+          <a href="https://hc.edu.uy/index.php/imaes-nefrologia.html" target="_blank" rel="noopener noreferrer">
+            Cátedra de Nefrología Hospital de Clínicas
+          </a>
+        </li>
+        <li>
+          <a href="https://www.fnr.gub.uy/home-salud-renal/" target="_blank" rel="noopener noreferrer">
+            Programa de Salud Renal Uruguay (PSRU)
+          </a>
+        </li>
+        <li>
+          <a href="https://saludrenal.uy/" target="_blank" rel="noopener noreferrer">
+            Salud Renal – Uruguay
+          </a>
+        </li>
+        <li>
+          <a href="https://slanh.net" target="_blank" rel="noopener noreferrer">
+            Sociedad Latinoamericana de Nefrología e Hipertensión (SLANH)
+          </a>
+        </li>
+         <li>
+          <a href="https://www.theisn.org/" target="_blank" rel="noopener noreferrer">
+            Sociedad Internacional de Nefrología (ISN)
+          </a>
+        </li>
+        <li>
+          <a href="https://www.senefro.org/modules.php?name=home&lang=ES" target="_blank" rel="noopener noreferrer">
+            Sociedad Española de Nefrología (SEN)
+          </a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- LÍNEA FINAL: Firma y Copyright -->
+  <div class="footer-bottom">
+    <p>© 2026 SUN - Sociedad Uruguaya de Nefrología | Desarrollado por Alfonso Carrasco Gráfico</p>
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script>
+window.addEventListener("DOMContentLoaded", () => {
+  const getOffset = () => window.innerWidth <= 768 ? 80 : 172;
+
+  // 👉 Si viene con hash desde otra página
+  const hash = window.location.hash;
+  if (hash) {
+    const target = document.querySelector(hash);
     if (target) {
-      e.preventDefault();
-
-      const offset = 170;
-      const top = target.offsetTop - offset;
-
-      window.scrollTo({
-        top: top,
-        behavior: "smooth"
-      });
+      const top = target.offsetTop - getOffset();
+      window.scrollTo({ top: top, behavior: "smooth" });
     }
+  }
+
+  // 👉 Scroll interno
+  document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+    anchor.addEventListener("click", function(e) {
+      const url = new URL(this.href);
+      const targetId = url.hash.substring(1);
+      const target = document.getElementById(targetId);
+
+      if (target) {
+        e.preventDefault();
+        const top = target.offsetTop - getOffset();
+        window.scrollTo({
+          top: top,
+          behavior: "smooth"
+        });
+      }
+    });
   });
 });
 </script>
-<footer class="footer">
-  <div class="container footer-content">
 
-    <div class="footer-left">
-      <img src="img/logo byn.png" alt="SUN">
-      </div>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const hamburger = document.querySelector('.hamburger');
+  const nav = document.querySelector('.nav');
 
-    <div class="footer-center">
-      <p>SITIOS DE INTERES</P>
-      <P>https://www.nefrologia.hc.edu.uy/</P>
-      <P>https://www.asn-online.org/</P>
-      <P>https://nefrologiaaldia.org/</P>
-      <P>https://www.theisn.org/</P>
-      </div>
+  if (hamburger && nav) {
+    hamburger.addEventListener('click', () => {
+      nav.classList.toggle('active');
+    });
 
-    <div class="footer-right">
-      <p>Lord Ponsonby 2430</p>
-      <p>Montevideo, Uruguay</p>
-      <p>092 539 901</p>
-      <p>info@sun.org.uy</p>
-      </div>
+    document.querySelectorAll('.nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('active');
+      });
+    });
+  }
+});
+</script>
 
-  </div>
-</footer>
 </body>
 </html>

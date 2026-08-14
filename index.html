@@ -1,33 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>SUN - Sociedad Uruguaya de Nefrología</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<script>
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener("click", function(e) {
-    const targetId = this.getAttribute("href").substring(1);
-    const target = document.getElementById(targetId);
 
-    if (target) {
-      e.preventDefault();
-
-      const offset = 170;
-      const top = target.offsetTop - offset;
-
-      window.scrollTo({
-        top: top,
-        behavior: "smooth"
-      });
-    }
-  });
-});
-</script>
 <body>
-
+  
   <!-- 🔥 COLUMNA GLOBAL -->
   <div class="columna-bg"></div>
 
@@ -45,11 +29,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
           <img src="img/redes-sociales-02.png" alt="X">
         </a>
 
-        <a href="#">
-          <img src="img/redes-sociales-03.png" alt="Red 3">
-        </a>
+        <a href="https://wa.me/59892539901" target="_blank">
+  <img src="img/redes-sociales-03.png" alt="WhatsApp">
+</a>
 
-        <a href="#">
+        <a href="#contacto">
           <img src="img/redes-sociales-04.png" alt="Red 4">
         </a>
       </div>
@@ -59,28 +43,31 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     <div class="header-bottom">
       <div class="logo">
         <a href="index.html">
-          <img src="img/logo sun.png" alt="Logo SUN">
+          <img src="img/LOGO-SUN.jpg" alt="Logo SUN">
         </a>
       </div>
 
       <nav class="nav">
-    <a href="#inicio">Inicio</a>
-<a href="#accesos-rapidos">Accesos</a>
-<a href="#institucional">Institucional</a>
-<a href="#cientifico">Científico</a>
-<a href="#novedades">Novedades</a>
-<a href="#congresos">Eventos</a>
+<a href="#institucional">Sobre SUN</a>
+<a href="#accesos-rapidos">Recursos Médicos</a>
+<a href="#socios">Socios</a>
+<a href="#cientifico">Grupos de trabajo</a>
+<a href="#becas">Becas</a>
+<a href="#novedades">Informacion a pacientes</a>
+<a href="#congresos">Congresos y cursos</a>
 <a href="#contacto">Contacto</a>
       </nav>
-    </div>
-
-  </div>
+      <div class = "hamburger" > ☰ </div>
+    </div></div>
 </header>
 
- <section id="inicio" class="hero">
-  
+<!-- HERO / INICIO -->
+<section class="hero">
   <div class="hero-bg">
-    <img src="img/hero-animado.gif" alt="Hero principal">
+    <video autoplay muted loop playsinline class="hero-video">
+      <source src="img/hero-animado1.mp4" type="video/mp4">
+      Tu navegador no soporta video HTML5.
+    </video>
   </div>
 
   <div class="container hero-content">
@@ -89,63 +76,17 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       <p>
         Promoviendo el desarrollo científico, la formación médica y el cuidado integral de la salud renal en Uruguay.
       </p>
-
-     <a href="afiliaciones.html" 
-   class="btn-afiliarse">
-  <img src="img/boton-de-afiliaciones-1.gif" alt="Afiliarse">
-  <span>AFILIARSE</span>
-</a>
-
-    </div>
-  </div>
-
-</section>
-
-  <!-- ACCESOS RÁPIDOS -->
-<section id="accesos-rapidos"> 
-  <div class="container">
-
-    <h2 class="titulo-seccion">Recursos y actividades</h2>
-
-    <div class="accesos-grid">
-
-      <a href="#cientifico" class="acceso-card">
-        <div class="acceso-icono">
-          <img src="icons/guias.svg" alt="Guías clínicas">
-        </div>
-        <h3>Guías clínicas</h3>
-        <p>Protocolos y recomendaciones actualizadas</p>
+      <a href="afiliaciones.html" class="btn-afiliarse">
+        <img src="img/boton-de-afiliaciones-1.gif" alt="Afiliarse">
+        <span>AFILIARSE</span>
       </a>
-
-      <a href="congresos.html" class="acceso-card">
-        <div class="acceso-icono">
-          <img src="icons/eventos.svg" alt="Eventos">
-        </div>
-        <h3>Eventos</h3>
-        <p>Cursos, congresos y actividades</p>
-      </a>
-
-      <a href="novedades.html" class="acceso-card"> 
-        <div class="acceso-icono">
-          <img src="icons/novedades.svg" alt="Novedades">
-        </div>
-        <h3>Novedades</h3>
-        <p>Actualidad en nefrología</p>
-      </a>
-
-      <a href="#contacto" class="acceso-card">
-        <div class="acceso-icono">
-          <img src="icons/contacto.svg" alt="Contacto">
-        </div>
-        <h3>Contacto</h3>
-        <p>Consultas e información institucional</p>
-      </a>
-
     </div>
   </div>
 </section>
 
-  <!-- INSTITUCIONAL -->
+</section>
+
+   <!-- INSTITUCIONAL -->
   <section id="institucional" class="institucional">
     <div class="container institucional-content">
 
@@ -155,14 +96,19 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
       <div class="inst-center">
         <h2>Quiénes Somos</h2>
-        <p>
+        <br><p>
          
 La Sociedad Uruguaya de Nefrología 
 es una comunidad de profesionales comprometidos con el cuidado de la salud renal, que trabaja para impulsar el conocimiento, la formación médica y una mejor atención para los pacientes en todo el país.<br>
 
 Además, promueve la investigación, el intercambio académico y la actualización continua, fortaleciendo la colaboración entre especialistas y contribuyendo a mejorar la calidad de la atención y la prevención de las enfermedades renales.
         </p>
-      </div>
+        <div class="contenedor-boton">
+  <a href="pdf/estatutos.pdf" target="_blank" class="boton-seccion">
+  Estatutos
+</a>
+</div>
+              </div>
 
       <div class="inst-right">
         <h2>Comisión Directiva<br>2025 - 2027</h2>
@@ -176,46 +122,198 @@ Además, promueve la investigación, el intercambio académico y la actualizaci�
     </div>
   </section>
   
-<!-- CIENTÍFICO -->
+ <!-- ACCESOS RÁPIDOS (RECURSOS MÉDICOS) -->
+<section id="accesos-rapidos"> 
+  <div class="container">
+
+    <h2 class="titulo-seccion">Recursos Médicos</h2>
+
+    <!-- Contenedor Wrapper del Carrusel -->
+    <div class="carousel-wrapper">
+      <button class="carousel-btn prev-btn" onclick="scrollCarousel('accesos-grid', -1)" aria-label="Anterior">❮</button>
+
+      <div class="accesos-grid carousel-track" id="accesos-grid">
+         
+         <a href="webinar.html#tarjeta-webinar-vivo" class="socios-card">
+          <div class="socios-icono">
+            <img src="icons/webinar.svg" alt="Contacto">
+          </div>
+          <h3>Webinar en vivo</h3>
+          <p>Participe de Charlas virtuales en vivo</p>
+        </a>
+
+        <a href="calculadora.html" class="acceso-card">
+          <div class="acceso-icono">
+            <img src="icons/calculadora_Mesa de trabajo 1.svg" alt="Eventos">
+          </div>
+          <h3>Calculadoras</h3>
+          <p>Calculadoras de Nefrología</p>
+        </a>
+
+        <a href="registros.html" class="acceso-card">
+          <div class="acceso-icono">
+            <img src="icons/guias.svg" alt="socios">
+          </div>
+          <h3>Registros</h3>
+          <p>Registros de Diálisis y Glomerulopatías</p>
+        </a>
+
+        <a href="informes.html" class="acceso-card">
+          <div class="acceso-icono">
+            <img src="icons/eventos.svg" alt="Guías clínicas">
+          </div>
+          <h3>Informes</h3>
+          <p>Informes de Diálisis y Glomerulopatías</p>
+        </a>
+
+        <a href="informes.html" class="acceso-card">
+          <div class="acceso-icono">
+            <img src="icons/eventos.svg" alt="Guías clínicas">
+          </div>
+          <h3>Revista SUN</h3>
+          <p>Publicación del Congreso</p>
+        </a>
+              
+      </div>
+
+      <button class="carousel-btn next-btn" onclick="scrollCarousel('accesos-grid', 1)" aria-label="Siguiente">❯</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- SOCIOS -->
+<section id="socios"> 
+  <div class="container">
+
+    <h2 class="titulo-seccion">Socios</h2>
+
+    <div class="socios-grid">
+
+      <a href="socios.html#tarjeta-guias" class="socios-card">
+        <div class="socios-icono">
+          <img src="icons/como-ser-socio.svg" alt="Guías clínicas">
+        </div>
+        <h3>Como ser socio</h3>
+        <p>Guía práctica para asociarse</p>
+      </a>
+
+      <a href="socios.html#tarjeta-clinica" class="socios-card">
+        <div class="socios-icono">
+          <img src="icons/beneficios.svg" alt="Eventos">
+        </div>
+        <h3>Beneficios</h3>
+        <p>Listado de beneficios para asociados</p>
+      </a>
+
+      <a href="socios.html#tarjeta-webinar" class="socios-card">
+        <div class="socios-icono">
+          <img src="icons/webinar.svg" alt="Contacto">
+        </div>
+        <h3>Webinar</h3>
+        <p>Charlas y contenido audiovisual</p>
+      </a>
+
+      <a href="socios.html#tarjeta-publicaciones" class="socios-card"> 
+        <div class="socios-icono">
+          <img src="icons/sugerencias.svg" alt="Novedades">
+        </div>
+        <h3>Sugerencias</h3>
+        <p>Buzón de recomendaciones</p>
+      </a>
+
+      
+    </div>
+  </div>
+</section>
+   
+<!-- CIENTÍFICO (GRUPOS DE TRABAJO) -->
 <section id="cientifico" class="cientifico">
   <div class="container">
 
-    <h2 class="titulo-seccion">Área Científica</h2>
+    <h2 class="titulo-seccion">Grupos de Trabajo</h2>
 
-    <div class="cientifico-grid">
+    <!-- Contenedor Wrapper del Carrusel -->
+    <div class="carousel-wrapper">
+      <button class="carousel-btn prev-btn" onclick="scrollCarousel('cientifico-grid', -1)" aria-label="Anterior">❮</button>
 
-      <a href="cientifico.html#tarjeta-guias" class="cientifico-card split-card">
-        <div class="card-img" style="background-image: url('img/cientifico-1.jpg');"></div>
-        <div class="card-text">
-          <h3>Guías clínicas</h3>
-          <p>Recomendaciones y protocolos actualizados</p>
-        </div>
-      </a>
+      <div class="cientifico-grid carousel-track" id="cientifico-grid">
 
-      <a href="cientifico.html#tarjeta-clinica" class="cientifico-card split-card">
-        <div class="card-img" style="background-image: url('img/cientifico-3.jpg');"></div>
-        <div class="card-text">
-          <h3>Casos clínicos</h3>
-          <p>Análisis y discusión de casos</p>
-        </div>
-      </a>
+        <a href="cientifico.html#tarjeta-laborales" class="cientifico-card split-card">
+          <div class="card-img" style="background-image: url('img/comision-laborales.jpg');"></div>
+          <div class="card-text">
+            <h3>Comisión Asuntos Laborales</h3>
+          </div>
+        </a>
 
-      <a href="cientifico.html#tarjeta-publicaciones" class="cientifico-card split-card">
-        <div class="card-img" style="background-image: url('img/cientifico-2.jpg');"></div>
-        <div class="card-text">
-          <h3>Publicaciones</h3>
-          <p>Artículos y producción académica</p>
-        </div>
-      </a>
+        <a href="cientifico.html#tarjeta-científica" class="cientifico-card split-card">
+          <div class="card-img" style="background-image: url('img/cientifico-2.jpg');"></div>
+          <div class="card-text">
+            <h3>Comisión Científica</h3>
+          </div>
+        </a>
 
-      <a href="cientifico.html#tarjeta-webinars" class="cientifico-card split-card">
-        <div class="card-img" style="background-image: url('img/cientifico-4.jpg');"></div>
-        <div class="card-text">
-          <h3>Webinars</h3>
-          <p>Charlas y contenido audiovisual</p>
-        </div>
-      </a>
+        <a href="cientifico.html#tarjeta-educación" class="cientifico-card split-card">
+          <div class="card-img" style="background-image: url('img/cientifico-6.jpg');"></div>
+          <div class="card-text">
+            <h3>Comisión Educación Médica Continua</h3>
+          </div>
+        </a>
 
+        <a href="cientifico.html#tarjeta-ira" class="cientifico-card split-card">
+          <div class="card-img" style="background-image: url('img/cientifico-3.jpg');"></div>
+          <div class="card-text">
+            <h3>Comisión IRA</h3>
+          </div>
+        </a>
+
+        <!-- 5.ª TARJETA AGREGADA: COMISIÓN EDITORIAL -->
+        <a href="cientifico.html#tarjeta-editorial" class="cientifico-card split-card">
+          <div class="card-img" style="background-image: url('img/comision-editorial.jpg');"></div>
+          <div class="card-text">
+            <h3>Comisión Editorial</h3>
+          </div>
+        </a>
+
+      </div>
+
+      <button class="carousel-btn next-btn" onclick="scrollCarousel('cientifico-grid', 1)" aria-label="Siguiente">❯</button>
+    </div>
+
+  </div>
+</section>
+
+  <!-- BECAS -->
+
+  </section>
+<section class="congresos" id="becas">
+  <div class="container congresos-content">
+
+    <!-- IZQUIERDA -->
+    <div class="cong-item">
+      <img src="img/becas-activas.jpg" alt="">
+      <p>
+      Conocé las convocatorias vigentes y las oportunidades de perfeccionamiento y formación profesional.</p>
+    </div>
+
+    <!-- CENTRO -->
+    <div class="cong-item">
+      <img src="img/becas-otorgadas.jpg" alt="">
+      <p>
+Conocé las becas otorgadas, sus beneficiarios y las actividades de formación para las que fueron adjudicadas.</p>
+      <div class="contenedor-boton">
+        <a href="becas.html#congresos-listado-1" class="boton-seccion">Ver becas</a>
+      </div>
+    </div>
+
+    <!-- DERECHA (PRINCIPAL) -->
+    <div class="cong-item">
+      <img src="img/becas.jpg" alt="">
+      <p class="titulo-congreso">
+      La Sociedad Uruguaya de Nefrología (SUN)<br> ofrece programas de becas y ayudas de formación para congresos, simposios y perfeccionamiento en el área, con fechas límite habituales de postulación fijadas hacia el 1 de mayo de cada año y anuncios difundidos a través de sus canales oficiales.</p>
+      <div class="contenedor-boton">
+        <a href="becas.html#congreso-principal" class="boton-seccion">Requisitos y detalles</a>
+      </div>
     </div>
 
   </div>
@@ -227,22 +325,21 @@ Además, promueve la investigación, el intercambio académico y la actualizaci�
 
     <!-- Columna izquierda -->
     <div class="nov-item">
-      <img src="img/foto nuevo centro.jpg" alt="Nuevo centro">
+      <img src="img/programa-salud-renal.jpg" alt="Nuevo centro">
       <p>
-        Nuevo Centro de Enfermedad Renal Crónica Avanzada de la Udelar:
-        «Una política de Estado que nos trasciende a todos»
+        Programa de Salud Renal: Información para pacientes y familias sobre el acceso al programa.
       </p>
     </div>
 
     <!-- Columna centro -->
     <div class="nov-item">
-      <img src="img/centro de enfermedad renal.jpg" alt="Centro de enfermedad renal">
+      <img src="img/hemodialisis-recomendaciones.jpg" alt="Centro de enfermedad renal">
       <p>
-        Se inauguró el Centro de Enfermedad Renal Crónica Avanzada del Hospital de Clínicas, que incluye un servicio de diálisis.
+        Recomendaciones prácticas para la vida diaria en tratamiento: protección del acceso vascular, pautas de alimentación y control de líquidos.
       </p>
     <div class="contenedor-boton">
   <a href="novedades.html#novedad-destacada" class="boton-seccion">
-  Ver novedades
+  Ver información
 </a>
 </div>
     </div>
@@ -263,31 +360,36 @@ Además, promueve la investigación, el intercambio académico y la actualizaci�
 
     <!-- IZQUIERDA -->
     <div class="cong-item">
-      <img src="img/logo congreso 2026.jpg" alt="">
+      <img src="img/congreso-uruguayo-nefrologia.jpg" alt="">
       <p>
-        El objetivo de este encuentro es propiciar una actualización científica del más alto nivel en el campo de la nefrología.
+       El próximo gran evento en Uruguay es el XIV Congreso Uruguayo de Nefrología, del 1 al 2 de octubre de 2026 - Centro de Convenciones del Radisson Montevideo Victoria Plaza Hotel.
       </p>
     </div>
 
     <!-- CENTRO -->
     <div class="cong-item">
-      <img src="img/logo congreso tokio.png" alt="">
+      <img src="img/congreso-argentino-nefrologia.jpg" alt="">
       <p>
-        Diseñado para inspirar, informar y conectar a profesionales de la atención renal de todas las regiones y disciplinas.
+        Congreso Argentino de Nefrología (CAN) 2026. Se llevará a cabo del 18 al 21 de noviembre de 2026, en la ciudad de Neuquén, en el Centro de Convenciones Domuyo.
       </p>
-    <div class="contenedor-boton">
-  <a href="congresos.html#congresos-listado" class="boton-seccion">Ver congresos</a>
-</div>
+      <div class="contenedor-boton">
+        <a href="congresos.html#congresos-listado-1" class="boton-seccion">Ver congresos</a>
+      </div>
     </div>
 
-    <!-- DERECHA -->
+    <!-- DERECHA (PRINCIPAL) -->
     <div class="cong-item">
       <img src="img/calendario.jpg" alt="">
-      <h2>Calendario<br> Cursos y Congresos 2026</h2>
-    <div class="contenedor-boton">
-  <a href="congresos.html#congreso-principal" class="boton-seccion">Ver calendario</a>
-</div>
+      <p class="titulo-congreso">
+        Calendario<br> Cursos y Congresos 2026
+      </p>
+      <div class="contenedor-boton">
+        <a href="congresos.html#congreso-principal" class="boton-seccion">Ver calendario</a>
+      </div>
     </div>
+
+  </div>
+</section>
 
   <!-- SOCIOS -->
 </section>
@@ -301,8 +403,7 @@ Además, promueve la investigación, el intercambio académico y la actualizaci�
     <p>Formá parte de la Sociedad Uruguaya de Nefrología y accedé a beneficios académicos y científicos.</p>
 
     <a href="afiliaciones.html" 
-       class="boton-seccion" 
-       target="_blank">
+       class="boton-seccion">
    Afiliarse
   </a>
   </div>
@@ -317,29 +418,174 @@ Además, promueve la investigación, el intercambio académico y la actualizaci�
 
   </div>
 </section>
-<footer class="footer">
-  <div class="container footer-content">
+<footer class="site-footer">
+  <div class="footer-container">
+    
+    <!-- COLUMNA 1: Logo y Contacto -->
+    <div class="footer-col footer-info">
+      <img src="img/LOGO-BN.png" alt="Sociedad Uruguaya de Nefrología" class="footer-logo">
+      <div class="footer-info">
+  <p><strong>Sociedad Uruguaya de Nefrología</strong></p>
+  
+  <p class="contacto-item">
+    <!-- Ícono Ubicación (estilo pin circular) -->
+    <svg class="icono-contacto" viewBox="0 0 24 24">
+      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+    </svg>
+    <span>Lord Ponsonby 2430, Montevideo, Uruguay</span>
+  </p>
 
-    <div class="footer-left">
-      <img src="img/logo byn.png" alt="SUN">
-      </div>
+  <p class="contacto-item">
+    <!-- Ícono Teléfono -->
+    <svg class="icono-contacto" viewBox="0 0 24 24">
+      <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+    </svg>
+    <span>+598 92 539 901</span>
+  </p>
 
-    <div class="footer-center">
-      <p>SITIOS DE INTERES</P>
-      <P>https://www.nefrologia.hc.edu.uy/</P>
-      <P>https://www.asn-online.org/</P>
-      <P>https://nefrologiaaldia.org/</P>
-      <P>https://www.theisn.org/</P>
-      </div>
+  <p class="contacto-item">
+    <!-- Ícono Email -->
+    <svg class="icono-contacto" viewBox="0 0 24 24">
+      <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+    </svg>
+    <span>contacto@sun.org.uy</span>
+  </p>
+</div>
+    </div>
 
-    <div class="footer-right">
-      <p>Lord Ponsonby 2430</p>
-      <p>Montevideo, Uruguay</p>
-      <p>092 539 901</p>
-      <p>info@sun.org.uy</p>
-      </div>
+    <!-- COLUMNA 2: Secciones del Sitio -->
+    <div class="footer-col footer-links">
+      <p><strong>SECCIONES DEL SITIO</strong></p>
+      <ul>
+        <li><a href="#accesos-rapidos">Recursos Médicos</a><li>
+        <li><a href="#socios">Socios</a></li>
+        <li><a href="#cientifico">Grupos de trabajo</a></li>
+        <li><a href="#becas">Becas</a></li>
+        <li><a href="#novedades">Información pacientes</a></li>
+        <li><a href="#congresos">Congresos y cursos</a></li>
+      </ul>
+    </div>
+
+    <!-- COLUMNA 3: Sitios de Interés -->
+    <div class="footer-col footer-external">
+      <p><strong>SITIOS DE INTERÉS</strong></p>
+      <ul>
+        <li>
+          <a href="https://www.gub.uy/ministerio-salud-publica/buscar?search_api_fulltext=nefrologia&search-in-site=MSP" target="_blank" rel="noopener noreferrer">
+            Ministerio de Salud Pública
+          </a>
+        </li>
+        <li>
+          <a href="https://hc.edu.uy/index.php/imaes-nefrologia.html" target="_blank" rel="noopener noreferrer">
+            Cátedra de Nefrología Hospital de Clínicas
+          </a>
+        </li>
+        <li>
+          <a href="https://www.fnr.gub.uy/home-salud-renal/" target="_blank" rel="noopener noreferrer">
+            Programa de Salud Renal Uruguay (PSRU)
+          </a>
+        </li>
+        <li>
+          <a href="https://saludrenal.uy/" target="_blank" rel="noopener noreferrer">
+            Salud Renal – Uruguay
+          </a>
+        </li>
+        <li>
+          <a href="https://slanh.net" target="_blank" rel="noopener noreferrer">
+            Sociedad Latinoamericana de Nefrología e Hipertensión (SLANH)
+          </a>
+        </li>
+         <li>
+          <a href="https://www.theisn.org/" target="_blank" rel="noopener noreferrer">
+            Sociedad Internacional de Nefrología (ISN)
+          </a>
+        </li>
+        <li>
+          <a href="https://www.senefro.org/modules.php?name=home&lang=ES" target="_blank" rel="noopener noreferrer">
+            Sociedad Española de Nefrología (SEN)
+          </a>
+        </li>
+      </ul>
+    </div>
 
   </div>
+
+  <!-- LÍNEA FINAL: Firma y Copyright -->
+  <div class="footer-bottom">
+    <p>© 2026 SUN - Sociedad Uruguaya de Nefrología | Desarrollado por Alfonso Carrasco Gráfico</p>
+  </div>
 </footer>
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener("click", function(e) {
+    const targetId = this.getAttribute("href").substring(1);
+    const target = document.getElementById(targetId);
+
+    if (target) {
+      e.preventDefault();
+
+const offset = window.innerWidth <= 768 ? 80 : 172;      const top = target.offsetTop - offset;
+
+      window.scrollTo({
+        top: top,
+        behavior: "smooth"
+      });
+    }
+  });
+});
+</script>
+<script>
+window.addEventListener("load", () => {
+  const getOffset = () => window.innerWidth <= 768 ? 80 : 172;
+
+  const scrollToHash = () => {
+    const hash = window.location.hash;
+    if (hash) {
+      const target = document.querySelector(hash);
+      if (target) {
+        const top = target.offsetTop - getOffset();
+        window.scrollTo({
+          top: top,
+          behavior: "smooth"
+        });
+      }
+    }
+  };
+
+  // 🔥 Ejecuta después de cargar TODO
+  setTimeout(scrollToHash, 100);
+});
+</script>
+<script>
+const hamburger = document.querySelector('.hamburger');
+const nav = document.querySelector('.nav');
+
+hamburger.addEventListener('click', () => {
+  nav.classList.toggle('active');
+const navLinks = document.querySelectorAll('.nav a');
+
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    nav.classList.remove('active');
+  });
+});
+});
+</script>
+<script>
+function scrollCarousel(gridId, direction) {
+  const container = document.getElementById(gridId);
+  if (!container) return;
+
+  // Ancho de una tarjeta + el espacio (gap) de 20px
+  const cardWidth = container.querySelector('a').offsetWidth + 20;
+  
+  // Desplazar horizontalmente
+  container.scrollBy({
+    left: direction * cardWidth,
+    behavior: 'smooth'
+  });
+}
+</script>
 </body>
 </html>
+<!-- <div class="columna-bg"></div> -->

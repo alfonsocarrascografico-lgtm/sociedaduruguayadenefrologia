@@ -27,6 +27,20 @@
     .btn-cientifico:hover {
       opacity: 0.8;
     }
+
+    /* Ajustes para íconos de contacto */
+    .contacto-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .icono-contacto {
+      width: 18px;
+      height: 18px;
+      fill: #3d3d3d;
+      flex-shrink: 0;
+    }
   </style>
 </head>
 
@@ -63,10 +77,10 @@
         </a>
       </div>
 
-      <!-- 🔥 BOTÓN HAMBURGUESA -->
+      <!-- BOTÓN HAMBURGUESA -->
       <div class="hamburger">☰</div>
 
-        <nav class="nav">
+      <nav class="nav">
 <a href="index.html#institucional">Sobre SUN</a>
 <a href="index.html#accesos-rapidos">Recursos Médicos</a>
 <a href="index.html#socios">Socios</a>
@@ -76,110 +90,87 @@
 <a href="index.html#congresos">Congresos y cursos</a>
 <a href="index.html#contacto">Contacto</a>
       </nav>
-    </div>
-
-  </div>
+</div>
 </header>
 
-<section class="novedades-v2">
-
-  <!-- CARD PRINCIPAL -->
-  <div class="nov-principal">
-    <a href="#" class="nov-card horizontal">
-      
-      <div class="nov-img" style="background-image: url('img/dmr26.jpg');"></div>
-      
-      <div class="nov-text">
-        <h2>Día Mundial del Riñón 2026</h2>
-        <p>12 de marzo Día Mundial del Riñón, que este año se conmemora como la vigésima edición de esta iniciativa global impulsada por la Sociedad Internacional de Nefrología y la Federación Internacional de Fundaciones Renales para incrementar la conciencia sobre la enfermedad renal crónica (ERC) y su impacto en la salud pública. La campaña de este año, bajo el lema “SALUD RENAL PARA TODOS — Cuidando a la gente, protegiendo al planeta”, tiene como objetivo resaltar la importancia de la prevención, el diagnóstico precoz y la equidad en el acceso a la atención médica para todas las personas afectadas por la ERC.</p>
-      </div>
-
-    </a>
-  </div>
-
-  <!-- LISTADO -->
-  <div class="nov-listado">
-
-    <div class="nov-row">
-
-  <a href="programa-salud-renal.html" rel="noopener noreferrer" class="nov-card" id="novedad-destacada">
-  <div class="nov-img" style="background-image: url('img/programa-salud-renal.jpg');"></div>
-  <div class="nov-text">
-    <h3>Programa de Salud Renal (PSR)</h3>
-    <p>Estrategia nacional orientada a la prevención, detección precoz y tratamiento oportuno de la Enfermedad Renal Crónica en el Uruguay.<br><br>Ver información</p>
-  </div>
-</a>
-
-  <a href="hemodialisis-recomendaciones.html" rel="noopener noreferrer" class="nov-card">
-        <div class="nov-img" style="background-image: url('img/hemodialisis-recomendaciones.jpg');"></div>
+<!-- CONTENIDO PRINCIPAL -->
+<section id="congresos" class="seccion-destacada">
+  <div class="container">
+    <div class="nov-principal">
+      <a href="#" class="nov-card horizontal" id="congreso-principal">        
+        <div class="nov-img" style="background-image: url('img/detalle-becas.jpg');"></div>
+        
         <div class="nov-text">
-          <h3>Cuidados y Recomendaciones en Hemodiálisis</h3>
-          <p>Guía práctica de tratamiento, nutrición y protección del acceso vascular para pacientes en hemodiálisis en el Uruguay.<br><br>Ver recomendaciones</p>
+          <h2>Requisitos y Detalles</h2>
+          <p>
+          Destinatarios: Médicos nefrólogos, residentes y posgrados en formación dentro de la especialidad.<br><br>Beneficios: Cobertura total o parcial de inscripción a eventos académicos o ayudas para estancias y perfeccionamiento.<br><br>Condición: Ser socio activo de la sociedad o contar con aval de la institución.<br><br>Cómo Postularse: Las convocatorias específicas y bases se comunican a través de los canales oficiales de la Sociedad Uruguaya de Nefrología.<br><br>Las solicitudes se envían de forma digital adjuntando la documentación requerida antes de las fechas límite establecidas.
+          </p>
         </div>
       </a>
-
     </div>
-
-    <div class="nov-listado">
-
-    <div class="nov-row">
-
-      <a href="#" class="nov-card">
-  <div class="nov-img" style="background-image: url('img/foto nuevo centro.jpg');"></div>
-  <div class="nov-text">
-    <h3>Nuevo Centro de Enfermedad Renal Crónica Avanzada de la Udelar: «Una política de Estado que nos trasciende a todos»</h3>
-    <p>«Nuestro fin, el mismo que el de la Universidad de la República, es dar lo mejor a la sociedad, no solo brindar asistencia sino que esta sea la mejor, que vaya a la par con la investigación, ya que eso permite generar una medicina y una nefrología basadas en la mejor evidencia científica y acompañadas de docencia» Doctor Ricardo Silvariño profesor agregado de Nefrología</p>
   </div>
-</a>
-
-      <a href="#" class="nov-card">
-        <div class="nov-img" style="background-image: url('img/centro de enfermedad renal.jpg');"></div>
-        <div class="nov-text">
-          <h3>Hospital de Clínicas inauguró centro de diálisis</h3>
-          <p>El presidente de la República, profesor Yamandú Orsi, asistió a la inauguración del Centro de Enfermedad Renal Crónica Avanzada del Hospital de Clínicas, que incluye un servicio de diálisis, tras una inversión de 3.000.000 de dólares.</p>
-        </div>
-      </a>
-
-    </div>
-
-    <!-- duplicar .nov-row según necesites -->
-
-  </div>
-  
 </section>
+
+<!-- SECCIÓN LISTADO CONGRESOS (FONDO ANCHO COMPLETO 100%) -->
+<section class="section alt-bg">
+  
+  <!-- CONTENEDOR 1: Bloque original de congresos -->
+  <div class="container section-content">
+    <div class="nov-listado" id="congresos-listado-1">
+      <div class="nov-row">
+
+        <a href="becas-activas.html" class="nov-card">
+          <div class="nov-img" style="background-image: url('img/becas-activas.jpg');"></div>
+          <div class="nov-text">
+            <h3>Becas activas</h3>
+            <p>Consultá las convocatorias vigentes de la SUN, sus requisitos, beneficios y fechas de postulación, y encontrá toda la información necesaria para acceder a las oportunidades de formación.<br><br>Ver becas activas</p>
+          </div>
+        </a>
+
+        <a href="becas-otorgadas.html" class="nov-card">
+          <div class="nov-img" style="background-image: url('img/becas-otorgadas.jpg');"></div>
+          <div class="nov-text">
+            <h3>Becas otorgadas</h3>
+            <p>Conocé las becas otorgadas por la SUN, sus beneficiarios y las actividades científicas y académicas para las que fueron adjudicadas, así como los beneficios correspondientes a cada convocatoria.<br><br>Ver becas otorgadas</p>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </div>
+
+
+</section>
+
+<!-- FOOTER (FONDO ANCHO COMPLETO 100%) -->
 <footer class="site-footer">
   <div class="footer-container">
     
     <!-- COLUMNA 1: Logo y Contacto -->
     <div class="footer-col footer-info">
       <img src="img/LOGO-BN.png" alt="Sociedad Uruguaya de Nefrología" class="footer-logo">
-      <div class="footer-info">
-  <p><strong>Sociedad Uruguaya de Nefrología</strong></p>
-  
-  <p class="contacto-item">
-    <!-- Ícono Ubicación (estilo pin circular) -->
-    <svg class="icono-contacto" viewBox="0 0 24 24">
-      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-    </svg>
-    <span>Lord Ponsonby 2430, Montevideo, Uruguay</span>
-  </p>
+      <p><strong>Sociedad Uruguaya de Nefrología</strong></p>
+      
+      <p class="contacto-item">
+        <svg class="icono-contacto" viewBox="0 0 24 24">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+        </svg>
+        <span>Lord Ponsonby 2430, Montevideo, Uruguay</span>
+      </p>
 
-  <p class="contacto-item">
-    <!-- Ícono Teléfono -->
-    <svg class="icono-contacto" viewBox="0 0 24 24">
-      <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-    </svg>
-    <span>+598 92 539 901</span>
-  </p>
+      <p class="contacto-item">
+        <svg class="icono-contacto" viewBox="0 0 24 24">
+          <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+        </svg>
+        <span>+598 92 539 901</span>
+      </p>
 
-  <p class="contacto-item">
-    <!-- Ícono Email -->
-    <svg class="icono-contacto" viewBox="0 0 24 24">
-      <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-    </svg>
-    <span>contacto@sun.org.uy</span>
-  </p>
-</div>
+      <p class="contacto-item">
+        <svg class="icono-contacto" viewBox="0 0 24 24">
+          <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+        <span>contacto@sun.org.uy</span>
+      </p>
     </div>
 
     <!-- COLUMNA 2: Secciones del Sitio -->
@@ -197,7 +188,6 @@
 
     <!-- COLUMNA 3: Sitios de Interés -->
     <div class="footer-col footer-external">
-      <div class="footer-col footer-external">
       <p><strong>SITIOS DE INTERÉS</strong></p>
       <ul>
         <li>
@@ -245,6 +235,8 @@
     <p>© 2026 SUN - Sociedad Uruguaya de Nefrología | Desarrollado por Alfonso Carrasco Gráfico</p>
   </div>
 </footer>
+
+<!-- SCRIPTS -->
 <script>
 window.addEventListener("DOMContentLoaded", () => {
   const getOffset = () => window.innerWidth <= 768 ? 80 : 172;
@@ -278,6 +270,7 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const hamburger = document.querySelector('.hamburger');
@@ -296,5 +289,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 </script>
+
 </body>
 </html>

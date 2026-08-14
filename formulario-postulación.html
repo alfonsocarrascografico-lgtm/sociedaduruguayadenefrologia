@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Postulación a Becas - Sociedad Uruguaya de Nefrología</title>
+  <!-- Bootstrap 5 CSS e Iconos -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  
+  <style>
+    .header-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 0.375rem;
+    }
+
+    .header-img {
+      max-height: 250px;
+      object-fit: cover;
+      width: 100%;
+      display: block;
+    }
+
+    /* Overlay para superponer el título con sombreado */
+    .header-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.5rem;
+      
+    }
+
+    .header-overlay h1 {
+      /* Sombreado de texto explícito */
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
+
+    .accordion-button:not(.collapsed) {
+      background-color: #f8f9fa;
+      color: #212529;
+      font-weight: 600;
+    }
+    .accordion-button:focus {
+      box-shadow: none;
+      border-color: rgba(0,0,0,.125);
+    }
+  </style>
+</head>
+<body class="bg-light">
+
+  <main class="container my-5" style="max-width: 900px;">
+    
+    <!-- Botón de retorno -->
+    <nav aria-label="breadcrumb" class="mb-4">
+      <a href="becas-activas.html" class="btn btn-sm btn-outline-secondary">
+        <i class="bi bi-arrow-left"></i> Volver a Becas Activas
+      </a>
+    </nav>
+
+    <!-- Ficha Principal estilo Documento -->
+    <article class="bg-white p-4 p-md-5 rounded shadow-sm border">
+      
+      <!-- Encabezado con estética unificada -->
+      <header class="border-bottom pb-3 mb-4">
+        
+        <!-- Cabezal con imagen y título superpuesto -->
+        <div class="header-container mb-3">
+          <img src="img/cientifico.jpg" alt="Formulario de Postulación SUN" class="header-img">
+          
+          <div class="header-overlay">
+            <span class="badge bg-primary mb-2">Formulario Oficial</span>
+            <h1 class="h2 fw-bold text-white mb-0">Postulación a Becas SUN</h1>
+          </div>
+        </div>
+
+        <p class="text-muted mb-0">Completa tus datos personales, selecciona la convocatoria e ingresa la documentación requerida.</p>
+      </header>
+
+      <!-- Formulario de Postulación -->
+      <form action="#" method="POST" enctype="multipart/form-data">
+
+        <!-- Sección 1: Selección de Beca -->
+        <section class="mb-4">
+          <h5 class="fw-bold text-dark mb-3"><i class="bi bi-award text-primary me-2"></i>1. Convocatoria</h5>
+          <div class="mb-3">
+            <label for="becaSeleccionada" class="form-label fw-bold small text-muted">Selecciona la beca a la que deseas postular *</label>
+            <select class="form-select" id="becaSeleccionada" name="becaSeleccionada" required>
+              <option value="" selected disabled>Selecciona una opción...</option>
+              <option value="perfeccionamiento">Beca de Perfeccionamiento en Nefrología Clínica</option>
+              <option value="congresos">Beca para Presentación de Trabajos en Congresos</option>
+              <option value="investigacion">Beca de Apoyo a la Investigación en Salud Renal</option>
+            </select>
+          </div>
+        </section>
+
+        <!-- Sección 2: Datos del Postulante -->
+        <section class="mb-4">
+          <h5 class="fw-bold text-dark mb-3"><i class="bi bi-person-vcard text-primary me-2"></i>2. Datos del Postulante</h5>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label for="nombre" class="form-label fw-bold small text-muted">Nombre Completo *</label>
+              <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ej. María González" required>
+            </div>
+            <div class="col-md-6">
+              <label for="ci" class="form-label fw-bold small text-muted">Cédula de Identidad *</label>
+              <input type="text" class="form-control" id="ci" name="ci" placeholder="Ej. 1.234.567-8" required>
+            </div>
+            <div class="col-md-6">
+              <label for="email" class="form-label fw-bold small text-muted">Correo Electrónico *</label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="ejemplo@correo.com" required>
+            </div>
+            <div class="col-md-6">
+              <label for="telefono" class="form-label fw-bold small text-muted">Teléfono / Celular *</label>
+              <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Ej. 099 123 456" required>
+            </div>
+          </div>
+        </section>
+
+        <!-- Sección 3: Documentación Adjunta (Español Total) -->
+        <section class="mb-4">
+          <h5 class="fw-bold text-dark mb-3"><i class="bi bi-paperclip text-primary me-2"></i>3. Documentación Solicitada</h5>
+          <p class="small text-muted mb-3">Adjunta la documentación en formato PDF (Tamaño máximo sugerido: 5 MB por archivo).</p>
+
+          <!-- Adjunto 1: CV -->
+          <div class="mb-3">
+            <label class="form-label fw-bold small text-muted">Curriculum Vitae (Abreviado) *</label>
+            <div class="input-group">
+              <label class="btn btn-outline-secondary" for="cv">
+                <i class="bi bi-folder-fill me-1"></i> Seleccionar archivo
+              </label>
+              <span class="form-control bg-light text-muted" id="cv-name">Sin archivo seleccionado</span>
+              <input type="file" class="d-none" id="cv" name="cv" accept=".pdf" required onchange="actualizarNombreArchivo(this, 'cv-name')">
+            </div>
+          </div>
+
+          <!-- Adjunto 2: Carta de Aceptación -->
+          <div class="mb-3">
+            <label class="form-label fw-bold small text-muted">Carta de Aceptación del Centro Receptor o Aceptación del Trabajo *</label>
+            <div class="input-group">
+              <label class="btn btn-outline-secondary" for="cartaAceptacion">
+                <i class="bi bi-folder-fill me-1"></i> Seleccionar archivo
+              </label>
+              <span class="form-control bg-light text-muted" id="carta-name">Sin archivo seleccionado</span>
+              <input type="file" class="d-none" id="cartaAceptacion" name="cartaAceptacion" accept=".pdf" required onchange="actualizarNombreArchivo(this, 'carta-name')">
+            </div>
+          </div>
+
+          <!-- Adjunto 3: Proyecto (Opcional) -->
+          <div class="mb-3">
+            <label class="form-label fw-bold small text-muted">Proyecto / Memoria del Trabajo a realizar (Opcional)</label>
+            <div class="input-group">
+              <label class="btn btn-outline-secondary" for="proyecto">
+                <i class="bi bi-folder-fill me-1"></i> Seleccionar archivo
+              </label>
+              <span class="form-control bg-light text-muted" id="proyecto-name">Sin archivo seleccionado</span>
+              <input type="file" class="d-none" id="proyecto" name="proyecto" accept=".pdf" onchange="actualizarNombreArchivo(this, 'proyecto-name')">
+            </div>
+          </div>
+
+          <!-- Observaciones -->
+          <div class="mb-3">
+            <label for="observaciones" class="form-label fw-bold small text-muted">Observaciones o comentarios adicionales</label>
+            <textarea class="form-control" id="observaciones" name="observaciones" rows="3" placeholder="Ingresa aquí cualquier aclaración que consideres pertinente..."></textarea>
+          </div>
+        </section>
+
+        <!-- Botón de Envío -->
+        <div class="pt-3 border-top d-flex justify-content-end gap-2">
+          <a href="becas-activas.html" class="btn btn-outline-secondary">Cancelar</a>
+          <button type="submit" class="btn btn-primary fw-bold">
+            <i class="bi bi-send-fill me-1"></i> Enviar Postulación
+          </button>
+        </div>
+
+      </form>
+
+      <!-- Pie de página institucional -->
+      <footer class="border-top pt-3 mt-4 d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <span class="text-muted small">Al enviar este formulario aceptas el tratamiento de tus datos para el proceso de selección.</span>
+        <a href="mailto:contacto@sun.org.uy" class="btn btn-sm btn-outline-secondary fw-bold">
+          Soporte SUN <i class="bi bi-envelope-fill ms-1"></i>
+        </a>
+      </footer>
+
+    </article>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Script para actualizar el texto del archivo seleccionado -->
+  <script>
+    function actualizarNombreArchivo(input, spanId) {
+      const span = document.getElementById(spanId);
+      if (input.files && input.files.length > 0) {
+        span.textContent = input.files[0].name;
+        span.classList.remove('text-muted');
+        span.classList.add('text-dark', 'fw-semibold');
+      } else {
+        span.textContent = 'Sin archivo seleccionado';
+        span.classList.remove('text-dark', 'fw-semibold');
+        span.classList.add('text-muted');
+      }
+    }
+  </script>
+</body>
+</html>

@@ -2,120 +2,171 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Afiliación - Sociedad Uruguaya de Nefrología</title>
+  <!-- Bootstrap 5 CSS y Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f7fa;
-      display: flex;
-      justify-content: center;
-      padding: 40px;
+    .header-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 0.375rem;
     }
 
-    .form-container {
-      background: white;
-      padding: 24px;
-      border-radius: 12px;
+    .header-img {
+      max-height: 250px;
+      object-fit: cover;
       width: 100%;
-      max-width: 500px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-
-    h2 {
-      margin-bottom: 16px;
-    }
-
-    label {
       display: block;
-      margin-top: 12px;
-      font-weight: bold;
-      text-align: left;
-      width: 90%;
-      margin-left: auto;
-      margin-right: auto;
     }
 
-    input, textarea, select {
-      width: 90%;
-      padding: 10px;
-      margin-top: 6px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 14px;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
+    /* Overlay para superponer el título con sombreado */
+    .header-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.5rem;
+      
     }
 
-    input:focus, textarea:focus, select:focus {
-      border-color: #3B82F6;
-      outline: none;
+    .header-overlay h1 {
+      /* Sombreado de texto explícito */
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
     }
 
-    button {
-      margin-top: 20px;
-      width: 90%;
-      padding: 12px;
-      background: #3B82F6;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
+    .accordion-button:not(.collapsed) {
+      background-color: #f8f9fa;
+      color: #212529;
+      font-weight: 600;
     }
-
-    button:hover {
-      background: #2563EB;
+    .accordion-button:focus {
+      box-shadow: none;
+      border-color: rgba(0,0,0,.125);
     }
   </style>
 </head>
-<body>
+<body class="bg-light">
 
-<div class="form-container">
-  <h2>Formulario de Afiliación</h2>
+  <main class="container my-5" style="max-width: 900px;">
+    
+    <!-- Botón de retorno -->
+    <nav aria-label="breadcrumb" class="mb-4">
+      <a href="index.html" class="btn btn-sm btn-outline-secondary">
+        <i class="bi bi-arrow-left"></i> Volver al Inicio
+      </a>
+    </nav>
 
-  <form action="https://formspree.io/f/tu-id" method="POST">
+    <!-- Ficha Principal estilo Documento / Idéntica a la Calculadora -->
+    <article class="bg-white p-4 p-md-5 rounded shadow-sm border">
+      
+      <!-- Encabezado enmarcado -->
+      <header class="border-bottom pb-3 mb-4">
+        
+        <!-- Cabezal con imagen y título superpuesto -->
+        <div class="header-container mb-3">
+          <img src="img/cientifico.jpg" alt="Sociedad Uruguaya de Nefrología" class="header-img">
+          
+          <div class="header-overlay">
+            <span class="badge bg-primary mb-2">Socios SUN</span>
+            <h1 class="h2 fw-bold text-white mb-0">Formulario de Afiliación</h1>
+          </div>
+        </div>
 
-    <label>Nombre completo</label>
-    <input type="text" name="nombre" placeholder="Nombre y apellido" required>
+        <p class="text-muted mb-0">Complete la solicitud de ingreso para formar parte de la Sociedad Uruguaya de Nefrología.</p>
+      </header>
 
-    <label>Cédula de identidad</label>
-    <input type="text" name="cedula" placeholder="Ej: 12345678-9" required>
+      <!-- Formulario de Afiliación con estilos Bootstrap -->
+      <section class="p-4 bg-light rounded border mb-4">
+        <h5 class="fw-bold mb-3 text-secondary">
+          <i class="bi bi-person-lines-fill me-1"></i> Datos del Solicitante
+        </h5>
+        
+        <form action="https://formspree.io/f/tu-id" method="POST">
+          <div class="row g-3">
+            
+            <!-- Nombre Completo -->
+            <div class="col-md-6">
+              <label for="nombre" class="form-label fw-semibold">Nombre completo</label>
+              <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre y apellido" required>
+            </div>
 
-    <label>Email</label>
-    <input type="email" name="email" placeholder="correo@ejemplo.com" required>
+            <!-- Cédula -->
+            <div class="col-md-6">
+              <label for="cedula" class="form-label fw-semibold">Cédula de identidad</label>
+              <input type="text" class="form-control" id="cedula" name="cedula" placeholder="Ej: 1.234.567-8" required>
+            </div>
 
-    <label>Teléfono</label>
-    <input type="tel" name="telefono" placeholder="099 123 456">
+            <!-- Email -->
+            <div class="col-md-6">
+              <label for="email" class="form-label fw-semibold">Correo electrónico</label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="correo@ejemplo.com" required>
+            </div>
 
-    <label>Especialidad</label>
-    <input type="text" name="especialidad" placeholder="Nefrología u otra" required>
+            <!-- Teléfono -->
+            <div class="col-md-6">
+              <label for="telefono" class="form-label fw-semibold">Teléfono</label>
+              <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="099 123 456">
+            </div>
 
-    <label>Lugar de trabajo</label>
-    <input type="text" name="institucion" placeholder="Hospital / Clínica">
+            <!-- Especialidad -->
+            <div class="col-md-6">
+              <label for="especialidad" class="form-label fw-semibold">Especialidad</label>
+              <input type="text" class="form-control" id="especialidad" name="especialidad" placeholder="Nefrología u otra" required>
+            </div>
 
-    <label>Departamento</label>
-    <input type="text" name="departamento" placeholder="Montevideo, Canelones, etc.">
+            <!-- Tipo de Afiliación -->
+            <div class="col-md-6">
+              <label for="tipo_afiliacion" class="form-label fw-semibold">Tipo de afiliación</label>
+              <select class="form-select" id="tipo_afiliacion" name="tipo_afiliacion" required>
+                <option value="" selected disabled>Seleccionar opción</option>
+                <option value="titular">Titular (Especialista en Nefrología)</option>
+                <option value="adherente">Adherente (Médico con otra especialidad)</option>
+                <option value="residente">Residente</option>
+              </select>
+            </div>
 
-    <label>Tipo de afiliación</label>
-    <select name="tipo_afiliacion" required>
-      <option value="">Seleccionar</option>
-      <option value="titular">Titular</option>
-      <option value="adherente">Adherente</option>
-      <option value="residente">Residente</option>
-    </select>
+            <!-- Lugar de trabajo -->
+            <div class="col-md-6">
+              <label for="institucion" class="form-label fw-semibold">Lugar de trabajo</label>
+              <input type="text" class="form-control" id="institucion" name="institucion" placeholder="Hospital / Sanatorio / Clínica">
+            </div>
 
-    <label>Comentarios adicionales</label>
-    <textarea name="comentarios" rows="4" placeholder="Opcional"></textarea>
+            <!-- Departamento -->
+            <div class="col-md-6">
+              <label for="departamento" class="form-label fw-semibold">Departamento</label>
+              <input type="text" class="form-control" id="departamento" name="departamento" placeholder="Montevideo, Canelones, etc.">
+            </div>
 
-    <button type="submit">Enviar solicitud</button>
+            <!-- Comentarios adicionales -->
+            <div class="col-12">
+              <label for="comentarios" class="form-label fw-semibold">Comentarios adicionales</label>
+              <textarea class="form-control" id="comentarios" name="comentarios" rows="3" placeholder="Información u observaciones opcionales"></textarea>
+            </div>
 
-  </form>
-</div>
+            <!-- Botón de Envío -->
+            <div class="col-12 mt-4">
+              <button type="submit" class="btn btn-primary w-100 fw-bold py-2">
+                <i class="bi bi-send me-1"></i> Enviar solicitud
+              </button>
+            </div>
 
+          </div>
+        </form>
+      </section>
+
+      <!-- Pie del documento / nota aclaratoria -->
+      <footer class="border-top pt-3 mt-4 text-muted small">
+        <p class="mb-0"><strong>Nota:</strong> Las solicitudes son revisadas por la comisión directiva de la Sociedad Uruguaya de Nefrología antes de su aprobación definitiva.</p>
+      </footer>
+
+    </article>
+
+  </main>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

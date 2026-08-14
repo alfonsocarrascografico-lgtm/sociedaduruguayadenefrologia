@@ -30,10 +30,11 @@ body {
   left: 0;
   width: 100%;
   height: 170px;
-  z-index: 1000;
+  z-index: 10;
   background: white;
   display: flex;
   align-items: center;
+  will-change: transform; /* 🔥 mejora rendimiento del fixed */
 }
 
 /* HEADER EN DOS FILAS */
@@ -72,7 +73,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 140px; /* 🔥 agregar esto */
+  height: 120px; /* 🔥 agregar esto */
 }
 
 .logo img {
@@ -81,13 +82,17 @@ body {
 
 .nav {
   display: flex;
-  gap: 40px;
+  gap: 30px;
 }
 
 .nav a {
   text-decoration: none;
   color: #333;
-  font-size: 18px;
+  font-size: 15px;
+}
+/* 🔒 hamburguesa oculta en desktop */
+.hamburger {
+  display: none;
 }
 
 /* ================= 🔥 COLUMNA ================= */
@@ -95,13 +100,11 @@ body {
 .columna-bg {
   position: absolute;
   top: 0;
-  right: 10%;
+  right: calc((100% - 1200px) / 2);
   width: 470px;
   height: 100%;
-  
-  background: rgba(237, 236, 236, 0.6);
+  background: rgba(219, 223, 250, 0.5);
   backdrop-filter: blur(8px);
-
   z-index: 2;
 }
 
@@ -156,11 +159,6 @@ overflow: hidden;
   font-size: 50px;
   line-height: 1.15;
   margin-bottom: 20px;
-}
-.hero-card p {
-  font-size: 15px;
-  line-height: 1,5;
-  margin-bottom: 25px;
 }
 .hero-card p {
   font-size: 16px;
@@ -253,18 +251,14 @@ overflow: hidden;
 .novedades {
   padding: 35px 0;
   position: relative;
-  background-color: #d3d7df; /* 👈 AQUÍ */ 
-}
-.novedades-content {
-  position: relative;
-  z-index: 3;
+  background-color: #fff; /* 👈 AQUÍ */ 
 }
 
 .novedades::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: #d3d7df;
+  background: #fff;
   z-index: 0;
 }
 .novedades-content {
@@ -292,20 +286,16 @@ overflow: hidden;
 /* ================= CONGRESOS ================= */
 
 .congresos {
-  padding: 120px 0;
+  padding: 40px 0;
   position: relative;
-  background-color: #fff; /* 👈 AQUÍ */ 
-}
-.congresos-content {
-  position: relative;
-  z-index: 3;
+  background-color: #d3d7df; /* 👈 AQUÍ */ 
 }
 
 .congresos::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: #fff;
+  background: #d3d7df;
   z-index: 0;
 }
 .congresos-content {
@@ -404,50 +394,6 @@ section {
   scroll-margin-top: 172px;
 }
 
-/* ================= RESPONSIVE ================= */
-
-@media (max-width: 1200px) {
-  .columna-bg {
-    width: 300px;
-    right: 5%;
-  }
-}
-
-@media (max-width: 900px) {
-
-  /* 🔥 ocultar columna */
-  .columna-bg {
-    display: none;
-  }
-
-  /* 🔥 grids a 1 columna */
-  .institucional-content,
-  .novedades-content,
-  .congresos-content,
-  .contacto-content {
-    grid-template-columns: 1fr;
-  }
-
-  /* 🔥 hero centrado */
-  .hero-content {
-    justify-content: center;
-    text-align: center;
-  }
-
-  .hero-card {
-    max-width: 100%;
-  }
-
-  /* 🔥 header más compacto */
-  .header {
-    height: auto;
-    padding: 20px 0;
-  }
-
-  body {
-    padding-top: 140px;
-  }
-}
 
 /* ===== BOTONES DE SECCIONES ===== */
 
@@ -483,8 +429,9 @@ section {
   margin-top: 20px;
 }
 .btn-enviar {
-  width: 600px;
-  margin: 0 auto;   /* 👈 lo centra */
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
   display: block;
 }
 
@@ -517,8 +464,8 @@ section {
 /* IZQUIERDA */
 
 .footer-left img {
-  width: 200px;
-  margin-bottom: 10px;
+  width: 100%;
+  max-width: 200px;
 }
 
 .footer-left p {
@@ -614,7 +561,7 @@ section {
 }
 .section-3col {
   display: grid;
-  grid-template-columns: 2fr 0,6fr 0,6fr;
+  grid-template-columns: 2fr 0.6fr 0.6fr;
   gap: 40px;
   align-items: start; /* 👈 CAMBIO IMPORTANTE */
 }
@@ -768,12 +715,12 @@ section {
 .accesos-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 25px;
+  gap: 10px;
 }
 
 .acceso-card {
   display: block;
-  padding: 35px;
+  padding: 15px;
   background: white;
   border-radius: 10px;
   text-decoration: none;
@@ -796,13 +743,13 @@ section {
 /* 🔥 hover elegante */
 .acceso-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 10px rgba(0,0,0,0.08);
 }
 
 .grid-accesos {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
@@ -924,19 +871,6 @@ section {
   position: relative;
   z-index: 2;
 }
-@media (max-width: 768px) {
-  #accesos-rapidos {
-    background-attachment: scroll;
-  }
-}
-.split-card {
-  display: flex;
-  height: 100px;
-  border-radius: 10px;
-  overflow: hidden;
-  text-decoration: none;
-  align-items: stretch ; /* 🔥 CLAVE */ 
-}
 
 /* MITAD IMAGEN */
 .card-img {
@@ -976,18 +910,13 @@ section {
 .card-img {
   transition: transform 0.4s ease;
 }
-@media (max-width: 768px) {
-  .split-card {
-    flex-direction: column;
-    height: auto;
-  }
 
   .card-img,
   .card-text {
     width: 100%;
     height: 100px;
   }
-}
+
 .split-card {
   display: flex;
   height: 100%;
@@ -1001,10 +930,6 @@ section {
   gap: 10px;
 
   grid-auto-rows: 200px; /* 👈 fuerza TODAS las cards */
-}
-.split-card {
-  display: flex;
-  height: 100%;
 }
 
 .card-img,
@@ -1101,26 +1026,7 @@ section {
   flex-direction: row-reverse;
 }
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
 
-  .nov-row {
-    grid-template-columns: 1fr;
-  }
-
-  .nov-card {
-    flex-direction: column !important;
-  }
-
-  .nov-img {
-    width: 100%;
-    height: 160px;
-  }
-
-  .nov-text {
-    width: 100%;
-  }
-}
 .novedades-v2 {
   max-width: 1250px; /* probá 1000–1200 según tu gusto */
   margin: 0 auto;
@@ -1142,11 +1048,9 @@ section {
 #novedad-destacada {
   scroll-margin-top: 180px;
 }
-.nov@media (max-width: 768px) {
-  .hero-slider {
-    height: 300px;
-  }
-}-text {
+
+/* 🔥 nov-text correcto */
+.nov-text {
   background-color: #f5f5f5;
   padding: 20px;
   border-radius: 0 0 12px 12px;
@@ -1260,4 +1164,1764 @@ p {
   font-size: 14px;
   line-height: 1.7;
   color: #555;
+}
+.footer {
+  overflow: hidden;
+}
+
+.footer-center p,
+.footer-right p {
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 768px) {
+
+  .columna-bg {
+    display: none;
+  }
+
+  .institucional-content,
+  .novedades-content,
+  .congresos-content,
+  .contacto-content {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-content {
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .header {
+    height: auto;
+    padding: 10px 0;
+  }
+
+  .header-bottom { 
+    height: auto ; 
+  } 
+
+  body {
+    padding-top: 80px;
+  }
+
+  /* 🔥 ESTO ES LO IMPORTANTE */
+ .header-top {
+  display: none;
+}
+
+  .logo img {
+    height: 60px;
+  }
+
+   .hamburger {
+    display: block;
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 9999;
+    font-size: 28px;
+    cursor: pointer;
+  }
+
+  .hero {
+    overflow: visible; /* 🔥 CLAVE */
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .inst-left img {
+    width: 100%;
+  }
+  .btn-afiliarse img {     
+    width: 240px ; /* probá entre 200 y 260 según lo veas */  
+  }
+
+  .nav {
+    position: fixed;
+    top: 0;
+    right: -100%; /* oculto */
+    width: 50%;
+    height: 100vh;
+    background: white;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 100px 20px;
+
+    transition: right 0.3s ease;
+    z-index: 9998;
+  }
+
+  .nav.active {
+    right: 0; /* visible */
+  }
+  
+  section {
+    scroll-margin-top: 0 !important;
+  }
+
+  /* 🔥 forzar estructura vertical */
+  .hero {
+    display: flex !important;
+    flex-direction: column !important;
+    height: auto !important;
+  }
+
+  /* 🔥 imagen arriba */
+  .hero-bg {
+    position: relative !important;
+    height: 35vh !important; /* más chica */
+  }
+
+  .hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* 🔥 romper overlay DE VERDAD */
+  .hero-content {
+    position: relative !important;
+    top: auto !important;
+    right: auto !important;
+    left: auto !important;
+    transform: none !important;
+
+    display: block !important;
+    width: 100% !important;
+
+    padding: 25px 20px;
+    text-align: right;
+  }
+
+  /* 🔥 contenido limpio abajo */
+  .hero-card {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+
+  /* textos */
+  .hero-card h1 {
+    font-size: 30px;
+  }
+
+  .hero-card p {
+    font-size: 14px;
+  }
+
+  /* botón */
+  .btn-afiliarse img {
+    width: 220px !important;
+  }
+.hero-content {
+  background: #eef3f5; /* gris suave */
+}
+/* ===== HERO FULL SCREEN MOBILE ===== */
+
+.hero {
+  min-height: 100vh; /* 🔥 ocupa toda la pantalla */
+  display: flex;
+  flex-direction: column;
+}
+
+/* imagen ocupa la mitad */
+.hero-bg {
+  height: 50vh; /* mitad superior */
+}
+
+/* contenido ocupa la otra mitad */
+.hero-content {
+  height: 50vh;
+  display: flex;
+  align-items: center;
+}
+
+  .accesos-grid {
+    grid-template-columns: repeat(1fr);
+    gap: 8px;
+  }
+
+  .acceso-card {
+    padding: 8px;
+  }
+
+  .acceso-icono {
+    width: 35px;
+    height: 35px;
+    margin-bottom: 8px;
+  }
+
+  .acceso-card h3 {
+    font-size: 16px;
+    margin-bottom: 6px;
+    line-height: 1.5;
+  }
+
+  .acceso-card p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  #accesos-rapidos {
+    padding: 30px 10px;
+  }
+
+  .titulo-seccion {
+    padding-top: 40px;
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .accesos-grid { 
+    align-items: start ; /* 🔥 evita que se estiren */ 
+  } 
+
+  .acceso-card {
+    padding: 6px;
+  }
+
+  .acceso-icono {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 4px;
+  }
+
+  .acceso-card h3 {
+    font-size: 16px;
+    margin-bottom: 3px;
+    line-height: 1.1;
+  }
+
+  .acceso-card p {
+    font-size: 13px;
+    line-height: 1.2;
+  }
+ grid-auto-rows: 110px;
+ 
+.hero-content {
+  height: 50vh;
+  display: flex;
+  align-items: center;
+}
+
+  .socios-grid {
+    grid-template-columns: repeat(1fr);
+    gap: 8px;
+  }
+
+  .socios-card {
+    padding: 8px;
+  }
+
+  .socios-icono {
+    width: 35px;
+    height: 35px;
+    margin-bottom: 8px;
+  }
+
+  .socios-card h3 {
+    font-size: 16px;
+    margin-bottom: 6px;
+    line-height: 1.5;
+  }
+
+  .socios-card p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  #socios-rapidos {
+    padding: 30px 10px;
+  }
+
+  .titulo-seccion {
+    padding-top: 40px;
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .socios-grid { 
+    align-items: start ; /* 🔥 evita que se estiren */ 
+  } 
+
+  .socios-card {
+    padding: 6px;
+  }
+
+  .socios-icono {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 4px;
+  }
+
+  .socios-card h3 {
+    font-size: 16px;
+    margin-bottom: 3px;
+    line-height: 1.1;
+  }
+
+  .socios-card p {
+    font-size: 13px;
+    line-height: 1.2;
+  }
+ grid-auto-rows: 110px;
+ /* ===== CIENTIFICO MOBILE FIX ===== */
+
+#cientifico .cientifico-grid {
+  grid-template-columns: 1fr !important; /* 🔥 una sola columna */
+  gap: 10px;
+}
+
+#cientifico .cientifico-card.split-card {
+  flex-direction: row; /* horizontal */
+  height: auto;
+}
+
+/* imagen izquierda */
+#cientifico .card-img {
+  width: 35%;
+  min-height: 90px;
+}
+
+/* texto derecha */
+#cientifico .card-text {
+  width: 65%;
+  padding: 10px;
+}
+
+#cientifico .card-text h3 {
+  font-size: 14px;
+}
+
+#cientifico .card-text p {
+  font-size: 12px;
+}
+/* 🔥 FORZAR CIENTIFICO MOBILE (modo debug definitivo) */
+
+.cientifico-grid {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+}
+
+.cientifico-card {
+  width: 100% !important;
+}
+
+.split-card {
+  flex-direction: row !important;
+}
+
+  /* ===== FIX FINAL CIENTIFICO MOBILE ===== */
+
+  .cientifico-grid {
+    grid-template-columns: 1fr !important;
+    grid-auto-rows: auto !important;
+    gap: 12px;
+  }
+
+  .cientifico-card.split-card {
+    display: flex;
+    flex-direction: row;
+    height: auto;
+  }
+
+  .card-img {
+    width: 40%;
+    min-height: 120px;
+  }
+
+  .card-text {
+    width: 60%;
+    padding: 15px;
+  }
+
+  .card-text h3 {
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+
+  .card-text p {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+/* ===== AJUSTE SPACING CIENTIFICO MOBILE ===== */
+
+#cientifico {
+  padding-top: 20px;   /* 🔽 antes 80px */
+}
+
+#cientifico .titulo-seccion {
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+/* opcional: subir aún más todo */
+#cientifico .container {
+  margin-top: -10px;
+}
+#institucional {
+  padding-top: 10px;   /* 🔽 antes 80px */
+}
+#congresos {
+  padding-top: 10px;   /* 🔽 antes 80px */
+}
+
+/* ===== ACCESOS FULL SCREEN MOBILE ===== */
+
+#accesos-rapidos {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* contenedor interno */
+#accesos-rapidos .container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+/* ===== NOVEDADES MOBILE AJUSTE ===== */
+
+.nov-item img {
+  width: 100%;
+  height: 220px;       /* 🔥 controla la altura */
+  object-fit: cover;   /* 🔥 recorta sin deformar */
+}
+/* ===== CIENTIFICO FULL SCREEN MOBILE ===== */
+
+#cientifico {
+  min-height: 100dvh;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* 👈 evita que se vaya abajo */
+
+  padding-top: 40px; /* 🔧 ajustable */
+}
+
+/* contenedor interno */
+#cientifico .container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+#contacto {
+  padding-top: 10px;   /* 🔽 antes 80px */
+}
+/* ===== NOVEDADES MOBILE FINAL LIMPIO ===== */
+
+.novedades-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* 🔥 ORDEN */
+.nov-item:nth-child(3) { order: 1; }
+.nov-item:nth-child(1) { order: 2; }
+.nov-item:nth-child(2) { order: 3; }
+
+
+/* ===== NOTICIA PRINCIPAL ===== */
+
+.nov-item:nth-child(3) {
+  display: flex;
+  flex-direction: column;
+}
+
+.nov-item:nth-child(3) img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  background: #eef3f5;
+}
+
+.nov-item:nth-child(3) .contenedor-boton {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+
+/* ===== SECUNDARIA 1 ===== */
+
+.nov-item:nth-child(1) {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.nov-item:nth-child(1) img {
+  width: 35%;
+  height: 80px;
+  object-fit: cover;
+}
+
+.nov-item:nth-child(1) p {
+  width: 65%;
+  font-size: 12px;
+}
+
+
+/* ===== SECUNDARIA 2 (SOLUCIÓN DEFINITIVA) ===== */
+
+.nov-item:nth-child(2) {
+  display: grid;
+  grid-template-columns: 35% 1fr;
+  gap: 10px;
+  align-items: center;
+}
+
+/* imagen */
+.nov-item:nth-child(2) img {
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+}
+
+/* texto */
+.nov-item:nth-child(2) p {
+  font-size: 12px;
+}
+
+/* 🔥 botón ocupa fila completa abajo */
+.nov-item:nth-child(2) .contenedor-boton {
+  grid-column: 1 / -1; /* 🔥 clave */
+  margin-top: 10px;
+  text-align: center;
+}
+/* 🔥 botón ocupa fila completa abajo */
+.nov-item:nth-child(2) .contenedor-boton {
+  grid-column: 1 / -1; /* 🔥 clave */
+  margin-top: 10px;
+  text-align: center;
+}
+/* ===== CONGRESOS MOBILE FIX FINAL ===== */
+
+.congresos-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* 🔥 ORDEN */
+.cong-item:nth-child(3) { order: 1; }
+.cong-item:nth-child(1) { order: 2; }
+.cong-item:nth-child(2) { order: 3; }
+
+
+/* ===== PRINCIPAL ===== */
+
+.cong-item:nth-child(3) {
+  display: flex;
+  flex-direction: column;
+}
+
+.cong-item:nth-child(3) img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+}
+
+/* 🔥 BOTÓN PRINCIPAL DERECHA */
+.cong-item:nth-child(3) .contenedor-boton {
+  display: flex !important;
+  justify-content: flex-end !important;
+  width: 100%;
+  margin-top: 10px;
+}
+/* 🔥 SOLO la imagen más baja */
+.cong-item:nth-child(3) img {
+  width: 100%;
+  height: 130px;       /* 👈 controlás altura acá */
+  object-fit: cover;
+}
+
+/* ===== SECUNDARIOS ===== */
+
+.cong-item:nth-child(1),
+.cong-item:nth-child(2) {
+  display: grid;
+  grid-template-columns: 35% 1fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.cong-item:nth-child(1) img,
+.cong-item:nth-child(2) img {
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+}
+
+/* 🔥 TEXTO (FORZADO) */
+.cong-item:nth-child(1) h2,
+.cong-item:nth-child(2) h2 {
+  font-size: 20px !important;
+  line-height: 1.0;
+  margin: 0;
+}
+
+/* 🔥 BOTONES CONGRESOS MOBILE */
+
+.cong-item .contenedor-boton {
+  grid-column: 1 / -1; /* ocupa toda la fila */
+  display: flex;
+  justify-content: flex-end; /* lo manda a la derecha */
+  margin-top: 10px;
+}
+/* ===== FIX VISUAL CONGRESOS ===== */
+
+/* 🔥 1. TEXTO PRINCIPAL (item 3) */
+.titulo-congreso {
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.0;
+  margin: 0;
+}
+
+/* 🔥 2. IMÁGENES SECUNDARIAS (NO RECORTAR) */
+.cong-item:nth-child(1) img,
+.cong-item:nth-child(2) img {
+  height: 80px;
+  object-fit: contain; /* 🔥 en lugar de cover */
+  background: #eef3f5;     /* opcional para evitar “huecos feos” */
+}
+/* 🔥 bordes redondeados en novedades y congresos */
+
+.nov-item img,
+.cong-item img {
+  border-radius: 8px;
+}
+/* 🔥 IMÁGENES CONSISTENTES */
+.nov-item img,
+.cong-item img,
+.acceso-card img,
+.cientifico-card img {
+  border-radius: 8px;
+}
+/* 🔥 TARJETAS GENERALES */
+.acceso-card,
+.cientifico-card,
+.nov-item,
+.cong-item {
+  border-radius: 10px;
+  background: #fff;
+  padding: 10px;
+}
+/* 🔥 SOMBRA GLOBAL */
+.acceso-card,
+.cientifico-card,
+.nov-item,
+.cong-item {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.09);
+}
+/* 🔥 ESPACIADO INTERNO */
+.acceso-card,
+.cientifico-card,
+.nov-item,
+.cong-item {
+  padding: 12px;
+}
+
+/* 🔥 separación entre elementos */
+.accesos-grid,
+.cientifico-grid,
+.novedades-content,
+.congresos-content {
+  gap: 12px;
+}
+/* 🔥 BOTONES */
+.boton-seccion {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+}
+/* 🔥 TITULOS */
+.titulo-seccion {
+  font-weight: 600;
+}
+
+/* 🔥 TEXTOS */
+p {
+  line-height: 1.4;
+}
+/* ===== LAYOUT UNIFICADO MOBILE NOVEDADES ===== */
+
+.nov-card {
+  display: flex !important;
+  flex-direction: column !important;
+  height: auto !important;
+  overflow: visible !important;
+  padding: 0 !important;
+}
+
+/* IMAGEN FULL */
+.nov-img {
+  width: 100% !important;
+  height: 200px !important;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+/* TEXTO FULL */
+.nov-text {
+  width: 100% !important;
+  padding: 15px !important;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* BOTÓN ABAJO */
+.nov-text .boton-seccion {
+  margin-top: 10px;
+  align-self: flex-start;
+}
+
+/* CONTENEDOR GENERAL */
+.nov-row {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 15px;
+}
+
+/* DESTACADA (misma lógica pero más aire) */
+.nov-principal .nov-img {
+  height: 220px !important;
+}
+
+.nov-principal .nov-text {
+  padding: 20px !important;
+}
+
+  /* 🔥 LIBERAR ALTURA DE TODA LA SECCIÓN */
+  .novedades-v2,
+  .nov-principal,
+  .nov-row,
+  .novedades,
+  section {
+    height: auto !important;
+    min-height: unset !important;
+  }
+
+  /* 🔥 PERMITIR CRECER */
+  .container {
+    height: auto !important;
+  }
+
+  /* 🔥 EVITAR RECORTES */
+  .novedades,
+  .nov-row,
+  .nov-card {
+    overflow: visible !important;
+  }
+/* ===== INSTITUCIONAL MOBILE (LAYOUT LIMPIO) ===== */
+
+  /* 🔥 eliminar grid */
+  .institucional-content {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px;
+  }
+
+  /* 🔥 ORDEN EXACTO */
+  .inst-left { order: 1; }
+  .inst-center { order: 2; }
+  .inst-right { order: 3; }
+
+  /* 🔥 TODO AL ANCHO */
+  .inst-left,
+  .inst-center,
+  .inst-right {
+    width: 100% !important;
+  }
+
+  /* 🔥 IMAGEN CONTROLADA */
+  .inst-left img {
+    width: 100% !important;
+    height: auto;
+  }
+
+  /* 🔥 TEXTOS PROLIJOS */
+  .inst-center,
+  .inst-right {
+    text-align: left;
+  }
+
+  /* 🔥 EVITAR DESBORDE GLOBAL */
+  body {
+    overflow-x: hidden;
+  }
+
+  /* 🔥 ROMPER GRID SÍ O SÍ */
+  .institucional .institucional-content {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  /* 🔥 FORZAR BLOQUES */
+  .institucional .inst-left,
+  .institucional .inst-center,
+  .institucional .inst-right {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* 🔥 ORDEN */
+  .institucional .inst-left { order: 1 !important; }
+  .institucional .inst-center { order: 2 !important; }
+  .institucional .inst-right { order: 3 !important; }
+
+  /* 🔥 IMAGEN NO ROMPE */
+  .institucional .inst-left img {
+    width: 100% !important;
+    height: auto !important;
+  }
+  /* 🔥 FIX INSTITUCIONAL MOBILE */
+.section-content {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 20px;
+}
+
+/* Cada bloque ocupa todo el ancho */
+.col {
+  width: 100% !important;
+}
+
+/* Imagen arriba */
+.col-left {
+  order: 1;
+}
+
+/* Historia */
+.col-center {
+  order: 2;
+}
+
+/* Misión / Visión */
+.col-right {
+  order: 3;
+}
+
+/* Imagen responsive */
+.col-left img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+/* 🎨 CONTENEDOR GENERAL */
+.section {
+  padding: 20px 16px;
+}
+
+/* 🧱 TARJETAS */
+.section-content .col {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* 🖼 IMAGEN COMO TARJETA */
+.col-left {
+  padding: 0;
+  overflow: hidden;
+}
+
+.col-left img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 16px;
+}
+
+/* 📝 TEXTOS */
+.col h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.col p {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* 🔘 BOTON FLECHA */
+.nav-btn-img {
+  margin-top: 15px;
+}
+  .nav-btn-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+}
+
+}
+@media (min-width: 1024px) {
+
+  @media (min-width: 1024px) {
+
+  .novedades-content .nov-item:nth-child(1),
+  .novedades-content .nov-item:nth-child(2) {
+
+    display: flex;
+    flex-direction: column;
+
+    background: #eceef0;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .novedades-content .nov-item:nth-child(1) img,
+  .novedades-content .nov-item:nth-child(2) img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+  }
+
+  .novedades-content .nov-item:nth-child(1) p,
+  .novedades-content .nov-item:nth-child(2) p {
+    padding: 15px;
+    margin: 0;
+  }
+
+  .novedades-content .nov-item:nth-child(1) .contenedor-boton,
+  .novedades-content .nov-item:nth-child(2) .contenedor-boton {
+    padding: 0 15px 15px;
+  }
+
+}
+  .novedades-content .nov-item:nth-child(1),
+  .novedades-content .nov-item:nth-child(2) {
+
+    display: flex;
+    flex-direction: column;
+
+    background: #eceef0;
+    border-radius: 12px;
+    overflow: hidden;
+
+    /* 🔥 ESTO */
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  }
+
+.nov-item:hover,
+.cong-item:hover {
+  transform: translateY(-5px);
+}
+
+  /* COLUMNAS 1 Y 2 COMO TARJETAS */
+  .congresos-content .cong-item:nth-child(1),
+  .congresos-content .cong-item:nth-child(2) {
+
+    display: flex;
+    flex-direction: column;
+
+    background: #eceef0;
+    border-radius: 12px;
+    overflow: hidden;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  /* IMAGEN */
+  .congresos-content .cong-item:nth-child(1) img,
+  .congresos-content .cong-item:nth-child(2) img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  /* TEXTO */
+  .congresos-content .cong-item:nth-child(1) p,
+  .congresos-content .cong-item:nth-child(2) p {
+    padding: 15px;
+    margin: 0;
+  }
+
+  /* BOTÓN */
+  .congresos-content .cong-item:nth-child(1) .contenedor-boton,
+  .congresos-content .cong-item:nth-child(2) .contenedor-boton {
+    padding: 0 15px 15px;
+  }
+
+  /* HOVER PRO */
+  .congresos-content .cong-item:nth-child(1):hover,
+  .congresos-content .cong-item:nth-child(2):hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+  }
+
+  #socios {
+  padding: 80px 20px;
+  min-height: 480px;
+  background: #e7edef;
+}
+
+.titulo-seccion {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 28px;
+}
+}
+.socios-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.socios-card {
+  display: block;
+  padding: 15px;
+  background: white;
+  border-radius: 10px;
+  text-decoration: none;
+  text-align: center;
+  color: #333;
+
+  transition: all 0.3s ease;
+  border: 1px solid #eee;
+}
+
+.socios-card h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.socios-card p {
+  font-size: 14px;
+  color: #666;
+}
+
+/* 🔥 hover elegante */
+.socios-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 10px rgba(0,0,0,0.08);
+}
+
+.grid-socios {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.socios {
+  padding: 12px 20px;
+  background: #d3dbdd;
+  border-radius: 6px;
+  text-decoration: none;
+}
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.acceso-card {
+  text-align: center;
+}
+
+.socios-icono {
+  width: 55px;
+  height: 55px;
+  margin: 0 auto 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.socios-icono img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.socios-icono {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+/* SECCIÓN SOCIOS EN INDEX */
+#socios {
+  position: relative;
+  z-index: 3;
+  
+  /* Fondo Fijo */
+  background-image: url('img/cientifico.jpg'); /* Reemplaza por la ruta de tu imagen */
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  
+  padding: 60px 20px;
+}
+
+/* Si tu fondo es oscuro o con contraste, puedes poner un superpuesto (overlay) opcional */
+#socios::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(221, 219, 219, 0.4); /* Capa oscura opcional para legibilidad del texto */
+  z-index: 4;
+}
+
+/* Asegurar que el contenido y las cards estén encima de la capa y la columna */
+#socios > div,
+#socios .tarjetas-contenedor,
+#socios .card {
+  position: relative;
+  z-index: 10;
+}
+/* AJUSTE MOBILE PARA SECCIÓN SOCIOS Y ACCESOS */
+@media screen and (max-width: 768px) {
+  
+  /* Forzamos a que el contenedor de las tarjetas de la sección Socios sea de 1 sola columna */
+  #socios .recursos-grid,
+  #socios > div > div {
+    display: grid !important;
+    grid-template-columns: 1fr !important; /* Apila verticalmente las cards */
+    gap: 20px !important;
+    width: 100% !important;
+  }
+
+  /* Asegura que las tarjetas individuales abarquen el ancho completo */
+  #socios .recursos-grid > a,
+  #socios .recursos-grid > div,
+  #socios > div > div > a,
+  #socios > div > div > div {
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+@media screen and (max-width: 768px) {
+
+  /* Unifica la altura de las tarjetas de Socios y Accesos en mobile */
+  #socios .card, 
+  #accesos-rapidos .card { /* Reemplaza .card por la clase o tag real de tus tarjetas */
+    height: 100px !important; /* Ajustá este valor en px según el alto que busques */
+    box-sizing: border-box !important;
+    
+    /* Para que el contenido interno (título, texto, icono) quede distribuido de forma prolija */
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important; 
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+}
+@media screen and (max-width: 768px) {
+
+  /* 1. Unifica el contenedor y la altura fija de las tarjetas */
+  #accesos-rapidos a,
+  #accesos-rapidos .card,
+  #socios a,
+  #socios .card {
+    height: 120px !important; /* Ajustá estos px según lo alto que las quieras */
+    padding: 20px 15px !important;
+    box-sizing: border-box !important;
+    
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  /* 2. Unifica el tamaño de los TÍTULOS de las tarjetas */
+  #accesos-rapidos h3,
+  #socios h3 {
+    font-size: 1.1rem !important;
+    margin-bottom: 8px !important;
+    line-height: 1.2 !important;
+  }
+
+  /* 3. Unifica el tamaño y la altura de línea de los PÁRRAFOS */
+  #accesos-rapidos p,
+  #socios p {
+    font-size: 0.85rem !important;
+    line-height: 1.3 !important;
+    margin: 0 !important;
+  }
+
+}
+.socios-icono {
+    width: 35px;
+    height: 35px;
+    margin-bottom: 8px;
+  }
+}
+.comision-nav {
+  display: flex;
+  justify-content: flex-end; /* Alinea los botones a la derecha */
+  gap: 10px;               /* Separa horizontalmente las dos flechas */
+  margin-top: 20px;
+}
+.tarjeta {
+  scroll-margin-top: 180px; /* Cambia 80px por la altura real de tu header */
+}
+:target {
+  scroll-margin-top: 180px;
+}
+.nov-text-block + .nov-text-block {
+  margin-top: 1.5rem; /* Le da un espacio arriba al segundo bloque */
+}
+/* Espaciado superior para que el salto de ancla no quede debajo del header */
+section[id],
+.nov-principal[id] {
+  scroll-margin-top: 110px; /* Ajusta 110px según el alto exacto de tu header */
+}
+
+/* Ajuste para pantallas móviles si tu header cambia de tamaño */
+@media (max-width: 768px) {
+  section[id],
+  .nov-principal[id] {
+    scroll-margin-top: 40px;
+  }
+}
+/* Si aplicaste esto en CSS: */
+.nov-principal {
+  scroll-margin-top: 110px;
+}
+/* =========================================
+   ESTILOS DEL FOOTER - SUN
+========================================= */
+
+/* Estructura general */
+.site-footer {
+  background-color: #adb3b8; /* Ajusta este color si tu footer usa otro tono oscuro */
+  color: #3d3d3d;
+  padding: 40px 20px 20px 20px;
+  font-family: inherit;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Estilo para las columnas */
+.footer-col {
+  flex: 1;
+  min-width: 250px;
+  padding: 0 30px; 
+  box-sizing: border-box;
+}
+
+/* Línea vertical divisora (aplica a la 1ª y 2ª columna) */
+.footer-col:not(:last-child) {
+  border-right: 1px solid rgba(251, 251, 251, 0.501); 
+}
+
+/* Ajustes de padding para los extremos */
+.footer-col:first-child {
+  padding-left: 0;
+}
+.footer-col:last-child {
+  padding-right: 0;
+  border-right: none;
+}
+
+/* Textos y listas dentro de las columnas */
+.footer-col p, 
+.footer-col ul {
+  margin-bottom: 15px;
+  font-size: 0.95em;
+  line-height: 1.6;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-col li {
+  margin-bottom: 10px;
+}
+
+/* Estilo del logo en el footer */
+.footer-logo {
+  max-width: 150px;
+  margin-bottom: 15px;
+  display: block;
+}
+
+/* =========================================
+   ENLACES DEL FOOTER UNIFICADOS
+========================================= */
+.site-footer a,
+.site-footer a:visited,
+.site-footer a:active {
+  color: inherit !important;
+  text-decoration: none !important;
+  transition: opacity 0.3s ease;
+}
+
+.site-footer a:hover {
+  opacity: 0.7;
+}
+
+/* =========================================
+   LÍNEA FINAL (SUB-FOOTER)
+========================================= */
+.footer-bottom {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  text-align: center;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footer-bottom p {
+  font-size: 0.85em;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+/* =========================================
+   ADAPTACIÓN PARA CELULARES (RESPONSIVE)
+========================================= */
+@media (max-width: 768px) {
+  .footer-col {
+    padding: 0;
+    margin-bottom: 30px;
+    text-align: center; /* Opcional: centra el texto en móviles */
+  }
+  
+  .footer-col:not(:last-child) {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15); /* Línea horizontal en móviles */
+    padding-bottom: 30px;
+  }
+  
+  .footer-logo {
+    margin: 0 auto 15px auto;
+  }
+}
+.site-footer {
+  position: relative;        /* Habilita la propiedad z-index */
+  z-index: 999;              /* Lo sitúa por encima de casi cualquier elemento */
+  isolation: isolate;        /* Asegura que cree su propio nivel de capas */
+  
+  /* Resto de tus estilos habituales del footer */
+  background-color: #a5a8aa; 
+  color: #4f4e4e;
+  padding: 40px 20px 20px 20px;
+}
+/* Contenedor de cada línea de contacto */
+.contacto-item {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Espacio entre el ícono y el texto */
+  margin-bottom: 12px;
+}
+
+/* Estilo unificado para los íconos vectores */
+.icono-contacto {
+  width: 18px;
+  height: 18px;
+  fill: #3d3d3d; /* Tono gris oscuro corporativo deseado */
+  flex-shrink: 0; /* Evita que el ícono se deforme si el texto es largo */
+}
+.hero{
+    height:auto;
+}
+.hero-video{
+    width:100%;
+    height:auto;
+    display:block;
+}
+.hero{
+    aspect-ratio:16 / 9;
+    max-height:500px;
+    overflow:hidden;
+}
+/* 1. Contenedor principal del Hero */
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 80vh; /* Ajusta este valor a la altura deseada del hero */
+  overflow: hidden;  /* Corta todo lo que sobresalga para no invadir la otra sección */
+  display: flex;
+  align-items: center;
+}
+
+/* 2. Capa que sostiene al video */
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* 3. Comportamiento responsive del video */
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Hace que el video llene el área sin deformarse */
+  display: block;
+}
+
+/* 4. Asegurar que el contenido (texto y botón) quede sobre el video */
+.hero-content {
+  position: relative;
+  z-index: 2; /* Mayor que el z-index de .hero-bg */
+}
+/* ==========================================
+   Ajustes para Móviles (pantallas <= 768px)
+   ========================================== */
+@media (max-width: 768px) {
+  /* 1. El hero cambia a columna para apilar el video y el texto */
+  .hero {
+    display: flex;
+    flex-direction: column;
+    min-height: auto;
+    overflow: visible;
+  }
+
+  /* 2. El video pasa a flujo normal arriba */
+  .hero-bg {
+    position: relative;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9; /* Mantiene la proporción del video en móviles */
+  }
+
+  .hero-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* 3. El texto y botón quedan abajo en la pantalla */
+  .hero-content {
+    position: relative;
+    width: 100%;
+    z-index: 2;
+    padding: 25px 15px; /* Espaciado cómodo */
+  }
+
+  .hero-card {
+    text-align: center;
+  }
+}
+/* Asegurar que el contenedor del video sea la referencia */
+.hero-bg {
+  position: absolute; /* O relative en mobile */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/* Capa de velo/overlay sobre el video */
+.hero-bg::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.35); /* Fondo negro al 35% de opacidad */
+  pointer-events: none; /* Permite interactuar a través del velo si fuera necesario */
+}
+/* ==============================
+   SCROLL SOLO TARJETA WEBINARS
+   ============================== */
+
+#tarjeta-archivo-webinar .nov-text {
+    max-height: 620px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 12px;
+}
+
+#tarjeta-archivo-webinar .nov-text-block {
+    margin-bottom: 30px;
+}
+
+
+/* Scroll personalizado solo webinars */
+
+#tarjeta-archivo-webinar .nov-text::-webkit-scrollbar {
+    width: 8px;
+}
+
+#tarjeta-archivo-webinar .nov-text::-webkit-scrollbar-track {
+    background: #edf2f7;
+    border-radius: 10px;
+}
+
+#tarjeta-archivo-webinar .nov-text::-webkit-scrollbar-thumb {
+    background: #5d8ec7;
+    border-radius: 10px;
+}
+
+#tarjeta-archivo-webinar .nov-text::-webkit-scrollbar-thumb:hover {
+    background: #4578b5;
+}
+/* Corrección vertical exclusiva para tarjeta webinars */
+
+#tarjeta-archivo-webinar .nov-text {
+    display: block;
+    max-height: 620px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 12px;
+    padding-top: 0;
+}
+/* Botones webinars a ancho completo */
+#tarjeta-webinar .nov-text-block {
+    width: 100%;
+}
+
+#tarjeta-webinar .btn-cientifico {
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+}
+/* ================= BOTÓN AFILIARSE (HERO) ================= */
+
+.btn-afiliarse {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  
+  /* 🌟 REDONDEO DEL CONTENEDOR Y MÁSCARA */
+  border-radius: 10px !important;
+  overflow: hidden !important;
+  
+  /* 🔥 FORZAR RECORTADO DE GIF EN MOTORES WEBKIT/CHROMIUM */
+  isolation: isolate;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  mask-image: -webkit-radial-gradient(white, black);
+}
+
+.btn-afiliarse img {
+  width: 320px; /* Adjusta este valor para el ancho */
+  display: block;
+  border-radius: 10px !important;
+  
+  /* 🔥 CORRECCIÓN PARA EVITAR BORDES DUROS EN RADIOS PEQUEÑOS */
+  outline: 1px solid transparent;
+  backface-visibility: hidden;
+}
+
+.btn-afiliarse span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  color: white;
+  font-weight: bold;
+  font-size: 24px;
+  pointer-events: none;
+}
+
+/* ==========================================
+   CARRUSEL RESPONSIVO (RECURSOS Y GRUPOS)
+   ========================================== */
+
+.carousel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+/* Asegurar el alto de la imagen en las tarjetas split-card */
+.cientifico-card .card-img {
+  width: 100%;
+  height: 180px; /* O el alto que tenías definido, ej: 160px - 200px */
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px 8px 0 0; /* Si lleva esquinas redondeadas arriba */
+}
+
+/* Pista deslizante en Desktop */
+.carousel-track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  width: 100%;
+  padding: 10px 5px;
+  /* Ocultar barra de scroll estándar */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE y Edge */
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none; /* Chrome, Safari y Opera */
+}
+
+/* Forzar exactamente 4 tarjetas visibles en Desktop */
+.accesos-grid .acceso-card,
+.accesos-grid .socios-card,
+.cientifico-grid .cientifico-card {
+  flex: 0 0 calc((100% - 60px) / 4); /* (100% - 3 gaps de 20px) / 4 */
+  min-width: calc((100% - 60px) / 4);
+  box-sizing: border-box;
+}
+
+/* Botones Flechas (< y >) */
+.carousel-btn {
+  background-color: rgba(89, 161, 234, 0.85); /* Azul SUN */
+  color: #ffffff;
+  border: none;
+  font-size: 1.4rem;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  cursor: pointer;
+  position: absolute;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.carousel-btn:hover {
+  background-color: #035eba;
+  transform: scale(1.1);
+}
+
+.prev-btn {
+  left: -20px;
+}
+
+.next-btn {
+  right: -20px;
+}
+
+/* ==========================================
+   ADAPTACIÓN MOBILE (< 768px)
+   ========================================== */
+@media (max-width: 768px) {
+  /* Ocultar flechas en mobile */
+  .carousel-btn {
+    display: none;
+  }
+
+  /* Volver a disposición vertical tradicional */
+  .carousel-track {
+    flex-direction: column;
+    overflow-x: visible;
+  }
+
+  .accesos-grid .acceso-card,
+  .accesos-grid .socios-card,
+  .cientifico-grid .cientifico-card {
+    flex: 1 1 100%;
+    min-width: 100%;
+    width: 100%;
+  }
+}
+/* 1. La tarjeta completa como contenedor flexible vertical */
+.cientifico-card.split-card {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 260px; /* Alto fijo total de la tarjeta */
+  background-color: #ffffff; /* Fondo blanco uniforme */
+  border-radius: 8px;
+  overflow: hidden;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* 2. La imagen ocupa la mitad superior */
+.cientifico-card .card-img {
+  width: 100%;
+  height: 150px;
+  background-size: cover;
+  background-position: center;
+  flex-shrink: 0;
+}
+
+/* 3. La zona del texto ocupa el resto y CENTRA el h3 en ambos ejes */
+.cientifico-card .card-text {
+  flex: 1;
+  display: flex !important;
+  align-items: center !important;     /* Centrado VERTICAL */
+  justify-content: center !important;  /* Centrado HORIZONTAL */
+  padding: 12px 15px;
+  background-color: #ffffff;           /* Fondo blanco parejo */
+  text-align: center;
+}
+
+/* 4. Mantiene el estilo original de tu <h3> quitando solo los márgenes para no desalinear */
+.cientifico-card .card-text h3 {
+  margin: 0;
+  /* Hereda la tipografía, color y tamaño original de tu h3 global */
+}
+/* ==========================================
+   CORRECCIÓN MOBILE (< 768px)
+   ========================================== */
+@media (max-width: 768px) {
+
+  /* Forzar orientación vertical completa en las tarjetas */
+  .cientifico-card.split-card {
+    flex-direction: column !important; /* Evita que la tarjeta se divida de lado */
+    height: auto !important;          /* Permite que adapte su alto en celulares */
+    min-height: 240px;
+    width: 100% !important;
+  }
+
+  /* La imagen ocupa todo el ancho superior */
+  .cientifico-card .card-img {
+    width: 100% !important;
+    height: 150px !important;
+  }
+
+  /* El texto ocupa todo el ancho inferior y se mantiene centrado */
+  .cientifico-card .card-text {
+    width: 100% !important;
+    padding: 15px;
+    background-color: #ffffff;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center;
+  }
 }

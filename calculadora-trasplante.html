@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trasplante Renal e Inmunosupresión - Sociedad Uruguaya de Nefrología</title>
+  <!-- Bootstrap 5 CSS / Iconos -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  
+  <style>
+    .header-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 0.375rem;
+    }
+
+    .header-img {
+      max-height: 250px;
+      object-fit: cover;
+      width: 100%;
+      display: block;
+    }
+
+    .header-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.5rem;
+      
+    }
+
+    .header-overlay h1 {
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
+
+    .card-resultado {
+      transition: all 0.3s ease;
+      border: 1px solid #dee2e6;
+    }
+    
+    .val-destacado {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #0d6efd;
+    }
+
+    .badge-status {
+      font-size: 0.85rem;
+      padding: 6px 10px;
+    }
+  </style>
+</head>
+<body class="bg-light">
+
+  <main class="container my-5" style="max-width: 900px;">
+    
+    <!-- Botón de retorno -->
+    <nav aria-label="breadcrumb" class="mb-4">
+      <a href="calculadora.html" class="btn btn-sm btn-outline-secondary">
+        <i class="bi bi-arrow-left"></i> Volver a Calculadoras
+      </a>
+    </nav>
+
+    <!-- Ficha Principal -->
+    <article class="bg-white p-4 p-md-5 rounded shadow-sm border">
+      
+      <!-- Encabezado con estética unificada -->
+      <header class="border-bottom pb-3 mb-4">
+        <div class="header-container mb-3">
+          <img src="img/cientifico.jpg" alt="Encabezado SUN" class="header-img">
+          
+          <div class="header-overlay">
+            <span class="badge bg-primary mb-2">Herramienta Clínica</span>
+            <h1 class="h2 fw-bold text-white mb-0">Trasplante Renal e Inmunosupresión</h1>
+          </div>
+        </div>
+
+        <p class="text-muted mb-0">Evaluación del nivel de sensibilización pretrasplante (PRA) y orientador de monitoreo terapéutico de fármacos inmunosupresores (Niveles Valle e Interacciones).</p>
+      </header>
+
+      <!-- Pestañas de Navegación -->
+      <ul class="nav nav-pills nav-fill mb-4 border-bottom pb-3" id="pills-tab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active fw-bold btn-sm" id="pills-pra-tab" data-bs-toggle="pill" data-bs-target="#pills-pra" type="button" role="tab">1. Sensibilización y PRA (% PRA)</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link fw-bold btn-sm" id="pills-is-tab" data-bs-toggle="pill" data-bs-target="#pills-is" type="button" role="tab">2. Monitoreo e Interacciones IS</button>
+        </li>
+      </ul>
+
+      <div class="tab-content" id="pills-tabContent">
+
+        <!-- ================= MÓDULO 1: PRA Y SENSIBILIZACIÓN ================= -->
+        <div class="tab-pane fade show active" id="pills-pra" role="tabpanel">
+          <section class="p-4 bg-light rounded border mb-4">
+            <h5 class="fw-bold mb-3 text-secondary"><i class="bi bi-shield-exclamation"></i> Evaluación del Grado de Sensibilización HLA</h5>
+            <form id="praForm" onsubmit="event.preventDefault(); evaluarPRA();">
+              <div class="row g-3">
+                
+                <div class="col-md-6">
+                  <label for="val_pra" class="form-label fw-semibold">Porcentaje de PRA / cPRA (%)</label>
+                  <div class="input-group">
+                    <input type="number" step="1" min="0" max="100" class="form-control" id="val_pra" placeholder="Ej: 45" required>
+                    <span class="input-group-text">%</span>
+                  </div>
+                  <span class="form-text text-muted small">Panel Reactive Antibody (PRA) o PRA calculado.</span>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="antecedentes_pra" class="form-label fw-semibold">Antecedentes Sensibilizantes</label>
+                  <select class="form-select" id="antecedentes_pra">
+                    <option value="none">Sin eventos relevantes registrados</option>
+                    <option value="transfusion">Transfusiones previas de hemoderivados</option>
+                    <option value="pregnancy">Embarazos previos</option>
+                    <option value="retransplant">Trasplante previo (Retrasplante)</option>
+                    <option value="multiple">Múltiples eventos (Embarazo/Transfusión/Retrasplante)</option>
+                  </select>
+                </div>
+
+                <div class="col-12 mt-4">
+                  <button type="submit" class="btn btn-primary w-100 fw-bold py-2">
+                    <i class="bi bi-calculator"></i> Evaluar Riesgo Immunológico
+                  </button>
+                </div>
+              </div>
+            </form>
+          </section>
+
+          <!-- Resultado PRA -->
+          <section id="resPRA" class="d-none mb-4">
+            <h5 class="fw-bold mb-3 text-secondary"><i class="bi bi-bar-chart-line"></i> Estratificación de Riesgo Inmunológico</h5>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="card card-resultado h-100 shadow-sm">
+                  <div class="card-header bg-primary text-white text-center fw-bold">Nivel de Sensibilización</div>
+                  <div class="card-body text-center d-flex flex-column justify-content-between">
+                    <div>
+                      <span class="text-muted small d-block mb-1">Resultado de PRA</span>
+                      <div class="val-destacado" id="resValPra">--</div>
+                    </div>
+                    <div class="mt-3">
+                      <div id="badgePra" class="badge badge-status bg-secondary text-wrap">--</div>
+                    </div>
+                  </div>
+                  <div class="card-footer bg-transparent text-muted small text-center border-top-0">
+                    Determina la probabilidad de oferta incompatible
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="card card-resultado h-100 shadow-sm">
+                  <div class="card-header bg-dark text-white text-center fw-bold">Recomendación de Inducción</div>
+                  <div class="card-body d-flex align-items-center justify-content-center p-3">
+                    <p class="mb-0 text-muted small text-start" id="textoPra">--</p>
+                  </div>
+                  <div class="card-footer bg-transparent text-muted small text-center border-top-0">
+                    Orientación según guías KDIGO de Trasplante
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- ================= MÓDULO 2: MONITOREO DE INMUNOSUPRESORES ================= -->
+        <div class="tab-pane fade" id="pills-is" role="tabpanel">
+          <section class="p-4 bg-light rounded border mb-4">
+            <h5 class="fw-bold mb-3 text-secondary"><i class="bi bi-capsule"></i> Monitoreo Terapéutico de Fármacos (TDM)</h5>
+            <form id="isForm" onsubmit="event.preventDefault(); evaluarIS();">
+              <div class="row g-3">
+                
+                <div class="col-md-4">
+                  <label for="farmaco_is" class="form-label fw-semibold">Fármaco Inmunosupresor</label>
+                  <select class="form-select" id="farmaco_is" required>
+                    <option value="tacrolimus">Tacrolimus (FK-506)</option>
+                    <option value="ciclosporina">Ciclosporina A (CsA)</option>
+                    <option value="sirolimus">Sirolimus / Everolimus (mTORi)</option>
+                  </select>
+                </div>
+
+                <div class="col-md-4">
+                  <label for="tiempo_is" class="form-label fw-semibold">Tiempo Post-Trasplante</label>
+                  <select class="form-select" id="tiempo_is" required>
+                    <option value="m1">Mes 1 (Fase precoz)</option>
+                    <option value="m2_3">Meses 2 - 3</option>
+                    <option value="m4_6">Meses 4 - 6</option>
+                    <option value="m6_plus">Mayor a 6 meses (Mantenimiento)</option>
+                  </select>
+                </div>
+
+                <div class="col-md-4">
+                  <label for="nivel_is" class="form-label fw-semibold">Nivel Valle ($C_0$ actual)</label>
+                  <div class="input-group">
+                    <input type="number" step="0.1" min="0" class="form-control" id="nivel_is" placeholder="Ej: 7.5" required>
+                    <span class="input-group-text">ng/mL</span>
+                  </div>
+                </div>
+
+                <div class="col-12 border-top pt-2">
+                  <label for="coadmin_is" class="form-label fw-semibold text-secondary">Fármaco Co-administrado (Interacción CYP3A4 / P-gp):</label>
+                  <select class="form-select" id="coadmin_is">
+                    <option value="none">Ninguna interacción conocida relevante</option>
+                    <option value="inhibitor_strong">Inhibidor potente (Voriconazol, Posaconazol, Claritromicina, Ritonavir)</option>
+                    <option value="inhibitor_mod">Inhibidor moderado (Fluconazol, Diltiazem, Verapamilo, Eritromicina)</option>
+                    <option value="inducer">Inductores (Rifampicina, Fenitoína, Carbamazepina, Hierba de San Juan)</option>
+                  </select>
+                </div>
+
+                <div class="col-12 mt-4">
+                  <button type="submit" class="btn btn-primary w-100 fw-bold py-2">
+                    <i class="bi bi-calculator"></i> Analizar Rango Meta e Interacción
+                  </button>
+                </div>
+
+              </div>
+            </form>
+          </section>
+
+          <!-- Resultado IS -->
+          <section id="resIS" class="d-none mb-4">
+            <h5 class="fw-bold mb-3 text-secondary"><i class="bi bi-bar-chart-line"></i> Evaluación de Dosis y Rango Objetivo</h5>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="card card-resultado h-100 shadow-sm">
+                  <div class="card-header bg-primary text-white text-center fw-bold">Rango Meta ($C_0$)</div>
+                  <div class="card-body text-center d-flex flex-column justify-content-between">
+                    <div>
+                      <span class="text-muted small d-block mb-1" id="labelTargetIS">Objetivo sugerido</span>
+                      <div class="val-destacado" id="valTargetIS">--</div>
+                      <span class="text-muted small">ng/mL</span>
+                    </div>
+                    <div class="mt-3">
+                      <div id="badgeIS" class="badge badge-status bg-secondary text-wrap">--</div>
+                    </div>
+                  </div>
+                  <div class="card-footer bg-transparent text-muted small text-center border-top-0">
+                    Ajustar según riesgo inmunológico individual
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="card card-resultado h-100 shadow-sm">
+                  <div class="card-header bg-dark text-white text-center fw-bold">Efecto Farmacocinético / Conducta</div>
+                  <div class="card-body d-flex align-items-center justify-content-center p-3">
+                    <p class="mb-0 text-muted small text-start" id="textoIS">--</p>
+                  </div>
+                  <div class="card-footer bg-transparent text-muted small text-center border-top-0">
+                    Ajustes de dosis por interacción metabólica
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+      </div>
+
+      <!-- Tabla Resumen Metas Terapéuticas -->
+      <div class="table-responsive mt-4">
+        <table class="table table-bordered table-sm align-middle text-center small">
+          <thead class="table-light">
+            <tr>
+              <th>Fármaco</th>
+              <th>Mes 1 ($C_0$)</th>
+              <th>Mes 2 - 3 ($C_0$)</th>
+              <th>Mantenimiento (&gt; 6 meses)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Tacrolimus</strong></td>
+              <td>8 - 12 ng/mL</td>
+              <td>7 - 10 ng/mL</td>
+              <td>5 - 8 ng/mL</td>
+            </tr>
+            <tr>
+              <td><strong>Ciclosporina A</strong></td>
+              <td>200 - 300 ng/mL</td>
+              <td>150 - 250 ng/mL</td>
+              <td>100 - 150 ng/mL</td>
+            </tr>
+            <tr>
+              <td><strong>Sirolimus / Everolimus</strong></td>
+              <td>6 - 10 ng/mL</td>
+              <td>5 - 8 ng/mL</td>
+              <td>4 - 8 ng/mL</td>
+            </tr>
+            <tr>
+              <td colspan="4" class="text-start bg-light p-3">
+                <i class="bi bi-info-circle-fill text-primary me-1"></i>
+                <strong>Nota Clínica:</strong> Los rangos objetivo deben individualizarse. Pacientes con alto riesgo inmunológico (PRA elevado, retrasplante) pueden requerir metas superiores, mientras que la presencia de infecciones graves (CMV, BK virus) o nefrotoxicidad severa justifica la minimización del anticalcineurínico.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Pie de página con Referencias -->
+      <footer class="border-top pt-3 mt-4 text-muted small">
+        <p class="mb-1"><strong>Referencias:</strong></p>
+        <ul class="mb-2 ps-3">
+          <li>KDIGO Clinical Practice Guideline for the Care of Kidney Transplant Recipients. Am J Transplant. 2009.</li>
+          <li>Brunet M, et al. Therapeutic Drug Monitoring of Tacrolimus-Personalized Therapy: Consensus Report. Ther Drug Monit. 2019.</li>
+        </ul>
+        <p class="mb-0"><strong>Nota:</strong> Esta herramienta está destinada únicamente al uso orientativo por parte de profesionales de la salud. No reemplaza la evaluación clínica individualizada.</p>
+      </footer>
+
+    </article>
+
+  </main>
+
+  <!-- JS de Bootstrap para activar Pestañas -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Lógica en JavaScript Nativo -->
+  <script>
+    // 1. EVALUACIÓN DE PRA Y SENSIBILIZACIÓN
+    function evaluarPRA() {
+      const pra = parseFloat(document.getElementById('val_pra').value);
+      const antecedente = document.getElementById('antecedentes_pra').value;
+
+      if (isNaN(pra)) return;
+
+      document.getElementById('resValPra').innerText = pra + '%';
+
+      const badge = document.getElementById('badgePra');
+      const texto = document.getElementById('textoPra');
+
+      if (pra < 10) {
+        badge.innerText = 'Bajo Riesgo Inmunológico (< 10%)';
+        badge.className = 'badge badge-status bg-success';
+        texto.innerText = 'Riesgo bajo de rechazo mediado por anticuerpos. La inducción estándar suele basarse en Antagonistas del Receptor de IL-2 (Basiliximab) o dosis bajas de Timoglobulina según el riesgo global del donante/receptor.';
+      } else if (pra <= 50) {
+        badge.innerText = 'Riesgo Inmunológico Moderado / Sensibilizado (10% - 50%)';
+        badge.className = 'badge badge-status bg-warning text-dark';
+        texto.innerText = 'Paciente moderadamente sensibilizado. Se aconseja estudio detallado de anticuerpos donor-específicos (DSA). Considerar terapia de inducción deplecionante (Inmunoglobulina antitimocítica - ATG) y monitoreo estrecho pos-trasplante.';
+      } else {
+        badge.innerText = 'Alto Riesgo / Hipersensibilizado (> 50%)';
+        badge.className = 'badge badge-status bg-danger';
+        texto.innerText = 'Alta probabilidad de Crossmatch positivo y rechazo agudo. Indicación formal de inducción deplecionante con ATG (Timoglobulina) a dosis inmunosupresoras completas. Evaluar protocolos de desensibilización previa o programas de donación cruzada.';
+      }
+
+      document.getElementById('resPRA').classList.remove('d-none');
+    }
+
+    // 2. EVALUACIÓN DE INMUNOSUPRESORES E INTERACCIONES
+    function evaluarIS() {
+      const farmaco = document.getElementById('farmaco_is').value;
+      const tiempo = document.getElementById('tiempo_is').value;
+      const nivel = parseFloat(document.getElementById('nivel_is').value);
+      const coadmin = document.getElementById('coadmin_is').value;
+
+      if (isNaN(nivel)) return;
+
+      let minTarget = 0;
+      let maxTarget = 0;
+
+      // Definir rangos según fármaco y tiempo
+      if (farmaco === 'tacrolimus') {
+        if (tiempo === 'm1') { minTarget = 8; maxTarget = 12; }
+        else if (tiempo === 'm2_3') { minTarget = 7; maxTarget = 10; }
+        else if (tiempo === 'm4_6') { minTarget = 6; maxTarget = 9; }
+        else { minTarget = 5; maxTarget = 8; }
+      } else if (farmaco === 'ciclosporina') {
+        if (tiempo === 'm1') { minTarget = 200; maxTarget = 300; }
+        else if (tiempo === 'm2_3') { minTarget = 150; maxTarget = 250; }
+        else if (tiempo === 'm4_6') { minTarget = 120; maxTarget = 200; }
+        else { minTarget = 100; maxTarget = 150; }
+      } else if (farmaco === 'sirolimus') {
+        if (tiempo === 'm1') { minTarget = 6; maxTarget = 10; }
+        else if (tiempo === 'm2_3') { minTarget = 5; maxTarget = 8; }
+        else { minTarget = 4; maxTarget = 8; }
+      }
+
+      document.getElementById('valTargetIS').innerText = minTarget + ' - ' + maxTarget;
+
+      const badge = document.getElementById('badgeIS');
+      let statusTexto = '';
+
+      if (nivel < minTarget) {
+        badge.innerText = 'Subterapéutico (< ' + minTarget + ' ng/mL)';
+        badge.className = 'badge badge-status bg-warning text-dark';
+        statusTexto = 'Nivel por debajo del rango meta. Incrementa el riesgo de rechazo agudo. ';
+      } else if (nivel > maxTarget) {
+        badge.innerText = 'Supraterapéutico (> ' + maxTarget + ' ng/mL)';
+        badge.className = 'badge badge-status bg-danger';
+        statusTexto = 'Nivel por encima del rango meta. Riesgo elevado de nefrotoxicidad, neurotoxicidad, toxicidad metabólica o sobreinmunosupresión. ';
+      } else {
+        badge.innerText = 'En Rango Objetivo (' + minTarget + '-' + maxTarget + ' ng/mL)';
+        badge.className = 'badge badge-status bg-success';
+        statusTexto = 'Nivel dentro del rango objetivo previsto para esta fase. ';
+      }
+
+      // Evaluar interacción co-administrada
+      const texto = document.getElementById('textoIS');
+      let conductaInteraccion = '';
+
+      if (coadmin === 'inhibitor_strong') {
+        conductaInteraccion = 'INTERACCIÓN CRÍTICA: La co-administración con inhibidores potentes del CYP3A4 suele aumentar dramáticamente las concentraciones del inmunosupresor (hasta 200-400%). Se requiere reducción empírica de dosis (50-75%) y monitoreo de niveles a las 48-72 horas.';
+      } else if (coadmin === 'inhibitor_mod') {
+        conductaInteraccion = 'INTERACCIÓN MODERADA: Los inhibidores moderados del CYP3A4/P-gp pueden elevar los niveles sanguíneos. Se sugiere monitorear niveles valle en 3 a 5 días y ajustar dosis si se constata tendencia al alza.';
+      } else if (coadmin === 'inducer') {
+        conductaInteraccion = 'INTERACCIÓN CRÍTICA: Los inductores del CYP3A4 aceleran el metabolismo del inmunosupresor provocando caídas severas de sus niveles. Requiere incremento de dosis y control estrecho del nivel valle para prevenir rechazo.';
+      } else {
+        conductaInteraccion = 'Sin interacciones metabólicas agudas detectadas por este módulo. Continuar con el esquema de controles habitual.';
+      }
+
+      texto.innerText = statusTexto + ' ' + conductaInteraccion;
+
+      document.getElementById('resIS').classList.remove('d-none');
+    }
+  </script>
+
+</body>
+</html>

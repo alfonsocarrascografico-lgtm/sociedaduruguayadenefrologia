@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Becas Activas - Sociedad Uruguaya de Nefrología</title>
+  <!-- Bootstrap 5 CSS e Iconos -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  
+  <style>
+    .header-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 0.375rem;
+    }
+
+    .header-img {
+      max-height: 250px;
+      object-fit: cover;
+      width: 100%;
+      display: block;
+    }
+
+    /* Overlay para superponer el título con sombreado */
+    .header-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.5rem;
+      
+    }
+
+    .header-overlay h1 {
+      /* Sombreado de texto explícito */
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
+
+    .accordion-button:not(.collapsed) {
+      background-color: #f8f9fa;
+      color: #212529;
+      font-weight: 600;
+    }
+    .accordion-button:focus {
+      box-shadow: none;
+      border-color: rgba(0,0,0,.125);
+    }
+  </style>
+</head>
+<body class="bg-light">
+
+  <main class="container my-5" style="max-width: 900px;">
+    
+    <!-- Botón de retorno -->
+    <nav aria-label="breadcrumb" class="mb-4">
+      <a href="becas.html#congresos-listado-1" class="btn btn-sm btn-outline-secondary">
+        <i class="bi bi-arrow-left"></i> Volver a Becas
+      </a>
+    </nav>
+
+    <!-- Ficha Principal estilo Documento -->
+    <article class="bg-white p-4 p-md-5 rounded shadow-sm border">
+      
+      <!-- Encabezado con estética unificada -->
+      <header class="border-bottom pb-3 mb-4">
+        
+        <!-- Cabezal con imagen y título superpuesto -->
+        <div class="header-container mb-3">
+          <img src="img/cientifico.jpg" alt="Becas Activas SUN" class="header-img">
+          
+          <div class="header-overlay">
+            <span class="badge bg-primary mb-2">Convocatoria Abierta</span>
+            <h1 class="h2 fw-bold text-white mb-0">Becas Activas y Convocatorias Vigentes</h1>
+          </div>
+        </div>
+
+        <p class="text-muted mb-0">Información detallada, requisitos y bases de postulación para los programas de desarrollo profesional de la SUN.</p>
+      </header>
+
+      <!-- Introducción Contextual -->
+      <section class="mb-4 text-muted">
+        <p class="mb-0">
+          La <strong>Sociedad Uruguaya de Nefrología (SUN)</strong> promueve activamente el perfeccionamiento continuo, la investigación científica y la formación especializada de sus socios a través de becas nacionales e internacionales. Despliega cada opción para conocer los detalles del llamado.
+        </p>
+      </section>
+
+      <!-- Listado Desplegable (Accordion) -->
+      <section class="accordion accordion-flush" id="accordionBecasActivas">
+
+        <!-- Beca Activa 1 -->
+        <div class="accordion-item border rounded mb-3">
+          <h2 class="accordion-header" id="headingActiva1">
+            <button class="accordion-button collapsed fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseActiva1" aria-expanded="false" aria-controls="collapseActiva1">
+              <i class="bi bi-mortarboard-fill text-primary me-2"></i> Beca de Perfeccionamiento en Nefrología Clínica
+            </button>
+          </h2>
+          <div id="collapseActiva1" class="accordion-collapse collapse" aria-labelledby="headingActiva1" data-bs-parent="#accordionBecasActivas">
+            <div class="accordion-body text-muted">
+              <div class="mb-3">
+                <span class="badge bg-outline-primary text-primary border border-primary">Cierre de postulación: 30 de Septiembre</span>
+              </div>
+              <p><strong>Descripción:</strong> Apoyo económico destinado a nefrólogos jóvenes para estancias de capacitación en centros del exterior de referencia.</p>
+              <h6 class="fw-bold text-dark mt-3">Requisitos:</h6>
+              <ul class="mb-3 ps-3">
+                <li class="mb-1">Ser socio activo de la SUN con cuotas al día.</li>
+                <li class="mb-1">Título de especialista en Nefrología (menos de 5 años de egresado).</li>
+                <li class="mb-0">Carta de aceptación del centro receptor e informe del proyecto a desarrollar.</li>
+              </ul>
+              <div class="pt-2 border-top d-flex justify-content-end">
+                <a href="formulario-postulación.html" class="btn btn-primary fw-bold">
+                  <i class="bi bi-send-fill me-1"></i> Postularse
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Beca Activa 2 -->
+        <div class="accordion-item border rounded mb-3">
+          <h2 class="accordion-header" id="headingActiva2">
+            <button class="accordion-button collapsed fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseActiva2" aria-expanded="false" aria-controls="collapseActiva2">
+              <i class="bi bi-journal-text text-primary me-2"></i> Beca para Presentación de Trabajos en Congresos
+            </button>
+          </h2>
+          <div id="collapseActiva2" class="accordion-collapse collapse" aria-labelledby="headingActiva2" data-bs-parent="#accordionBecasActivas">
+            <div class="accordion-body text-muted">
+              <div class="mb-3">
+                <span class="badge bg-outline-primary text-primary border border-primary">Convocatoria Permanente</span>
+              </div>
+              <p><strong>Descripción:</strong> Financiación de inscripción y pasajes para socios que presenten trabajos científicos aceptados en congresos internacionales de nefrología (SLANH, ISN, SEN).</p>
+              <h6 class="fw-bold text-dark mt-3">Requisitos:</h6>
+              <ul class="mb-3 ps-3">
+                <li class="mb-1">Comprobante oficial de aceptación del trabajo por el comité científico del evento.</li>
+                <li class="mb-1">Ser primer autor o expositor del trabajo.</li>
+                <li class="mb-0">Ser socio con antigüedad mínima de 1 año en la SUN.</li>
+              </ul>
+              <div class="pt-2 border-top d-flex justify-content-end">
+                <a href="formulario-postulación.html" class="btn btn-primary fw-bold">
+                  <i class="bi bi-send-fill me-1"></i> Postularse
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Pie de página institucional -->
+      <footer class="border-top pt-3 mt-4 d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <span class="text-muted small">¿Dudas sobre el proceso de postulación? Contacta con la Comisión Directiva.</span>
+        <a href="mailto:contacto@sun.org.uy" class="btn btn-sm btn-outline-primary fw-bold">
+          Consultar por Email <i class="bi bi-envelope-fill ms-1"></i>
+        </a>
+      </footer>
+
+    </article>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

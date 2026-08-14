@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cuidados en Hemodiálisis - Sociedad Uruguaya de Nefrología</title>
+  <!-- Bootstrap 5 CSS e Iconos -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+  
+  <style>
+    .header-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: 0.375rem;
+    }
+
+    .header-img {
+      max-height: 250px;
+      object-fit: cover;
+      width: 100%;
+      display: block;
+    }
+
+    /* Overlay para superponer el título con sombreado */
+    .header-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.5rem;
+      
+    }
+
+    .header-overlay h1 {
+      /* Sombreado de texto explícito */
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
+
+    .accordion-button:not(.collapsed) {
+      background-color: #f8f9fa;
+      color: #212529;
+      font-weight: 600;
+    }
+    .accordion-button:focus {
+      box-shadow: none;
+      border-color: rgba(0,0,0,.125);
+    }
+  </style>
+</head>
+<body class="bg-light">
+
+  <main class="container my-5" style="max-width: 900px;">
+    
+    <!-- Botón de retorno -->
+    <nav aria-label="breadcrumb" class="mb-4">
+      <a href="novedades.html#novedad-destacada" class="btn btn-sm btn-outline-secondary">
+        <i class="bi bi-arrow-left"></i> Volver a Información a Pacientes
+      </a>
+    </nav>
+
+    <!-- Ficha Principal estilo Documento -->
+    <article class="bg-white p-4 p-md-5 rounded shadow-sm border">
+      
+      <!-- Encabezado con estética unificada -->
+      <header class="border-bottom pb-3 mb-4">
+        
+        <!-- Cabezal con imagen y título superpuesto -->
+        <div class="header-container mb-3">
+          <img src="img/cientifico.jpg" alt="Cuidados en Hemodiálisis" class="header-img">
+          
+          <div class="header-overlay">
+            <span class="badge bg-primary mb-2">Información a Pacientes</span>
+            <h1 class="h2 fw-bold text-white mb-0">Cuidados y Recomendaciones en Hemodiálisis</h1>
+          </div>
+        </div>
+
+        <p class="text-muted mb-0">Guía práctica de tratamiento, nutrición y protección del acceso vascular para pacientes en hemodiálisis en el Uruguay.</p>
+      </header>
+
+      <!-- Introducción Contextual -->
+      <section class="mb-4 text-muted">
+        <p class="mb-0">
+          En Uruguay, las pautas de tratamiento y recomendaciones para pacientes en hemodiálisis están reguladas y cubiertas por el <strong>Fondo Nacional de Recursos (FNR)</strong>, el cual establece guías clínicas strictly junto con el <strong>Ministerio de Salud Pública (MSP)</strong>. Los cuidados abarcan el manejo del acceso vascular, la alimentación adaptada y la asistencia médica integral.
+        </p>
+      </section>
+
+      <!-- Listado Desplegable (Accordion) -->
+      <section class="accordion accordion-flush" id="accordionHD">
+
+        <!-- Módulo 1: Acceso Vascular -->
+        <div class="accordion-item border rounded mb-2">
+          <h2 class="accordion-header" id="headingHD1">
+            <button class="accordion-button collapsed fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHD1" aria-expanded="false" aria-controls="collapseHD1">
+              <i class="bi bi-bandaid text-primary me-2"></i> Cuidados del Acceso Vascular
+            </button>
+          </h2>
+          <div id="collapseHD1" class="accordion-collapse collapse" aria-labelledby="headingHD1" data-bs-parent="#accordionHD">
+            <div class="accordion-body text-muted">
+              <ul class="mb-0 ps-3">
+                <li class="mb-2"><strong>Protección de la fístula (FAV) o catéter:</strong> Evitar extracciones de sangre, toma de presión arterial o el uso de prendas/accesorios apretados en el brazo del acceso vascular.</li>
+                <li class="mb-2"><strong>Higiene diaria:</strong> Lavar cuidadosamente con agua y jabón la zona del acceso antes de concurrir a cada sesión de diálisis.</li>
+                <li class="mb-0"><strong>Vigilancia de signos de alarma:</strong> Consultar de inmediato al centro de diálisis ante dolor intenso, enrojecimiento, aumento de temperatura local, ausencia del frémito/soplillo habitual o sangrado en la fístula o catéter.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Módulo 2: Nutrición y Líquidos -->
+        <div class="accordion-item border rounded mb-2">
+          <h2 class="accordion-header" id="headingHD2">
+            <button class="accordion-button collapsed fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHD2" aria-expanded="false" aria-controls="collapseHD2">
+              <i class="bi bi-droplet-half text-primary me-2"></i> Recomendaciones Nutricionales y de Líquidos
+            </button>
+          </h2>
+          <div id="collapseHD2" class="accordion-collapse collapse" aria-labelledby="headingHD2" data-bs-parent="#accordionHD">
+            <div class="accordion-body text-muted">
+              <ul class="mb-0 ps-3">
+                <li class="mb-2"><strong>Control del consumo de agua:</strong> Restringir la ingesta total de líquidos ajustándose a las indicaciones del equipo de nefrología y al volumen de diuresis que conserve el paciente.</li>
+                <li class="mb-2"><strong>Dieta adaptada:</strong> Limitar el consumo de alimentos ricos en potasio (como bananas, acelga, papa) y fósforo, asegurando al mismo tiempo una adecuada ingesta proteica guiada por el nutricionista clínico.</li>
+                <li class="mb-0"><strong>Moderación estricta del sodio:</strong> Evitar la adición de sal de mesa en las comidas, así como la ingesta de productos ultraprocesados, conservas y fiambres.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Módulo 3: Estilo de Vida y Controles -->
+        <div class="accordion-item border rounded mb-2">
+          <h2 class="accordion-header" id="headingHD3">
+            <button class="accordion-button collapsed fw-bold text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHD3" aria-expanded="false" aria-controls="collapseHD3">
+              <i class="bi bi-heart-pulse text-primary me-2"></i> Estilo de Vida y Controles Médicos
+            </button>
+          </h2>
+          <div id="collapseHD3" class="accordion-collapse collapse" aria-labelledby="headingHD3" data-bs-parent="#accordionHD">
+            <div class="accordion-body text-muted">
+              <ul class="mb-0 ps-3">
+                <li class="mb-2"><strong>Asistencia regular al tratamiento:</strong> Cumplir estrictamente con la totalidad del tiempo y días pautados; no suspender ni acortar las sesiones de hemodiálisis.</li>
+                <li class="mb-2"><strong>Actividad física adaptada:</strong> Realizar caminatas suaves o ejercicios de baja intensidad siempre que cuenten con la indicación y aprobación del médico tratante.</li>
+                <li class="mb-0"><strong>Vacunación y controles periódicos:</strong> Mantener al día el certificado de esquema de vacunación (incluyendo Hepatitis B y vacunas indicadas para la condición renal) y someterse a los controles de laboratorio supervisados por el equipo médico.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Pie de página institucional -->
+      <footer class="border-top pt-3 mt-4 d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <span class="text-muted small">Para más información sobre la cobertura en diálisis, consulta la normativa del FNR.</span>
+        <a href="https://www.fnr.gub.uy" target="_blank" rel="noopener" class="btn btn-sm btn-outline-primary fw-bold">
+          Sitio Oficial FNR <i class="bi bi-box-arrow-up-right ms-1"></i>
+        </a>
+      </footer>
+
+    </article>
+
+  </main>
+
+  <!-- JS de Bootstrap 5 imprescindible para la interacción del acordeón -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
