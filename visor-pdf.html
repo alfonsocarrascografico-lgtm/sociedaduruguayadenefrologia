@@ -346,5 +346,48 @@
 
     window.addEventListener('DOMContentLoaded', initPDFViewer);
   </script>
+  <!-- Resto del contenido HTML del visor -->
+
+  <script>
+    // 1. Tus configuraciones existentes de PDF.js / StPageFlip...
+
+    // 2. AGREGAS AQUÍ LA FUNCIÓN DE ADAPTACIÓN MÓVIL:
+    function renderPageMobileAdapted(pdfPage, canvasElement) {
+      const context = canvasElement.getContext('2d');
+      
+      // Detectar si es celular en orientación vertical
+      const isMobilePortrait = window.innerWidth <= 768 && window.innerHeight > window.innerWidth;
+
+      // Intercambiar dimensiones si está rotado por CSS
+      const viewportWidth = isMobilePortrait ? window.innerHeight : window.innerWidth;
+      const viewportHeight = isMobilePortrait ? window.innerWidth : window.innerHeight;
+
+      // Calcular la escala proporcional para ajustar a la pantalla
+      const unscaledViewport = pdfPage.getViewport({ scale: 1 });
+      const scaleX = viewportWidth / unscaledViewport.width;
+      const scaleY = viewportHeight / unscaledViewport.height;
+      const optimalScale = Math.min(scaleX, scaleY);
+
+      const viewport = pdfPage.getViewport({ scale: optimalScale });
+
+      canvasElement.width = viewport.width;
+      canvasElement.height = viewport.height;
+
+      return pdfPage.render({
+        canvasContext: context,
+        viewport: viewport
+      });
+    }
+
+    // 3. AGREGAS EL ESCUCHADOR DE REORDENAMIENTO:
+    window.addEventListener('resize', () => {
+      // Llamar a tu función que vuelve a dibujar las páginas cargadas
+      if (typeof reloadPdfView === 'function') {
+        reloadPdfView();
+      }
+    });
+  </script>
+</body>
+</html>
 </body>
 </html>
