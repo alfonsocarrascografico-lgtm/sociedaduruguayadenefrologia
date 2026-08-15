@@ -2925,3 +2925,33 @@ section[id],
     text-align: center;
   }
 }
+/* Contenedor principal del visor */
+#pdf-viewer-container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background-color: #1a1a1a;
+}
+
+/* Reglas aplicadas EXCLUSIVAMENTE a móviles en orientación vertical */
+@media screen and (max-width: 768px) and (orientation: portrait) {
+  #pdf-viewer-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vh !important;  /* Intercambiamos alto por ancho */
+    height: 100vw !important;
+    transform: rotate(90deg);
+    transform-origin: top left;
+    left: 100vw; /* Desplaza el contenedor para compensar el eje de rotación */
+    z-index: 9999;
+  }
+
+  /* Ajuste de los lienzos/páginas del PDF dentro del contenedor rotado */
+  .pdf-page-canvas, .page {
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain;
+  }
+}
