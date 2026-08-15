@@ -90,6 +90,7 @@
       border-radius: 0.375rem;
       padding: 20px 10px;
       overflow: hidden;
+      width: 100%;
     }
 
     /* Botones Circulares Estilo SUN Flotantes */
@@ -99,7 +100,7 @@
       border: none;
       width: 44px;
       height: 44px;
-      border-radius: 50%; /* Totalmente Circular */
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -130,6 +131,8 @@
       opacity: 0;
       transition: opacity 0.5s ease;
       background-color: #ffffff;
+      max-width: 100%;
+      margin: 0 auto;
     }
 
     .flipbook-container.loaded {
@@ -146,21 +149,62 @@
       height: 100%;
       display: block;
     }
+
+    /* Overlay para solicitar rotación en celulares en posición vertical */
+    #rotate-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #0d1b2a;
+      color: #ffffff;
+      z-index: 10000;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    #rotate-overlay i {
+      font-size: 3rem;
+      margin-bottom: 15px;
+      animation: rotateIcon 2s infinite ease-in-out;
+    }
+
+    @keyframes rotateIcon {
+      0% { transform: rotate(0deg); }
+      50% { transform: rotate(-90deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    /* Mostrar el overlay en móviles portrait */
+    @media screen and (max-width: 768px) and (orientation: portrait) {
+      #rotate-overlay {
+        display: flex !important;
+      }
+      .flipbook-viewport {
+        visibility: hidden;
+      }
+    }
   </style>
 </head>
 <body class="bg-light">
+
   <!-- Mensaje flotante de rotación para móviles -->
-<div id="rotate-overlay">
-  <i class="bi bi-phone-landscape"></i>
-  <h4>Girá tu dispositivo</h4>
-  <p class="mb-0">Para una mejor experiencia con la Revista SUN, por favor orientá tu pantalla en horizontal.</p>
-</div>
+  <div id="rotate-overlay">
+    <i class="bi bi-phone-landscape"></i>
+    <h4>Girá tu dispositivo</h4>
+    <p class="mb-0">Para una mejor experiencia con la Revista SUN, por favor orientá tu pantalla en horizontal.</p>
+  </div>
 
   <main class="container-fluid my-3 px-3 px-md-5" style="max-width: 1300px;">
     
     <!-- Botones de retorno a nivel de sitio web -->
     <nav aria-label="breadcrumb" class="mb-3 d-flex align-items-center gap-2">
-            <a href="index.html" class="btn btn-sm btn-outline-secondary">
+      <a href="index.html" class="btn btn-sm btn-outline-secondary">
         <i class="bi bi-arrow-left"></i> Volver a Inicio
       </a>
     </nav>
@@ -287,18 +331,20 @@
         const firstPage = await pdfDoc.getPage(1);
         const view = firstPage.getViewport({ scale: 1.0 });
 
-        // Inicialización optimizada
+        const isMobile = window.innerWidth <= 768;
+
+        // Inicialización adaptativa con StPageFlip
         pageFlip = new St.PageFlip(container, {
           width: view.width,
           height: view.height,
           size: "stretch",
-          minWidth: 320,
-          maxWidth: 1100,
+          minWidth: 300,
+          maxWidth: 1200,
           minHeight: 400,
           maxHeight: 1400,
           maxShadowOpacity: 0.5,
           showCover: true,
-          usePortrait: false, // Forzado horizontal
+          usePortrait: isMobile, // Vista individual en móviles, doble página en PC
           mobileScrollSupport: false
         });
 
@@ -327,7 +373,7 @@
       document.getElementById('page-num').innerText = `Pág. ${current} de ${total}`;
     }
 
-    // Controles de navegación lateral (Flechas Circulares)
+    // Controles de navegación lateral
     document.getElementById('btn-prev').addEventListener('click', () => {
       if (pageFlip) pageFlip.flipPrev();
     });
@@ -336,9 +382,9 @@
       if (pageFlip) pageFlip.flipNext();
     });
 
-    // Control para ir inmediatamente a la Página 1 (Portada)
+    // Control para ir a la Primera Página
     document.getElementById('btn-first-page').addEventListener('click', () => {
-      if (pageFlip) pageFlip.flip(0); // Índice 0 = Primera Página
+      if (pageFlip) pageFlip.flip(0);
     });
 
     // Control de Pantalla Completa
@@ -350,36 +396,20 @@
       }
     });
 
+    // Re-calcula la vista al redimensionar la ventana o girar la pantalla
+    window.addEventListener('resize', () => {
+      if (pageFlip) {
+        const isMobile = window.innerWidth <= 768;
+        pageFlip.updateFromHtml(document.querySelectorAll('.page'));
+        
+        if (window.innerWidth > window.innerHeight && isMobile) {
+          const viewport = document.querySelector('.flipbook-viewport');
+          if (viewport) viewport.style.visibility = 'visible';
+        }
+      }
+    });
+
     window.addEventListener('DOMContentLoaded', initPDFViewer);
   </script>
-  <!-- Resto del contenido HTML del visor -->
-
-  <script>
-   // Configuración dinámica de StPageFlip al cambiar de orientación o tamaño
-function getOrientationSettings() {
-  const isMobile = window.innerWidth <= 768;
-  return {
-    width: isMobile ? window.innerWidth : 550,
-    height: isMobile ? window.innerHeight : 733,
-    size: "stretch", // Ajusta el libro al contenedor disponible
-    showCover: true,
-    usePortrait: isMobile // En celular muestra 1 página, en PC muestra doble página
-  };
-}
-
-// Escuchador para recalcular el Flipbook cuando el usuario gira el celular
-window.addEventListener('resize', () => {
-  if (pageFlip) {
-    const isMobile = window.innerWidth <= 768;
-    
-    // Actualiza dimensiones dinámicamente
-    pageFlip.updateFromHtml(document.querySelectorAll('.page'));
-    
-    // Forzar actualización de pantalla completa en horizontal
-    if (window.innerWidth > window.innerHeight && isMobile) {
-      document.getElementById('flipbook-container').style.visibility = 'visible';
-    }
-  }
-});
 </body>
 </html>
