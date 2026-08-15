@@ -43,8 +43,8 @@
       font-size: 1.5rem;
     }
 
-    /* Botones de Acción Azules Institucionales */
-    .btn-sun-action {
+    /* Botones de Acción e Indicadores con ancho uniforme */
+    .btn-sun-action, #page-num {
       background-color: #0056b3;
       color: #ffffff;
       border: 1px solid rgba(255, 255, 255, 0.2);
@@ -60,6 +60,14 @@
       gap: 6px;
       cursor: pointer;
       white-space: nowrap;
+      flex: 1 1 0px; /* Igualar el ancho exacto entre todos los elementos */
+      min-width: 140px; /* Ancho uniforme para Desktop */
+    }
+
+    #page-num {
+      background-color: #6c757d; /* Gris distintivo para el contador */
+      border-color: transparent;
+      cursor: default;
     }
 
     .btn-sun-action:hover {
@@ -146,7 +154,7 @@
       width: 100% !important;
       height: 100% !important;
       display: block;
-      object-fit: contain; /* Garantiza que la imagen nunca se deforme */
+      object-fit: contain;
     }
 
     /* Ajustes móviles */
@@ -165,12 +173,13 @@
       }
       .action-buttons-group {
         width: 100%;
-        justify-content: center;
-        flex-wrap: wrap !important;
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr); /* Disposición simétrica 2x2 */
+        gap: 8px !important;
       }
-      #btn-fullscreen, #btn-download {
-        flex: 1 1 calc(50% - 8px);
-        text-align: center;
+      .btn-sun-action, #page-num {
+        width: 100%;
+        min-width: 0;
       }
       .flipbook-viewport {
         padding: 10px 2px;
@@ -210,7 +219,7 @@
           
           <div class="d-flex align-items-center gap-2 action-buttons-group">
             <!-- Contador de Paginado -->
-            <span id="page-num" class="badge bg-secondary px-3 py-2 fs-6">Cargando...</span>
+            <span id="page-num">Cargando...</span>
 
             <!-- Botón Pág. 1 -->
             <button id="btn-first-page" class="btn-sun-action" title="Ir a la Portada / Primera Página">
@@ -294,9 +303,9 @@
         // Obtener la proporción exacta del PDF desde la página 1
         const firstPage = await pdfDoc.getPage(1);
         const pdfViewport = firstPage.getViewport({ scale: 1.0 });
-        const aspectRatio = pdfViewport.height / pdfViewport.width; // Alto / Ancho proporcional
+        const aspectRatio = pdfViewport.height / pdfViewport.width;
 
-        // Obtener ancho real disponible en la pantalla
+        // Obtener ancho real disponible
         const availableWidth = viewportEl.clientWidth - (isMobile ? 10 : 30);
 
         let singlePageWidth, bookWidth, bookHeight;
@@ -304,7 +313,7 @@
         if (isMobile) {
           singlePageWidth = availableWidth;
           bookWidth = singlePageWidth;
-          bookHeight = singlePageWidth * aspectRatio; // Alto exacto en proporción
+          bookHeight = singlePageWidth * aspectRatio;
         } else {
           singlePageWidth = Math.min(450, availableWidth / 2);
           bookWidth = singlePageWidth * 2;
@@ -315,8 +324,7 @@
         for (let pageNum = 1; pageNum <= totalPdfPages; pageNum++) {
           const page = await pdfDoc.getPage(pageNum);
           
-          // Crear viewport con la escala exacta requerida
-          const scale = (singlePageWidth / pdfViewport.width) * 2; // Render a 2x para nitidez
+          const scale = (singlePageWidth / pdfViewport.width) * 2;
           const viewport = page.getViewport({ scale: scale });
 
           const pageDiv = document.createElement('div');
@@ -333,7 +341,7 @@
           await page.render({ canvasContext: context, viewport: viewport }).promise;
         }
 
-        // Inicializar Turn.js con dimensiones exactas sin distorsión
+        // Inicializar Turn.js
         $flipbook.turn({
           width: bookWidth,
           height: bookHeight,
