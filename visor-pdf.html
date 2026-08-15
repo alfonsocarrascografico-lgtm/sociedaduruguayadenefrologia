@@ -311,7 +311,7 @@
           const pageDiv = document.createElement('div');
           pageDiv.className = 'page';
 
-          // Marcar la primera página como portada para evitar la vista previa previa de contraportada a la izquierda
+          // Le indicamos explícitamente a la librería que la Pág 1 es la Tapa (Hard Cover)
           if (pageNum === 1) {
             pageDiv.setAttribute('data-density', 'hard');
           }
@@ -332,7 +332,7 @@
 
         const isMobile = window.innerWidth <= 768;
 
-        // Configuración adaptativa: Portada derecha en desktop (showCover: true), 1 página en mobile
+        // Configuración limpia
         pageFlip = new St.PageFlip(container, {
           width: view.width,
           height: view.height,
@@ -342,13 +342,16 @@
           minHeight: 380,
           maxHeight: 1200,
           maxShadowOpacity: 0.5,
-          showCover: true,       // Muestra la Pág. 1 sola a la derecha en modo libro
-          usePortrait: isMobile, // Activa el modo vista individual en celulares
+          showCover: true,       // Obliga a mostrar Portada sola a la derecha en Desktop
+          usePortrait: isMobile, // Activa vista individual única en celular
           autoSize: true,
           mobileScrollSupport: false
         });
 
         pageFlip.loadFromHTML(document.querySelectorAll('.page'));
+
+        // Forzar posicionamiento en Pág 1 (Índice 0) al arrancar para corregir render inicial
+        pageFlip.flip(0);
 
         loadingEl.style.display = 'none';
         container.classList.add('loaded');
