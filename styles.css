@@ -2934,24 +2934,42 @@ section[id],
   background-color: #1a1a1a;
 }
 
-/* Reglas aplicadas EXCLUSIVAMENTE a móviles en orientación vertical */
-@media screen and (max-width: 768px) and (orientation: portrait) {
-  #pdf-viewer-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vh !important;  /* Intercambiamos alto por ancho */
-    height: 100vw !important;
-    transform: rotate(90deg);
-    transform-origin: top left;
-    left: 100vw; /* Desplaza el contenedor para compensar el eje de rotación */
-    z-index: 9999;
-  }
+/* Overlay para solicitar rotación en celulares verticales */
+#rotate-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #0d1b2a;
+  color: #ffffff;
+  z-index: 10000;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
 
-  /* Ajuste de los lienzos/páginas del PDF dentro del contenedor rotado */
-  .pdf-page-canvas, .page {
-    max-width: 100% !important;
-    max-height: 100% !important;
-    object-fit: contain;
+#rotate-overlay i {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  animation: rotateIcon 2s infinite ease-in-out;
+}
+
+@keyframes rotateIcon {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(-90deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* Mostrar el overlay solo en celulares (pantallas pequeñas) en modo Portrait */
+@media screen and (max-width: 768px) and (orientation: portrait) {
+  #rotate-overlay {
+    display: flex !important;
+  }
+  #flipbook-container {
+    visibility: hidden; /* Oculta el visor mientras esté vertical para evitar saltos */
   }
 }
