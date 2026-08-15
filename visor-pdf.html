@@ -84,10 +84,10 @@
       justify-content: center;
       align-items: center;
       position: relative;
-      min-height: 550px;
+      min-height: 480px;
       background-color: #f8f9fa;
       border-radius: 0.375rem;
-      padding: 20px 10px;
+      padding: 15px 5px;
       overflow: hidden;
       width: 100%;
     }
@@ -124,7 +124,7 @@
       z-index: 50;
     }
 
-    /* Estilos Turn.js */
+    /* Estilos Turn.js sin distorsión */
     #my-flipbook {
       margin: 0 auto;
       box-shadow: 0 10px 25px rgba(0,0,0,0.2);
@@ -146,6 +146,7 @@
       width: 100% !important;
       height: 100% !important;
       display: block;
+      object-fit: contain; /* Garantiza que la imagen nunca se deforme */
     }
 
     /* Ajustes móviles */
@@ -170,6 +171,10 @@
       #btn-fullscreen, #btn-download {
         flex: 1 1 calc(50% - 8px);
         text-align: center;
+      }
+      .flipbook-viewport {
+        padding: 10px 2px;
+        min-height: 400px;
       }
     }
   </style>
@@ -231,7 +236,7 @@
           <i class="bi bi-chevron-left"></i>
         </button>
 
-        <section class="flipbook-viewport border">
+        <section class="flipbook-viewport border" id="viewport-container">
           <div id="loading-status" class="alert alert-info mb-0">
             <i class="bi bi-arrow-repeat spin me-2"></i> Procesando documento interactivo...
           </div>
@@ -276,6 +281,7 @@
 
     async function initPDFViewer() {
       const loadingEl = document.getElementById('loading-status');
+      const viewportEl = document.getElementById('viewport-container');
 
       try {
         const loadingTask = pdfjsLib.getDocument(pdfPath);
@@ -285,19 +291,33 @@
         $flipbook.empty();
         const isMobile = $(window).width() <= 768;
 
-        // Obtener dimensiones base de la primera página
+        // Obtener la proporción exacta del PDF desde la página 1
         const firstPage = await pdfDoc.getPage(1);
-        const baseViewport = firstPage.getViewport({ scale: 1.0 });
-        
-        // Ajustar dimensiones del libro (1 hoja en móvil, doble hoja en desktop)
-        const pageWidth = Math.min(baseViewport.width, isMobile ? 340 : 450);
-        const pageHeight = (baseViewport.height / baseViewport.width) * pageWidth;
-        const bookWidth = isMobile ? pageWidth : pageWidth * 2;
+        const pdfViewport = firstPage.getViewport({ scale: 1.0 });
+        const aspectRatio = pdfViewport.height / pdfViewport.width; // Alto / Ancho proporcional
 
-        // Renderizar cada página
+        // Obtener ancho real disponible en la pantalla
+        const availableWidth = viewportEl.clientWidth - (isMobile ? 10 : 30);
+
+        let singlePageWidth, bookWidth, bookHeight;
+
+        if (isMobile) {
+          singlePageWidth = availableWidth;
+          bookWidth = singlePageWidth;
+          bookHeight = singlePageWidth * aspectRatio; // Alto exacto en proporción
+        } else {
+          singlePageWidth = Math.min(450, availableWidth / 2);
+          bookWidth = singlePageWidth * 2;
+          bookHeight = singlePageWidth * aspectRatio;
+        }
+
+        // Renderizar páginas en canvas con alta resolución
         for (let pageNum = 1; pageNum <= totalPdfPages; pageNum++) {
           const page = await pdfDoc.getPage(pageNum);
-          const viewport = page.getViewport({ scale: 2.0 });
+          
+          // Crear viewport con la escala exacta requerida
+          const scale = (singlePageWidth / pdfViewport.width) * 2; // Render a 2x para nitidez
+          const viewport = page.getViewport({ scale: scale });
 
           const pageDiv = document.createElement('div');
           pageDiv.className = 'page';
@@ -313,10 +333,10 @@
           await page.render({ canvasContext: context, viewport: viewport }).promise;
         }
 
-        // Inicializar Turn.js
+        // Inicializar Turn.js con dimensiones exactas sin distorsión
         $flipbook.turn({
           width: bookWidth,
-          height: pageHeight,
+          height: bookHeight,
           autoCenter: true,
           display: isMobile ? 'single' : 'double',
           acceleration: true,
