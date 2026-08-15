@@ -183,7 +183,7 @@
         justify-content: center;
         flex-wrap: wrap !important;
       }
-      /* Los dos últimos botones (Pantalla completa y Descargar) bajan a la 2ª fila */
+      /* Los dos últimos botones bajan a la 2ª fila en mobile */
       #btn-fullscreen, #btn-download {
         flex: 1 1 calc(50% - 8px);
         text-align: center;
@@ -311,6 +311,11 @@
           const pageDiv = document.createElement('div');
           pageDiv.className = 'page';
 
+          // Marcar la primera página como portada para evitar la vista previa previa de contraportada a la izquierda
+          if (pageNum === 1) {
+            pageDiv.setAttribute('data-density', 'hard');
+          }
+
           const canvas = document.createElement('canvas');
           const context = canvas.getContext('2d');
           canvas.height = viewport.height;
@@ -327,7 +332,7 @@
 
         const isMobile = window.innerWidth <= 768;
 
-        // Configuración adaptativa: 1 página en mobile (usePortrait: true), 2 en desktop
+        // Configuración adaptativa: Portada derecha en desktop (showCover: true), 1 página en mobile
         pageFlip = new St.PageFlip(container, {
           width: view.width,
           height: view.height,
@@ -337,8 +342,8 @@
           minHeight: 380,
           maxHeight: 1200,
           maxShadowOpacity: 0.5,
-          showCover: true,
-          usePortrait: isMobile,
+          showCover: true,       // Muestra la Pág. 1 sola a la derecha en modo libro
+          usePortrait: isMobile, // Activa el modo vista individual en celulares
           autoSize: true,
           mobileScrollSupport: false
         });
@@ -391,7 +396,7 @@
       }
     });
 
-    // Recalcular dimensiones al cambiar el tamaño de ventana o rotar
+    // Recalcular dimensiones al cambiar el tamaño de ventana
     window.addEventListener('resize', () => {
       if (pageFlip) {
         pageFlip.updateFromHtml(document.querySelectorAll('.page'));
