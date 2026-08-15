@@ -149,6 +149,12 @@
   </style>
 </head>
 <body class="bg-light">
+  <!-- Mensaje flotante de rotación para móviles -->
+<div id="rotate-overlay">
+  <i class="bi bi-phone-landscape"></i>
+  <h4>Girá tu dispositivo</h4>
+  <p class="mb-0">Para una mejor experiencia con la Revista SUN, por favor orientá tu pantalla en horizontal.</p>
+</div>
 
   <main class="container-fluid my-3 px-3 px-md-5" style="max-width: 1300px;">
     
@@ -349,45 +355,31 @@
   <!-- Resto del contenido HTML del visor -->
 
   <script>
-    // 1. Tus configuraciones existentes de PDF.js / StPageFlip...
+   // Configuración dinámica de StPageFlip al cambiar de orientación o tamaño
+function getOrientationSettings() {
+  const isMobile = window.innerWidth <= 768;
+  return {
+    width: isMobile ? window.innerWidth : 550,
+    height: isMobile ? window.innerHeight : 733,
+    size: "stretch", // Ajusta el libro al contenedor disponible
+    showCover: true,
+    usePortrait: isMobile // En celular muestra 1 página, en PC muestra doble página
+  };
+}
 
-    // 2. AGREGAS AQUÍ LA FUNCIÓN DE ADAPTACIÓN MÓVIL:
-    function renderPageMobileAdapted(pdfPage, canvasElement) {
-      const context = canvasElement.getContext('2d');
-      
-      // Detectar si es celular en orientación vertical
-      const isMobilePortrait = window.innerWidth <= 768 && window.innerHeight > window.innerWidth;
-
-      // Intercambiar dimensiones si está rotado por CSS
-      const viewportWidth = isMobilePortrait ? window.innerHeight : window.innerWidth;
-      const viewportHeight = isMobilePortrait ? window.innerWidth : window.innerHeight;
-
-      // Calcular la escala proporcional para ajustar a la pantalla
-      const unscaledViewport = pdfPage.getViewport({ scale: 1 });
-      const scaleX = viewportWidth / unscaledViewport.width;
-      const scaleY = viewportHeight / unscaledViewport.height;
-      const optimalScale = Math.min(scaleX, scaleY);
-
-      const viewport = pdfPage.getViewport({ scale: optimalScale });
-
-      canvasElement.width = viewport.width;
-      canvasElement.height = viewport.height;
-
-      return pdfPage.render({
-        canvasContext: context,
-        viewport: viewport
-      });
+// Escuchador para recalcular el Flipbook cuando el usuario gira el celular
+window.addEventListener('resize', () => {
+  if (pageFlip) {
+    const isMobile = window.innerWidth <= 768;
+    
+    // Actualiza dimensiones dinámicamente
+    pageFlip.updateFromHtml(document.querySelectorAll('.page'));
+    
+    // Forzar actualización de pantalla completa en horizontal
+    if (window.innerWidth > window.innerHeight && isMobile) {
+      document.getElementById('flipbook-container').style.visibility = 'visible';
     }
-
-    // 3. AGREGAS EL ESCUCHADOR DE REORDENAMIENTO:
-    window.addEventListener('resize', () => {
-      // Llamar a tu función que vuelve a dibujar las páginas cargadas
-      if (typeof reloadPdfView === 'function') {
-        reloadPdfView();
-      }
-    });
-  </script>
-</body>
-</html>
+  }
+});
 </body>
 </html>
