@@ -141,7 +141,7 @@
       opacity: 1;
     }
 
-    /* Estilos adaptativos de las páginas y canvas para evitar cortes */
+    /* Estilos adaptativos de las páginas y canvas */
     .page {
       background-color: #ffffff;
       box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
@@ -151,6 +151,13 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
+    }
+
+    /* Ocultar página técnica de balanceo */
+    .page.cover-blank {
+      background: transparent !important;
+      box-shadow: none !important;
+      visibility: hidden !important;
     }
 
     .page canvas {
@@ -173,7 +180,6 @@
         gap: 5px;
       }
 
-      /* Distribución de la barra de acciones en dos filas para celulares */
       .action-bar-container {
         justify-content: center !important;
         width: 100%;
@@ -183,7 +189,6 @@
         justify-content: center;
         flex-wrap: wrap !important;
       }
-      /* Los dos últimos botones bajan a la 2ª fila en mobile */
       #btn-fullscreen, #btn-download {
         flex: 1 1 calc(50% - 8px);
         text-align: center;
@@ -195,17 +200,17 @@
 
   <main class="container-fluid my-3 px-2 px-md-5" style="max-width: 1300px;">
     
-    <!-- Botones de retorno a nivel de sitio web -->
+    <!-- Navegación -->
     <nav aria-label="breadcrumb" class="mb-3 d-flex align-items-center gap-2">
       <a href="index.html" class="btn btn-sm btn-outline-secondary">
         <i class="bi bi-arrow-left"></i> Volver a Inicio
       </a>
     </nav>
 
-    <!-- Ficha Principal estilo Documento Ampliada -->
+    <!-- Ficha Principal -->
     <article class="bg-white p-3 p-md-4 rounded shadow-sm border">
       
-      <!-- Encabezado con cabezal compacto (120px) -->
+      <!-- Encabezado con cabezal compacto -->
       <header class="pb-2 mb-3 border-bottom">
         <div class="header-container mb-2">
           <img src="img/cientifico.jpg" alt="Publicación SUN" class="header-img">
@@ -216,7 +221,7 @@
           </div>
         </div>
 
-        <!-- LÍNEA COMPACTA CON TODAS LAS ACCIONES E INDICADOR DE PÁGINA -->
+        <!-- LÍNEA DE ACCIONES E INDICADOR DE PÁGINA -->
         <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 pt-1 action-bar-container">
           <p class="text-muted small mb-0">Podés hojear el documento en pantalla o descargarlo en formato PDF original.</p>
           
@@ -224,7 +229,7 @@
             <!-- Contador de Paginado -->
             <span id="page-num" class="badge bg-secondary px-3 py-2 fs-6">Cargando...</span>
 
-            <!-- Botón para volver a la Página 1 Interna -->
+            <!-- Botón Pág. 1 -->
             <button id="btn-first-page" class="btn-sun-action" title="Ir a la Portada / Primera Página">
               <i class="bi bi-journal-arrow-up"></i> Pág. 1
             </button>
@@ -242,14 +247,12 @@
         </div>
       </header>
 
-      <!-- ÁREA DEL LIBRO INTERACTIVO + FLECHAS CIRCULARES LATERALES -->
+      <!-- ÁREA DEL LIBRO INTERACTIVO + FLECHAS -->
       <div class="flipbook-wrapper">
-        <!-- Flecha Izquierda (Anterior) -->
         <button id="btn-prev" class="btn-sun-circle" title="Página Anterior">
           <i class="bi bi-chevron-left"></i>
         </button>
 
-        <!-- Contenedor del Flipbook -->
         <section class="flipbook-viewport border">
           <div id="loading-status" class="alert alert-info mb-0">
             <i class="bi bi-arrow-repeat spin me-2"></i> Procesando documento interactivo...
@@ -257,13 +260,12 @@
           <div id="my-flipbook" class="flipbook-container"></div>
         </section>
 
-        <!-- Flecha Derecha (Siguiente) -->
         <button id="btn-next" class="btn-sun-circle" title="Página Siguiente">
           <i class="bi bi-chevron-right"></i>
         </button>
       </div>
 
-      <!-- Pie de página de la ficha -->
+      <!-- Pie de página -->
       <footer class="border-top pt-3 mt-3 d-flex justify-content-between align-items-center flex-wrap gap-2">
         <span class="text-muted small">Sociedad Uruguaya de Nefrología</span>
         <a href="index.html" class="btn btn-sm btn-outline-primary fw-bold">
@@ -283,16 +285,16 @@
   <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
 
   <script>
-    // Configurar Worker de PDF.js
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
 
-    // Obtener ruta del PDF desde la URL o usar valor por defecto
     const urlParams = new URLSearchParams(window.location.search);
     const pdfPath = urlParams.get('doc') || 'pdf/estatutos.pdf';
 
     document.getElementById('btn-download').href = pdfPath;
 
     let pageFlip = null;
+    let totalPdfPages = 0;
+    let hasBlankPage = false;
 
     async function initPDFViewer() {
       const loadingEl = document.getElementById('loading-status');
@@ -301,20 +303,29 @@
       try {
         const loadingTask = pdfjsLib.getDocument(pdfPath);
         const pdfDoc = await loadingTask.promise;
-        const totalPages = pdfDoc.numPages;
+        totalPdfPages = pdfDoc.numPages;
 
-        // Renderizar cada página en el Canvas a alta resolución (2.0)
-        for (let pageNum = 1; pageNum <= totalPages; pageNum++) {
+        container.innerHTML = '';
+        const isMobile = window.innerWidth <= 768;
+
+        // Si es Desktop e IMPAR, insertamos una página transparente previa
+        // para balancear la grilla y evitar que la Pág 7 aparezca a la izquierda
+        if (!isMobile && totalPdfPages % 2 !== 0) {
+          hasBlankPage = true;
+          const blankPageDiv = document.createElement('div');
+          blankPageDiv.className = 'page cover-blank';
+          container.appendChild(blankPageDiv);
+        } else {
+          hasBlankPage = false;
+        }
+
+        // Renderizar cada página en el Canvas
+        for (let pageNum = 1; pageNum <= totalPdfPages; pageNum++) {
           const page = await pdfDoc.getPage(pageNum);
           const viewport = page.getViewport({ scale: 2.0 });
 
           const pageDiv = document.createElement('div');
           pageDiv.className = 'page';
-
-          // Le indicamos explícitamente a la librería que la Pág 1 es la Tapa (Hard Cover)
-          if (pageNum === 1) {
-            pageDiv.setAttribute('data-density', 'hard');
-          }
 
           const canvas = document.createElement('canvas');
           const context = canvas.getContext('2d');
@@ -330,9 +341,6 @@
         const firstPage = await pdfDoc.getPage(1);
         const view = firstPage.getViewport({ scale: 1.0 });
 
-        const isMobile = window.innerWidth <= 768;
-
-        // Configuración limpia
         pageFlip = new St.PageFlip(container, {
           width: view.width,
           height: view.height,
@@ -342,16 +350,14 @@
           minHeight: 380,
           maxHeight: 1200,
           maxShadowOpacity: 0.5,
-          showCover: true,       // Obliga a mostrar Portada sola a la derecha en Desktop
-          usePortrait: isMobile, // Activa vista individual única en celular
+          showCover: false,      // Desactivado para evitar par contraportada forzada
+          startPage: hasBlankPage ? 1 : 0, // Iniciar directamente en la Pág 1 real
+          usePortrait: isMobile,
           autoSize: true,
           mobileScrollSupport: false
         });
 
         pageFlip.loadFromHTML(document.querySelectorAll('.page'));
-
-        // Forzar posicionamiento en Pág 1 (Índice 0) al arrancar para corregir render inicial
-        pageFlip.flip(0);
 
         loadingEl.style.display = 'none';
         container.classList.add('loaded');
@@ -365,18 +371,23 @@
       } catch (error) {
         console.error('Error al cargar el PDF:', error);
         loadingEl.className = 'alert alert-danger mb-0';
-        loadingEl.innerHTML = '<i class="bi bi-exclamation-triangle-fill me-2"></i> Error al cargar el PDF. Revisa que el archivo exista en el servidor.';
+        loadingEl.innerHTML = '<i class="bi bi-exclamation-triangle-fill me-2"></i> Error al cargar el PDF.';
       }
     }
 
     function updatePageIndicator() {
       if (!pageFlip) return;
-      const current = pageFlip.getCurrentPageIndex() + 1;
-      const total = pageFlip.getPageCount();
-      document.getElementById('page-num').innerText = `Pág. ${current} de ${total}`;
+      let rawIndex = pageFlip.getCurrentPageIndex();
+      
+      // Ajustar contador ignorando la página en blanco técnica
+      let current = hasBlankPage ? rawIndex : rawIndex + 1;
+      if (current < 1) current = 1;
+      if (current > totalPdfPages) current = totalPdfPages;
+
+      document.getElementById('page-num').innerText = `Pág. ${current} de ${totalPdfPages}`;
     }
 
-    // Controles de navegación lateral
+    // Controles laterales
     document.getElementById('btn-prev').addEventListener('click', () => {
       if (pageFlip) pageFlip.flipPrev();
     });
@@ -385,12 +396,12 @@
       if (pageFlip) pageFlip.flipNext();
     });
 
-    // Control para ir a la Primera Página
+    // Control Pág. 1
     document.getElementById('btn-first-page').addEventListener('click', () => {
-      if (pageFlip) pageFlip.flip(0);
+      if (pageFlip) pageFlip.flip(hasBlankPage ? 1 : 0);
     });
 
-    // Control de Pantalla Completa
+    // Pantalla Completa
     document.getElementById('btn-fullscreen').addEventListener('click', () => {
       if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen();
@@ -399,7 +410,6 @@
       }
     });
 
-    // Recalcular dimensiones al cambiar el tamaño de ventana
     window.addEventListener('resize', () => {
       if (pageFlip) {
         pageFlip.updateFromHtml(document.querySelectorAll('.page'));
