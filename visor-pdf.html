@@ -153,13 +153,6 @@
       overflow: hidden;
     }
 
-    /* Ocultar página técnica de balanceo */
-    .page.cover-blank {
-      background: transparent !important;
-      box-shadow: none !important;
-      visibility: hidden !important;
-    }
-
     .page canvas {
       max-width: 100% !important;
       max-height: 100% !important;
@@ -294,7 +287,6 @@
 
     let pageFlip = null;
     let totalPdfPages = 0;
-    let hasBlankPage = false;
 
     async function initPDFViewer() {
       const loadingEl = document.getElementById('loading-status');
@@ -308,17 +300,6 @@
         container.innerHTML = '';
         const isMobile = window.innerWidth <= 768;
 
-        // Si es Desktop e IMPAR, insertamos una página transparente previa
-        // para balancear la grilla y evitar que la Pág 7 aparezca a la izquierda
-        if (!isMobile && totalPdfPages % 2 !== 0) {
-          hasBlankPage = true;
-          const blankPageDiv = document.createElement('div');
-          blankPageDiv.className = 'page cover-blank';
-          container.appendChild(blankPageDiv);
-        } else {
-          hasBlankPage = false;
-        }
-
         // Renderizar cada página en el Canvas
         for (let pageNum = 1; pageNum <= totalPdfPages; pageNum++) {
           const page = await pdfDoc.getPage(pageNum);
@@ -326,6 +307,11 @@
 
           const pageDiv = document.createElement('div');
           pageDiv.className = 'page';
+
+          // Definir la portada como tapa dura para forzar apertura individual a la derecha
+          if (pageNum === 1) {
+            pageDiv.setAttribute('data-density', 'hard');
+          }
 
           const canvas = document.createElement('canvas');
           const context = canvas.getContext('2d');
@@ -341,6 +327,7 @@
         const firstPage = await pdfDoc.getPage(1);
         const view = firstPage.getViewport({ scale: 1.0 });
 
+        // Configuración oficial de StPageFlip con portada única
         pageFlip = new St.PageFlip(container, {
           width: view.width,
           height: view.height,
@@ -350,9 +337,9 @@
           minHeight: 380,
           maxHeight: 1200,
           maxShadowOpacity: 0.5,
-          showCover: false,      // Desactivado para evitar par contraportada forzada
-          startPage: hasBlankPage ? 1 : 0, // Iniciar directamente en la Pág 1 real
-          usePortrait: isMobile,
+          showCover: true,         // Requerido al usar data-density="hard" en la pág 1
+          startPage: 0,            // Empieza directo en la Página 1
+          usePortrait: isMobile,   // 1 página en móvil, vista doble en desktop
           autoSize: true,
           mobileScrollSupport: false
         });
@@ -377,13 +364,7 @@
 
     function updatePageIndicator() {
       if (!pageFlip) return;
-      let rawIndex = pageFlip.getCurrentPageIndex();
-      
-      // Ajustar contador ignorando la página en blanco técnica
-      let current = hasBlankPage ? rawIndex : rawIndex + 1;
-      if (current < 1) current = 1;
-      if (current > totalPdfPages) current = totalPdfPages;
-
+      let current = pageFlip.getCurrentPageIndex() + 1;
       document.getElementById('page-num').innerText = `Pág. ${current} de ${totalPdfPages}`;
     }
 
@@ -398,7 +379,7 @@
 
     // Control Pág. 1
     document.getElementById('btn-first-page').addEventListener('click', () => {
-      if (pageFlip) pageFlip.flip(hasBlankPage ? 1 : 0);
+      if (pageFlip) pageFlip.flip(0);
     });
 
     // Pantalla Completa
