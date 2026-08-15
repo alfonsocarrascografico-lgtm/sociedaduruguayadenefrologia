@@ -59,8 +59,10 @@
       text-decoration: none;
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 6px;
       cursor: pointer;
+      white-space: nowrap;
     }
 
     .btn-sun-action:hover {
@@ -160,7 +162,7 @@
       display: block;
     }
 
-    /* Ajustes visuales para móviles */
+    /* Ajustes específicos para pantallas de celular */
     @media (max-width: 768px) {
       .btn-sun-circle {
         width: 36px;
@@ -169,6 +171,22 @@
       }
       .flipbook-wrapper {
         gap: 5px;
+      }
+
+      /* Distribución de la barra de acciones en dos filas para celulares */
+      .action-bar-container {
+        justify-content: center !important;
+        width: 100%;
+      }
+      .action-buttons-group {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap !important;
+      }
+      /* Los dos últimos botones (Pantalla completa y Descargar) bajan a la 2ª fila */
+      #btn-fullscreen, #btn-download {
+        flex: 1 1 calc(50% - 8px);
+        text-align: center;
       }
     }
   </style>
@@ -199,10 +217,10 @@
         </div>
 
         <!-- LÍNEA COMPACTA CON TODAS LAS ACCIONES E INDICADOR DE PÁGINA -->
-        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 pt-1">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 pt-1 action-bar-container">
           <p class="text-muted small mb-0">Podés hojear el documento en pantalla o descargarlo en formato PDF original.</p>
           
-          <div class="d-flex align-items-center gap-2">
+          <div class="d-flex align-items-center gap-2 action-buttons-group">
             <!-- Contador de Paginado -->
             <span id="page-num" class="badge bg-secondary px-3 py-2 fs-6">Cargando...</span>
 
@@ -320,7 +338,7 @@
           maxHeight: 1200,
           maxShadowOpacity: 0.5,
           showCover: true,
-          usePortrait: isMobile, // Activa el modo vista individual para celulares
+          usePortrait: isMobile,
           autoSize: true,
           mobileScrollSupport: false
         });
