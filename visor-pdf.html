@@ -280,8 +280,14 @@
   <script>
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const pdfPath = urlParams.get('doc') || 'publicaciones-pdf/articulo-cientifico-1.pdf';
+   // Capturar el parámetro 'doc' de la URL
+const urlParams = new URLSearchParams(window.location.search);
+let rawDoc = urlParams.get('doc');
+
+// Decodificar la ruta por si tiene caracteres especiales
+let pdfPath = rawDoc ? decodeURIComponent(rawDoc) : 'pdf/estatutos.pdf';
+
+console.log("Cargando el archivo PDF:", pdfPath);
 
     document.getElementById('btn-download').href = pdfPath;
 
