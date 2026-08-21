@@ -15,6 +15,42 @@
       .carousel-btn {
         display: none !important;
       }
+
+      /* Ocultar redes celestes del header en Mobile */
+      .header-top {
+        display: none !important;
+      }
+
+      /* Estilos para redes sociales en escala de grises en Mobile debajo de Sitios de Interés */
+      .social-mobile {
+        display: flex !important;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 15px;
+        margin-top: 20px;
+        padding-top: 15px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .social-mobile a img {
+        height: 28px; /* Mantener tamaño proporcionado */
+        width: auto;
+        filter: grayscale(100%);
+        opacity: 0.8;
+        transition: filter 0.3s ease, opacity 0.3s ease;
+      }
+
+      .social-mobile a:hover img {
+        filter: grayscale(0%);
+        opacity: 1;
+      }
+    }
+
+    /* Ocultar bloque móvil de redes en versión Escritorio */
+    @media (min-width: 769px) {
+      .social-mobile {
+        display: none !important;
+      }
     }
   </style>
 </head>
@@ -27,7 +63,7 @@
 <header class="header">
   <div class="container header-content">
 
-    <!-- 🔼 NUEVA FILA: REDES -->
+    <!-- 🔼 NUEVA FILA: REDES (Visibles solo en Desktop) -->
     <div class="header-top">
       <div class="social">
         <a href="https://www.instagram.com/sociedad_uruguaya_nefrologia/" target="_blank">
@@ -57,11 +93,11 @@
       </div>
 
       <nav class="nav">
-                <a href="#accesos-rapidos">Recursos Médicos</a>
+        <a href="#accesos-rapidos">Recursos Médicos</a>
         <a href="#socios">Socios</a>
         <a href="#cientifico">Grupos de trabajo</a>
         <a href="#becas">Becas</a>
-        <a href="#novedades">Información y novedades</a>
+        <a href="#novedades">Informacion a pacientes</a>
         <a href="#congresos">Congresos y cursos</a>
         <a href="#institucional">Sobre SUN</a>
         <a href="#contacto">Contacto</a>
@@ -425,10 +461,8 @@
           </svg>
           <span>contacto@sun.org.uy</span>
         </p>
-        
+      </div>
     </div>
-
-  </div>
 
     <!-- COLUMNA 2: Secciones del Sitio -->
     <div class="footer-col footer-links">
@@ -438,7 +472,7 @@
         <li><a href="#socios">Socios</a></li>
         <li><a href="#cientifico">Grupos de trabajo</a></li>
         <li><a href="#becas">Becas</a></li>
-        <li><a href="#novedades">Información y novedades</a></li>
+        <li><a href="#novedades">Información pacientes</a></li>
         <li><a href="#congresos">Congresos y cursos</a></li>
       </ul>
     </div>
@@ -469,6 +503,26 @@
           <a href="https://www.senefro.org/modules.php?name=home&lang=ES" target="_blank" rel="noopener noreferrer">Sociedad Española de Nefrología (SEN)</a>
         </li>
       </ul>
+
+      <!-- 📱 REDES SOCIALES MÓVIL (Escala de grises justo debajo de Sitios de Interés) -->
+      <div class="social-mobile">
+        <a href="https://www.instagram.com/sociedad_uruguaya_nefrologia/" target="_blank">
+          <img src="img/redes-sociales-01.png" alt="Instagram">
+        </a>
+
+        <a href="https://x.com/SunUruguay/" target="_blank">
+          <img src="img/redes-sociales-02.png" alt="X">
+        </a>
+
+        <a href="https://wa.me/59892539901" target="_blank">
+          <img src="img/redes-sociales-03.png" alt="WhatsApp">
+        </a>
+
+        <a href="#contacto">
+          <img src="img/redes-sociales-04.png" alt="Red 4">
+        </a>
+      </div>
+
     </div>
 
   </div>
