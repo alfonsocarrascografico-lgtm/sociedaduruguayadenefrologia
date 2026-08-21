@@ -2973,3 +2973,42 @@ section[id],
     visibility: hidden; /* Oculta el visor mientras esté vertical para evitar saltos */
   }
 }
+<!-- ESTILOS EXCLUSIVOS PARA EL FOOTER MÓVIL -->
+<style>
+  @media (max-width: 768px) {
+    .social-mobile {
+      display: flex !important;
+      justify-content: flex-start !important;
+      align-items: center !important;
+      gap: 15px !important;
+      margin-top: 15px !important;
+      padding-top: 15px !important;
+      padding-bottom: 20px !important;
+      border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+    }
+
+    .social-mobile a img {
+      height: 28px !important;
+      width: auto !important;
+      filter: grayscale(100%) !important;
+      opacity: 0.8 !important;
+      transition: filter 0.3s ease, opacity 0.3s ease !important;
+    }
+
+    .social-mobile a:hover img {
+      filter: grayscale(0%) !important;
+      opacity: 1 !important;
+    }
+  }
+
+  @media (min-width: 769px) {
+    .social-mobile {
+      display: none !important;
+    }
+  }
+</style>
+
+<!-- INICIO DEL FOOTER -->
+<footer class="site-footer">
+  ...
