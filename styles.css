@@ -3032,3 +3032,45 @@ section[id],
     justify-content: center;
   }
 }
+/* Grilla/Contenedor del carrusel de Socios */
+.socios-grid {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  padding: 10px 0;
+}
+
+/* Ocultar la barra de desplazamiento visual */
+.socios-grid::-webkit-scrollbar {
+  display: none;
+}
+.socios-grid {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Forzar que cada tarjeta ocupe exactamente 1/4 del espacio visible */
+.socios-card {
+  /* Resta los 3 espacios de 20px (60px en total) repartidos entre las 4 tarjetas */
+  flex: 0 0 calc((100% - 60px) / 4);
+  max-width: calc((100% - 60px) / 4);
+  box-sizing: border-box;
+  scroll-snap-align: start;
+}
+
+/* Adaptación responsive para pantallas más pequeñas */
+@media (max-width: 992px) {
+  .socios-card {
+    flex: 0 0 calc((100% - 20px) / 2); /* 2 tarjetas por fila en tabletas */
+    max-width: calc((100% - 20px) / 2);
+  }
+}
+
+@media (max-width: 576px) {
+  .socios-card {
+    flex: 0 0 100%; /* 1 tarjeta por fila en móviles */
+    max-width: 100%;
+  }
+}
