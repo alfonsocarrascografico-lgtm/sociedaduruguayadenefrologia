@@ -3005,3 +3005,30 @@ section[id],
     display: none !important;
   }
 }
+/* 1. Ocultar el scrollbar extra y permitir scroll horizontal */
+.carousel-track {
+  display: flex !important;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 20px; /* Espacio entre tarjetas */
+}
+
+/* Ocultar barra de desplazamiento visual */
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* 2. Fijar el ancho exacto para ver SOLO 4 tarjetas en pantalla (Escritorio) */
+@media (min-width: 769px) {
+  .socios-card, .acceso-card {
+    /* (100% de ancho - 3 espacios de 20px) / 4 tarjetas */
+    flex: 0 0 calc((100% - 60px) / 4) !important;
+    max-width: calc((100% - 60px) / 4) !important;
+  }
+}
+/* Centrar únicamente las tarjetas de Registros Nefrológicos en escritorio */
+@media (min-width: 769px) {
+  #accesos-grid {
+    justify-content: center;
+  }
+}

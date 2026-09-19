@@ -57,13 +57,11 @@
 
 <body>
   
-  <!-- 🔥 COLUMNA GLOBAL -->
   <div class="columna-bg"></div>
 
 <header class="header">
   <div class="container header-content">
 
-    <!-- 🔼 NUEVA FILA: REDES (Visibles solo en Desktop) -->
     <div class="header-top">
       <div class="social">
         <a href="https://www.instagram.com/sociedad_uruguaya_nefrologia/" target="_blank">
@@ -84,7 +82,6 @@
       </div>
     </div>
 
-    <!-- 🔽 FILA ORIGINAL -->
     <div class="header-bottom">
       <div class="logo">
         <a href="index.html">
@@ -93,7 +90,7 @@
       </div>
 
       <nav class="nav">
-        <a href="#accesos-rapidos">Recursos Médicos</a>
+        <a href="#accesos-rapidos">Registros</a>
         <a href="#socios">Socios</a>
         <a href="#cientifico">Grupos de trabajo</a>
         <a href="#becas">Becas</a>
@@ -107,7 +104,6 @@
   </div>
 </header>
 
-<!-- HERO / INICIO -->
 <section class="hero">
   <div class="hero-bg">
     <video autoplay muted loop playsinline class="hero-video">
@@ -131,58 +127,37 @@
 </section>
 
   
-<!-- ACCESOS RÁPIDOS (RECURSOS MÉDICOS) -->
 <section id="accesos-rapidos"> 
   <div class="container">
 
-    <h2 class="titulo-seccion">Recursos Médicos</h2>
+    <h2 class="titulo-seccion">Registros Nefrológicos</h2>
 
-    <!-- Contenedor Wrapper del Carrusel -->
     <div class="carousel-wrapper">
       <button class="carousel-btn prev-btn" onclick="scrollCarousel('accesos-grid', -1)" aria-label="Anterior">❮</button>
 
       <div class="accesos-grid carousel-track" id="accesos-grid">
          
-        <a href="webinar.html#tarjeta-webinar-vivo" class="socios-card">
-          <div class="socios-icono">
-            <img src="icons/webinar.svg" alt="Contacto">
-          </div>
-          <h3>Webinar en vivo</h3>
-          <p>Participe de Charlas virtuales en vivo</p>
-        </a>
-
-        <a href="calculadora.html" class="acceso-card">
+         <a href="registros-rud.html" class="acceso-card">
           <div class="acceso-icono">
-            <img src="icons/calculadora_Mesa de trabajo 1.svg" alt="Eventos">
+            <img src="icons/eventos.svg" alt="socios">
           </div>
-          <h3>Calculadoras</h3>
-          <p>Calculadoras de Nefrología</p>
-        </a>
+          <h3>Registro Uruguayo de Diálisis</h3>
+          </a>
 
-        <a href="registros.html" class="acceso-card">
-          <div class="acceso-icono">
-            <img src="icons/guias.svg" alt="socios">
-          </div>
-          <h3>Registros</h3>
-          <p>Registros de Diálisis y Glomerulopatías</p>
-        </a>
-
-        <a href="informes.html" class="acceso-card">
+         <a href="registros-rug.html" class="acceso-card">
           <div class="acceso-icono">
             <img src="icons/eventos.svg" alt="Guías clínicas">
           </div>
-          <h3>Informes</h3>
-          <p>Informes de Diálisis y Glomerulopatías</p>
-        </a>
+          <h3>Registro Uruguayo de Glomerulopatías</h3>
+          </a>
 
-        <a href="publicaciones.html" class="acceso-card">
+        <a href="programa-salud-renal.html" class="acceso-card">
           <div class="acceso-icono">
-            <img src="icons/revista.svg" alt="Guías clínicas">
+            <img src="icons/guias.svg" alt="Guías clínicas">
           </div>
-          <h3>Publicaciones SUN</h3>
-          <p>Publicaciones y artículos científicos</p>
-        </a>
-              
+          <h3>Programa de Salud Renal</h3>
+          </a>
+            
       </div>
 
       <button class="carousel-btn next-btn" onclick="scrollCarousel('accesos-grid', 1)" aria-label="Siguiente">❯</button>
@@ -191,57 +166,69 @@
   </div>
 </section>
 
-<!-- SOCIOS -->
 <section id="socios"> 
   <div class="container">
 
     <h2 class="titulo-seccion">Socios</h2>
 
-    <div class="socios-grid">
+    <div class="carousel-wrapper">
+      <button class="carousel-btn prev-btn" onclick="scrollCarousel('socios-grid', -1)" aria-label="Anterior">❮</button>
 
-      <a href="socios.html#tarjeta-guias" class="socios-card">
-        <div class="socios-icono">
-          <img src="icons/como-ser-socio.svg" alt="Guías clínicas">
-        </div>
-        <h3>Como ser socio</h3>
-        <p>Guía práctica para asociarse</p>
-      </a>
+      <div class="socios-grid carousel-track" id="socios-grid">
+         
+        <a href="socios.html#tarjeta-guias" class="socios-card">
+          <div class="socios-icono">
+            <img src="icons/como-ser-socio.svg" alt="Guías clínicas">
+          </div>
+          <h3>Como ser socio</h3>
+          <p>Guía práctica para asociarse</p>
+        </a>
 
-      <a href="socios.html#tarjeta-clinica" class="socios-card">
-        <div class="socios-icono">
-          <img src="icons/beneficios.svg" alt="Eventos">
-        </div>
-        <h3>Beneficios</h3>
-        <p>Listado de beneficios para asociados</p>
-      </a>
+        <a href="calculadora.html" class="socios-card">
+          <div class="socios-icono">
+            <img src="icons/calculadora_Mesa de trabajo 1.svg" alt="Eventos">
+          </div>
+          <h3>Calculadoras</h3>
+          <p>Calculadoras de Nefrología</p>
+        </a>
 
-      <a href="socios.html#tarjeta-webinar" class="socios-card">
-        <div class="socios-icono">
-          <img src="icons/webinar.svg" alt="Contacto">
-        </div>
-        <h3>Webinar</h3>
-        <p>Charlas y contenido audiovisual</p>
-      </a>
+        <a href="socios.html#tarjeta-webinar" class="socios-card">
+          <div class="socios-icono">
+            <img src="icons/webinar.svg" alt="Contacto">
+          </div>
+          <h3>Webinar</h3>
+          <p>Charlas y contenido audiovisual</p>
+        </a>
 
-      <a href="socios.html#tarjeta-publicaciones" class="socios-card"> 
-        <div class="socios-icono">
-          <img src="icons/sugerencias.svg" alt="Novedades">
-        </div>
-        <h3>Sugerencias</h3>
-        <p>Buzón de recomendaciones</p>
-      </a>
+        <a href="socios.html#tarjeta-clinica" class="socios-card">
+          <div class="socios-icono">
+            <img src="icons/beneficios.svg" alt="Eventos">
+          </div>
+          <h3>Beneficios</h3>
+          <p>Listado de beneficios para asociados</p>
+        </a>
 
+        <a href="socios.html#tarjeta-publicaciones" class="socios-card"> 
+          <div class="socios-icono">
+            <img src="icons/sugerencias.svg" alt="Novedades">
+          </div>
+          <h3>Sugerencias</h3>
+          <p>Buzón de recomendaciones</p>
+        </a>
+              
+      </div>
+
+      <button class="carousel-btn next-btn" onclick="scrollCarousel('socios-grid', 1)" aria-label="Siguiente">❯</button>
     </div>
+
   </div>
 </section>
-   
-<!-- CIENTÍFICO (GRUPOS DE TRABAJO) -->
+
 <section id="cientifico" class="cientifico">
   <div class="container">
 
     <h2 class="titulo-seccion">Grupos de Trabajo</h2>
 
-    <!-- Contenedor Wrapper del Carrusel -->
     <div class="carousel-wrapper">
       <button class="carousel-btn prev-btn" onclick="scrollCarousel('cientifico-grid', -1)" aria-label="Anterior">❮</button>
 
@@ -275,7 +262,6 @@
           </div>
         </a>
 
-        <!-- 5.ª TARJETA: COMISIÓN EDITORIAL -->
         <a href="cientifico.html#tarjeta-editorial" class="cientifico-card split-card">
           <div class="card-img" style="background-image: url('img/comision-editorial.jpg');"></div>
           <div class="card-text">
@@ -291,7 +277,6 @@
   </div>
 </section>
 
-<!-- BECAS -->
 <section class="congresos" id="becas">
   <div class="container congresos-content">
 
@@ -321,7 +306,6 @@
   </div>
 </section>
 
-<!-- NOVEDADES -->
 <section id="novedades" class="novedades">
   <div class="container novedades-content">
 
@@ -348,7 +332,6 @@
   </div>
 </section>
 
-<!-- CONGRESOS -->
 <section class="congresos" id="congresos">
   <div class="container congresos-content">
 
@@ -376,7 +359,6 @@
   </div>
 </section>
 
-<!-- INSTITUCIONAL -->
 <section id="institucional" class="institucional">
   <div class="container institucional-content">
 
@@ -407,7 +389,6 @@
   </div>
 </section>
 
-<!-- CONTACTO -->
 <section class="contacto" id="contacto">
   <div class="container contacto-content">
 
@@ -435,7 +416,6 @@
 <footer class="site-footer">
   <div class="footer-container">
     
-    <!-- COLUMNA 1: Logo y Contacto -->
     <div class="footer-col footer-info">
       <img src="img/LOGO-BN.png" alt="Sociedad Uruguaya de Nefrología" class="footer-logo">
       <div class="footer-info">
@@ -462,7 +442,6 @@
           <span>contacto@sun.org.uy</span>
         </p>
 
-        <!-- 📱 REDES SOCIALES MÓVIL (Ubicadas debajo de contacto@sun.org.uy) -->
         <div class="social-mobile">
           <a href="https://www.instagram.com/sociedad_uruguaya_nefrologia/" target="_blank">
             <img src="img/redes-sociales-01.png" alt="Instagram">
@@ -483,11 +462,10 @@
       </div>
     </div>
 
-    <!-- COLUMNA 2: Secciones del Sitio -->
     <div class="footer-col footer-links">
       <p><strong>SECCIONES DEL SITIO</strong></p>
       <ul>
-        <li><a href="#accesos-rapidos">Recursos Médicos</a></li>
+        <li><a href="#accesos-rapidos">Registros</a></li>
         <li><a href="#socios">Socios</a></li>
         <li><a href="#cientifico">Grupos de trabajo</a></li>
         <li><a href="#becas">Becas</a></li>
@@ -496,7 +474,6 @@
       </ul>
     </div>
 
-    <!-- COLUMNA 3: Sitios de Interés -->
     <div class="footer-col footer-external">
       <p><strong>SITIOS DE INTERÉS</strong></p>
       <ul>
@@ -526,13 +503,11 @@
 
   </div>
 
-  <!-- LÍNEA FINAL: Firma y Copyright -->
   <div class="footer-bottom">
     <p>© 2026 SUN - Sociedad Uruguaya de Nefrología | Desarrollado por Alfonso Carrasco Gráfico</p>
   </div>
 </footer>
 
-<!-- 📜 SCRIPTS DE NAVEGACIÓN Y FUNCIONALIDAD -->
 <script>
 // Scroll suave para links del menú
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
