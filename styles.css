@@ -3074,3 +3074,25 @@ section[id],
     max-width: 100%;
   }
 }
+@media (max-width: 768px) {
+  
+  /* Contenedor: Alinea los elementos al centro y los apila verticalmente */
+  .socios-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra las tarjetas horizontalmente */
+    width: 100%;
+    gap: 15px; /* Espaciado uniforme entre tarjetas */
+    padding: 0;
+  }
+
+  /* Tarjetas: Ancho idéntico y centrado para todas */
+  .socios-card {
+    flex: 0 0 auto !important; /* Desactiva el ancho del carrusel */
+    width: 90% !important;     /* Todas ocupan el mismo 90% de la pantalla */
+    max-width: 350px !important;/* Evita que se deformen en pantallas grandes de gama alta */
+    margin: 0 auto;            /* Asegura el centrado */
+    box-sizing: border-box;
+  }
+
+}
