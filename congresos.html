@@ -41,12 +41,34 @@
       fill: #3d3d3d;
       flex-shrink: 0;
     }
+
+    /* 🔥 SCROLL VERTICAL INTERNO PARA CONGRESOS DESTACADOS */
+    .nov-card.horizontal .nov-text-scroll {
+      max-height: 300px;
+      overflow-y: auto;
+      padding-right: 12px;
+    }
+
+    /* Personalización de la barra de scroll (webkit) */
+    .nov-card.horizontal .nov-text-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+    .nov-card.horizontal .nov-text-scroll::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 4px;
+    }
+    .nov-card.horizontal .nov-text-scroll::-webkit-scrollbar-thumb {
+      background: #004d80;
+      border-radius: 4px;
+    }
+    .nov-card.horizontal .nov-text-scroll::-webkit-scrollbar-thumb:hover {
+      background: #003355;
+    }
   </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
 <header class="header">
   <div class="container header-content">
 
@@ -77,65 +99,68 @@
         </a>
       </div>
 
-      <!-- BOTÓN HAMBURGUESA -->
       <div class="hamburger">☰</div>
 
       <nav class="nav">
-<a href="index.html#accesos-rapidos">Registros</a>
-<a href="index.html#socios">Socios</a>
-<a href="index.html#cientifico">Grupos de trabajo</a>
-<a href="index.html#becas">Becas</a>
-<a href="index.html#novedades">Información y novedades</a>
-<a href="index.html#congresos">Congresos y cursos</a>
-<a href="index.html#institucional">Sobre SUN</a>
-<a href="index.html#contacto">Contacto</a>
+        <a href="index.html#accesos-rapidos">Registros</a>
+        <a href="index.html#socios">Socios</a>
+        <a href="index.html#cientifico">Grupos de trabajo</a>
+        <a href="index.html#becas">Becas</a>
+        <a href="index.html#novedades">Información y novedades</a>
+        <a href="index.html#congresos">Congresos y cursos</a>
+        <a href="index.html#institucional">Sobre SUN</a>
+        <a href="index.html#contacto">Contacto</a>
       </nav>
     </div>
 
   </div>
 </header>
 
-<!-- CONTENIDO PRINCIPAL -->
 <section id="congresos" class="seccion-destacada">
   <div class="container">
     <div class="nov-principal">
-      <a href="#" class="nov-card horizontal" id="congreso-principal">        
+      <div class="nov-card horizontal" id="congreso-principal">        
         <div class="nov-img" style="background-image: url('img/auditorio.jpg');"></div>
         
         <div class="nov-text">
           <h2>Principales Congresos y Encuentros 2026</h2>
-          <p>
-           Septiembre 2026<br>
-•	18th World Nephrology Summit (21-22 de septiembre) – París, Francia. Evento global enfocado en cumbres científicas de nefrología.<br>
-•	19º Encuentro Nacional y 3º Encuentro Ibérico de Residentes de Nefrología (25-27 de septiembre) – Alicante (Cocentaina), España. Organizado por la Sociedad Española de Nefrología (S.E.N.).<br>
-•	Salud Renal para Todos (25-26 de septiembre) – Taskent, Uzbekistán. Respaldado por la European Renal Association.<br>
-Octubre 2026<br>
-•	XIV Congreso Uruguayo de Nefrología (1 y 2 de octubre) – Montevideo, Uruguay. Sede en el Radisson Victoria Plaza Hotel. Incluye las VIII Jornadas Rioplatenses de Nefrología y jornadas paralelas de enfermería y nutrición renal. Más información e inscripciones en la plataforma de Atenea Eventos.<br>
-•	Encontro Renal 2026 / XL Congreso Portugués de Nefrología (8-10 de octubre) – Braga, Portugal. Organizado en conjunto con el XL Congreso APEDT y con colaboración de la S.E.N.<br>
-•	14th European Congress on Nephrology, Internal Medicine and Kidney Diseases (29-30 de octubre) – París, Francia.<br>
-Noviembre 2026<br>
-•	ASN Kidney Week 2026 (4-8 de noviembre) – Estados Unidos. El evento de salud renal más grande del mundo organizado por la American Society of Nephrology.<br>
-•	56.º Congreso de la Sociedad Española de Nefrología (5-7 de noviembre) – Murcia, España. La cita anual de referencia en España para la investigación y el tratamiento de las enfermedades renales. Sede oficial en el Auditorio y Centro de Congresos de Murcia.<br>
-•	12th World Kidney Congress (16-17 de noviembre) – Tokio, Japón.<br>
-•	Congreso Argentino de Nefrología (CAN 2026) (18-21 de noviembre) – Neuquén, Argentina. Se llevará a cabo en el Centro de Convenciones Domuyo.<br>
-Diciembre 2026<br>
-•	25th Annual Conference on Urology and Nephrological Disorders (3-4 de diciembre) – Madrid, España.<br>
-Avance: Primeros Congresos Confirmados para 2027<br>
-•	23rd World Nephrology Conference (29-30 de marzo de 2027) – Ámsterdam, Países Bajos.<br>
-•	Canadian Society of Nephrology Annual Meeting (CSN 2027) (21-23 de abril de 2027).<br>
-•	ERA Congress 2027 (European Renal Association) (21-24 de mayo de 2027)<br>
+          
+          <div class="nov-text-scroll">
+            <p>
+              <strong>Septiembre 2026</strong><br>
+              • 18th World Nephrology Summit (21-22 de septiembre) – París, Francia. Evento global enfocado en cumbres científicas de nefrología.<br>
+              • 19º Encuentro Nacional y 3º Encuentro Ibérico de Residentes de Nefrología (25-27 de septiembre) – Alicante (Cocentaina), España. Organizado por la Sociedad Española de Nefrología (S.E.N.).<br>
+              • Salud Renal para Todos (25-26 de septiembre) – Taskent, Uzbekistán. Respaldado por la European Renal Association.<br><br>
+              
+              <strong>Octubre 2026</strong><br>
+              • XIV Congreso Uruguayo de Nefrología (1 y 2 de octubre) – Montevideo, Uruguay. Sede en el Radisson Victoria Plaza Hotel. Incluye las VIII Jornadas Rioplatenses de Nefrología y jornadas paralelas de enfermería y nutrición renal. Más información e inscripciones en la plataforma de Atenea Eventos.<br>
+              • Encontro Renal 2026 / XL Congreso Portugués de Nefrología (8-10 de octubre) – Braga, Portugal. Organizado en conjunto con el XL Congreso APEDT y con colaboración de la S.E.N.<br>
+              • 14th European Congress on Nephrology, Internal Medicine and Kidney Diseases (29-30 de octubre) – París, Francia.<br><br>
+              
+              <strong>Noviembre 2026</strong><br>
+              • ASN Kidney Week 2026 (4-8 de noviembre) – Estados Unidos. El evento de salud renal más grande del mundo organizado por la American Society of Nephrology.<br>
+              • 56.º Congreso de la Sociedad Española de Nefrología (5-7 de noviembre) – Murcia, España. La cita anual de referencia en España para la investigación y el tratamiento de las enfermedades renales. Sede oficial en el Auditorio y Centro de Congresos de Murcia.<br>
+              • 12th World Kidney Congress (16-17 de noviembre) – Tokio, Japón.<br>
+              • Congreso Argentino de Nefrología (CAN 2026) (18-21 de noviembre) – Neuquén, Argentina. Se llevará a cabo en el Centro de Convenciones Domuyo.<br><br>
+              
+              <strong>Diciembre 2026</strong><br>
+              • 25th Annual Conference on Urology and Nephrological Disorders (3-4 de diciembre) – Madrid, España.<br><br>
+              
+              <strong>Avance: Primeros Congresos Confirmados para 2027</strong><br>
+              • 23rd World Nephrology Conference (29-30 de marzo de 2027) – Ámsterdam, Países Bajos.<br>
+              • Canadian Society of Nephrology Annual Meeting (CSN 2027) (21-23 de abril de 2027).<br>
+              • ERA Congress 2027 (European Renal Association) (21-24 de mayo de 2027)
+            </p>
+          </div>
 
-          </p>
         </div>
-      </a>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- SECCIÓN LISTADO CONGRESOS (FONDO ANCHO COMPLETO 100%) -->
 <section class="section alt-bg">
   
-  <!-- CONTENEDOR 1: Bloque original de congresos -->
   <div class="container section-content">
     <div class="nov-listado" id="congresos-listado-1">
       <div class="nov-row">
@@ -160,7 +185,6 @@ Avance: Primeros Congresos Confirmados para 2027<br>
     </div>
   </div>
 
-  <!-- CONTENEDOR 2: Nuevos bloques de congresos -->
   <div class="container section-content" style="margin-top: 30px;">
     <div class="nov-listado" id="congresos-listado-2">
       <div class="nov-row">
@@ -187,11 +211,9 @@ Avance: Primeros Congresos Confirmados para 2027<br>
 
 </section>
 
-<!-- FOOTER (FONDO ANCHO COMPLETO 100%) -->
 <footer class="site-footer">
   <div class="footer-container">
     
-    <!-- COLUMNA 1: Logo y Contacto -->
     <div class="footer-col footer-info">
       <img src="img/LOGO-BN.png" alt="Sociedad Uruguaya de Nefrología" class="footer-logo">
       <div class="footer-info">
@@ -218,7 +240,6 @@ Avance: Primeros Congresos Confirmados para 2027<br>
           <span>contacto@sun.org.uy</span>
         </p>
 
-        <!-- 📱 REDES SOCIALES MÓVIL (Ubicadas debajo de contacto@sun.org.uy) -->
         <div class="social-mobile">
           <a href="https://www.instagram.com/sociedad_uruguaya_nefrologia/" target="_blank">
             <img src="img/redes-sociales-01.png" alt="Instagram">
@@ -239,7 +260,6 @@ Avance: Primeros Congresos Confirmados para 2027<br>
       </div>
     </div>
 
-    <!-- COLUMNA 2: Secciones del Sitio -->
     <div class="footer-col footer-links">
       <p><strong>SECCIONES DEL SITIO</strong></p>
       <ul>
@@ -252,7 +272,6 @@ Avance: Primeros Congresos Confirmados para 2027<br>
       </ul>
     </div>
 
-    <!-- COLUMNA 3: Sitios de Interés -->
     <div class="footer-col footer-external">
       <p><strong>SITIOS DE INTERÉS</strong></p>
       <ul>
@@ -282,13 +301,11 @@ Avance: Primeros Congresos Confirmados para 2027<br>
 
   </div>
 
-  <!-- LÍNEA FINAL: Firma y Copyright -->
   <div class="footer-bottom">
     <p>© 2026 SUN - Sociedad Uruguaya de Nefrología | Desarrollado por Alfonso Carrasco Gráfico</p>
   </div>
 </footer>
 
-<!-- 📜 SCRIPTS DE NAVEGACIÓN Y FUNCIONALIDAD -->
 <script>
 // Scroll suave para links del menú
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -345,7 +362,7 @@ hamburger.addEventListener('click', () => {
   });
 });
 
-// Función para desplazar el carrusel horizontalmente (Escritorio)
+// Función para desplazar el carrusel horizontalmente
 function scrollCarousel(gridId, direction) {
   const container = document.getElementById(gridId);
   if (!container) return;
@@ -358,7 +375,7 @@ function scrollCarousel(gridId, direction) {
   });
 }
 
-// 🎯 MOSTRAR FLECHAS SOLO SI HAY MÁS DE 4 TARJETAS (SOLO EN ESCRITORIO)
+// Mostrar botones de carrusel solo si hay más de 4 tarjetas
 function actualizarBotonesCarrusel() {
   const esEscritorio = window.innerWidth > 768;
   const carruseles = document.querySelectorAll('.carousel-wrapper');
@@ -371,7 +388,6 @@ function actualizarBotonesCarrusel() {
       const cantidadTarjetas = track.children.length;
 
       botones.forEach(btn => {
-        // En escritorio se muestran solo si la sección tiene más de 4 tarjetas
         if (esEscritorio && cantidadTarjetas > 4) {
           btn.style.display = 'flex';
         } else {
@@ -382,11 +398,9 @@ function actualizarBotonesCarrusel() {
   });
 }
 
-// Ejecutar comprobación al cargar y al cambiar de tamaño la pantalla
 window.addEventListener('DOMContentLoaded', actualizarBotonesCarrusel);
 window.addEventListener('resize', actualizarBotonesCarrusel);
 </script>
 
 </body>
 </html>
-
