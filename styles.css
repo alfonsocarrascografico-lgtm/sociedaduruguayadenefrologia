@@ -3096,3 +3096,10 @@ section[id],
   }
 
 }
+/* Para que en escritorio el nombre largo entre en una sola línea */
+@media (min-width: 769px) {
+  .titulo-largo {
+    font-size: 1.7rem; /* O el tamaño exacto que haga que entre sin saltar de línea */
+    white-space: nowrap;
+  }
+}
