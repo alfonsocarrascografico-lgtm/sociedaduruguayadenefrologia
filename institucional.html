@@ -7,6 +7,16 @@
   <title>Científico - SUN</title>
   <link rel="stylesheet" href="styles.css">
   <style>
+    /* Ajuste para unificar el tamaño de todas las imágenes de comisión/colaboradores */
+    .col-left img {
+      width: 100%;
+      height: 380px;        /* Altura fija idéntica para todas las imágenes */
+      object-fit: cover;    /* Recorta la imagen para llenar el contenedor sin deformarla */
+      object-position: top; /* Mantiene enfocado el rostro/parte superior */
+      border-radius: 8px;   /* Opcional: bordes suavemente redondeados */
+      display: block;
+    }
+
     /* Botones estilo "Ver novedades" para sección científica */
     .btn-cientifico {
       display: inline-flex;
@@ -66,15 +76,15 @@
       <!-- 🔥 BOTÓN HAMBURGUESA -->
       <div class="hamburger">☰</div>
 
-        <nav class="nav">
-<a href="index.html#accesos-rapidos">Registros</a>
-<a href="index.html#socios">Socios</a>
-<a href="index.html#cientifico">Grupos de trabajo</a>
-<a href="index.html#becas">Becas</a>
-<a href="index.html#novedades">Información y novedades</a>
-<a href="index.html#congresos">Congresos y cursos</a>
-<a href="index.html#institucional">Sobre SUN</a>
-<a href="index.html#contacto">Contacto</a>
+      <nav class="nav">
+        <a href="index.html#accesos-rapidos">Registros</a>
+        <a href="index.html#socios">Socios</a>
+        <a href="index.html#cientifico">Grupos de trabajo</a>
+        <a href="index.html#becas">Becas</a>
+        <a href="index.html#novedades">Información y novedades</a>
+        <a href="index.html#congresos">Congresos y cursos</a>
+        <a href="index.html#institucional">Sobre SUN</a>
+        <a href="index.html#contacto">Contacto</a>
       </nav>
     </div>
 
@@ -91,47 +101,33 @@
 
     <!-- CENTRO -->
     <div class="col col-center">
-         <h2>Misión</h2>
+      <h2>Misión</h2>
       <p>
-        Promover la generación y difusión del conocimiento científico, unir a la comunidad nefrologica y liderar el avance y el crecimiento de  la especialidad. 
+        Promover la generación y difusión del conocimiento científico, unir a la comunidad nefrológica y liderar el avance y el crecimiento de la especialidad.
       </p><br>
-      <h2> Visión </h2>
-        <p>
-          Buscamos la mejora continua de los cuidados relacionados con la salud renal contando con la participación activa de sus diferentes grupos de interés (pacientes, profesionales, sociedades, instituciones…).
-        </p>
-     
+      <h2>Visión</h2>
+      <p>
+        Buscamos la mejora continua de los cuidados relacionados con la salud renal contando con la participación activa de sus diferentes grupos de interés (pacientes, profesionales, sociedades, instituciones…).
       </p>
     </div>
 
     <!-- DERECHA -->
-    <div class = "col col-right" > 
-    <h2>Valores:</h2>
-      <p>
-        <p>
-        Profesionalismo y rigor científico:
-        </p><br>
-              <p>
-Ética, inclusividad y diversidad: La SUN promoverá el acceso al conocimiento para
-tod@s, rechazando la discriminación en todas sus formas. 
-      </p><br>
-              <p>
-Transparencia e integridad:
-      </p><br>
-              <p>
-Sostenibilidad: La SUN incorporará los principios de la sostenibilidad en sus prácticas y
-participaciones.
-      </p><br>
-              <p>
-Conciencia ambiental: Fomentar prácticas de atención médica renal ambientalmente
-responsables.
-      </p>
-      <a href="#historia" class="nav-btn-img">›</a>
+    <div class="col col-right"> 
+      <h2>Valores:</h2>
+      <p>Profesionalismo y rigor científico:</p><br>
+      <p>Ética, inclusividad y diversidad: La SUN promoverá el acceso al conocimiento para tod@s, rechazando la discriminación en todas sus formas.</p><br>
+      <p>Transparencia e integridad:</p><br>
+      <p>Sostenibilidad: La SUN incorporará los principios de la sostenibilidad en sus prácticas y participaciones.</p><br>
+      <p>Conciencia ambiental: Fomentar prácticas de atención médica renal ambientalmente responsables.</p>
+      
+      <div class="comision-nav">
+        <a href="#historia" class="nav-btn-img">›</a>
+      </div>
     </div>
 
-
   </div>
-  
 </section>
+
 <!-- SECCIÓN HISTORIA -->
 <section id="historia" class="section white-bg">
   <div class="container section-content">
@@ -161,11 +157,12 @@ responsables.
         <a href="#mision-vision" class="nav-btn-img">‹</a>
         <a href="#comision-1" class="nav-btn-img">›</a>
       </div>
-    </div> <!-- 🔥 Cierre de la columna derecha que faltaba -->
+    </div>
 
   </div>
 </section>
 
+<!-- COMISIÓN 1: PRESIDENTA -->
 <section id="comision-1" class="section white-bg">
   <div class="container section-content">
 
@@ -175,17 +172,15 @@ responsables.
 
     <div class="col col-center">
       <h2>Dra. Natalia Dell’Oca</h2>
-
       <p><strong>Cargo:</strong> Presidenta</p>
       <p><strong>Especialidad:</strong> Nefrología</p>
       <p><strong>Formación:</strong> Médica especialista en Nefrología (Uruguay). Especialista en Gestión de Servicios de Salud.</p>
-      <p><strong>Áreas de interés:</strong> Enfermedades renales hereditarias (con énfasis en PQRAD). Nefrología clínica.  </p>
+      <p><strong>Áreas de interés:</strong> Enfermedades renales hereditarias (con énfasis en PQRAD). Nefrología clínica.</p>
       <p><strong>Actividad profesional:</strong> Se desempeña en el ámbito clínico asistencial como Líder del Servicio de Nefrología en una Institución de Asistencia Médica Privada de Tercer Nivel Asistencial en la ciudad de Montevideo. Es Directora de un Centro de Hemodiálisis Crónica en la misma ciudad.</p>
     </div>
 
     <div class="col col-right">
       <h2>Rol institucional:</h2>
-
       <p>
         Como presidenta, lidera la Sociedad Uruguaya de Nefrología, impulsando la formación continua de profesionales, el desarrollo científico y la articulación con otras sociedades científicas.
       </p>
@@ -198,6 +193,8 @@ responsables.
 
   </div>
 </section>
+
+<!-- COMISIÓN 2: VICEPRESIDENTA -->
 <section id="comision-2" class="section alt-bg">
   <div class="container section-content">
 
@@ -207,7 +204,6 @@ responsables.
 
     <div class="col col-center">
       <h2>Dra. Fernanda Varela</h2>
-
       <p><strong>Cargo:</strong> Vicepresidenta</p>
       <p><strong>Especialidad:</strong> Nefrología</p>
       <p><strong>Formación:</strong> Médica especialista en Nefrología (Uruguay)</p>
@@ -217,7 +213,6 @@ responsables.
 
     <div class="col col-right">
       <h2>Rol institucional:</h2>
-
       <p>
         Desde la vicepresidencia de la Sociedad Uruguaya de Nefrología, colabora en la planificación estratégica y en la coordinación de actividades académicas y científicas.
       </p>
@@ -231,7 +226,7 @@ responsables.
   </div>
 </section>
 
-</section>
+<!-- COMISIÓN 3: SECRETARIA -->
 <section id="comision-3" class="section white-bg">
   <div class="container section-content">
 
@@ -241,7 +236,6 @@ responsables.
 
     <div class="col col-center">
       <h2>Dra. Ma. Noel Leyun</h2>
-
       <p><strong>Cargo:</strong> Secretaria</p>
       <p><strong>Especialidad:</strong> Nefrología</p>
       <p><strong>Formación:</strong> Médica especialista en Nefrología (Uruguay)</p>
@@ -251,11 +245,9 @@ responsables.
 
     <div class="col col-right">
       <h2>Rol institucional:</h2>
-
       <p>
         Como secretaria de la Sociedad Uruguaya de Nefrología, tiene a su cargo la coordinación administrativa y el soporte en la gestión de actividades institucionales.
       </p>
-
 
       <div class="comision-nav">
         <a href="#comision-2" class="nav-btn-img">‹</a>
@@ -265,6 +257,8 @@ responsables.
 
   </div>
 </section>
+
+<!-- COMISIÓN 4: TESORERA -->
 <section id="comision-4" class="section alt-bg">
   <div class="container section-content">
 
@@ -274,7 +268,6 @@ responsables.
 
     <div class="col col-center">
       <h2>Dra. Carolina Jaurena</h2>
-
       <p><strong>Cargo:</strong> Tesorera</p>
       <p><strong>Especialidad:</strong> Nefrología</p>
       <p><strong>Formación:</strong> Médica especialista en Nefrología (Uruguay)</p>
@@ -284,7 +277,6 @@ responsables.
 
     <div class="col col-right">
       <h2>Rol institucional:</h2>
-
       <p>
         Como tesorera de la Sociedad Uruguaya de Nefrología, tiene a su cargo la administración y supervisión de los recursos económicos, contribuyendo al funcionamiento y desarrollo de las actividades institucionales.
       </p>
@@ -297,17 +289,17 @@ responsables.
 
   </div>
 </section>
-</section>
+
+<!-- COMISIÓN 5: SECRETARIA DE ACTAS -->
 <section id="comision-5" class="section white-bg">
   <div class="container section-content">
 
     <div class="col col-left">
-      <img src="img/5secretaria-de-actas.jpg" alt="secretaria-de-actas">
+      <img src="img/5secretaria-de-actas.jpg" alt="Secretaria de Actas">
     </div>
 
     <div class="col col-center">
       <h2>Dra. Laura Ceretta</h2>
-
       <p><strong>Cargo:</strong> Secretaria de actas</p>
       <p><strong>Especialidad:</strong> Nefrología</p>
       <p><strong>Formación:</strong> Médica especialista en Nefrología (Uruguay)</p>
@@ -317,7 +309,6 @@ responsables.
 
     <div class="col col-right">
       <h2>Rol institucional:</h2>
-
       <p>
         Como secretaria de actas de la Sociedad Uruguaya de Nefrología, es responsable del registro y documentación de las reuniones, asegurando el seguimiento y la correcta organización de las decisiones del consejo directivo.
       </p>
@@ -329,20 +320,23 @@ responsables.
     </div>
 
   </div>
-  </section>
-  <section id="comision-6" class="section white-bg">
+</section>
+
+<!-- COMISIÓN 6: COLABORADORA 1 -->
+<section id="comision-6" class="section alt-bg">
   <div class="container section-content">
 
     <div class="col col-left">
-      <img src="img/colaborador1.jpg" alt="secretaria-de-actas">
+      <img src="img/colaborador1.jpg" alt="Colaboradora Dra. Natalia Tolstoy Roth">
     </div>
 
     <div class="col col-center">
       <h2>Dra. Natalia Tolstoy Roth</h2>
-
       <p><strong>Cargo:</strong> Colaboradora</p>
       <p><strong>Especialidad:</strong> Nefrología</p>
+    </div>
 
+    <div class="col col-right">
       <div class="comision-nav">
         <a href="#comision-5" class="nav-btn-img">‹</a>
         <a href="#comision-7" class="nav-btn-img">›</a>
@@ -350,21 +344,23 @@ responsables.
     </div>
 
   </div>
-  </section>
-  </section>
-    <section id="comision-7" class="section white-bg">
+</section>
+
+<!-- COMISIÓN 7: COLABORADORA 2 -->
+<section id="comision-7" class="section white-bg">
   <div class="container section-content">
 
     <div class="col col-left">
-      <img src="img/colaborador2.jpg" alt="secretaria-de-actas">
+      <img src="img/colaborador2.jpg" alt="Colaboradora Dra. Stephanie Figueroa">
     </div>
 
     <div class="col col-center">
       <h2>Dra. Stephanie Figueroa</h2>
-
-      <p><strong>Cargo:</strong> colaboradora</p>
+      <p><strong>Cargo:</strong> Colaboradora</p>
       <p><strong>Especialidad:</strong> Nefrología</p>
+    </div>
 
+    <div class="col col-right">
       <div class="comision-nav">
         <a href="#comision-6" class="nav-btn-img">‹</a>
         <a href="#comision-8" class="nav-btn-img">›</a>
@@ -372,21 +368,23 @@ responsables.
     </div>
 
   </div>
-  </section>
-  </section>
-      <section id="comision-8" class="section white-bg">
+</section>
+
+<!-- COMISIÓN 8: COLABORADOR 3 -->
+<section id="comision-8" class="section alt-bg">
   <div class="container section-content">
 
     <div class="col col-left">
-      <img src="img/colaborador3.jpg" alt="secretaria-de-actas">
+      <img src="img/colaborador3.jpg" alt="Colaborador Dr. Sebastián Benencio">
     </div>
 
     <div class="col col-center">
       <h2>Dr. Sebastián Benencio</h2>
-
       <p><strong>Cargo:</strong> Colaborador</p>
       <p><strong>Especialidad:</strong> Nefrología</p>
+    </div>
 
+    <div class="col col-right">
       <div class="comision-nav">
         <a href="#comision-7" class="nav-btn-img">‹</a>
         <a href="#comision-1" class="nav-btn-img">›</a>
@@ -396,6 +394,7 @@ responsables.
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer class="site-footer">
   <div class="footer-container">
     
@@ -426,7 +425,7 @@ responsables.
           <span>contacto@sun.org.uy</span>
         </p>
 
-        <!-- 📱 REDES SOCIALES MÓVIL (Ubicadas debajo de contacto@sun.org.uy) -->
+        <!-- 📱 REDES SOCIALES MÓVIL -->
         <div class="social-mobile">
           <a href="https://www.instagram.com/sociedad_uruguaya_nefrologia/" target="_blank">
             <img src="img/redes-sociales-01.png" alt="Instagram">
@@ -490,7 +489,7 @@ responsables.
 
   </div>
 
-  <!-- LÍNEA FINAL: Firma y Copyright -->
+  <!-- LÍNEA FINAL -->
   <div class="footer-bottom">
     <p>© 2026 SUN - Sociedad Uruguaya de Nefrología | Desarrollado por Alfonso Carrasco Gráfico</p>
   </div>
@@ -579,7 +578,6 @@ function actualizarBotonesCarrusel() {
       const cantidadTarjetas = track.children.length;
 
       botones.forEach(btn => {
-        // En escritorio se muestran solo si la sección tiene más de 4 tarjetas
         if (esEscritorio && cantidadTarjetas > 4) {
           btn.style.display = 'flex';
         } else {
@@ -590,11 +588,9 @@ function actualizarBotonesCarrusel() {
   });
 }
 
-// Ejecutar comprobación al cargar y al cambiar de tamaño la pantalla
 window.addEventListener('DOMContentLoaded', actualizarBotonesCarrusel);
 window.addEventListener('resize', actualizarBotonesCarrusel);
 </script>
 
 </body>
 </html>
-
