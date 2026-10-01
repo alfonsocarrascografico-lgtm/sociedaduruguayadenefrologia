@@ -60,12 +60,12 @@
       gap: 6px;
       cursor: pointer;
       white-space: nowrap;
-      flex: 1 1 0px; /* Igualar el ancho exacto entre todos los elementos */
-      min-width: 140px; /* Ancho uniforme para Desktop */
+      flex: 1 1 0px;
+      min-width: 140px;
     }
 
     #page-num {
-      background-color: #6c757d; /* Gris distintivo para el contador */
+      background-color: #6c757d;
       border-color: transparent;
       cursor: default;
     }
@@ -132,7 +132,7 @@
       z-index: 50;
     }
 
-    /* Estilos Turn.js sin distorsión */
+    /* Estilos Turn.js */
     #my-flipbook {
       margin: 0 auto;
       box-shadow: 0 10px 25px rgba(0,0,0,0.2);
@@ -174,7 +174,7 @@
       .action-buttons-group {
         width: 100%;
         display: grid !important;
-        grid-template-columns: repeat(2, 1fr); /* Disposición simétrica 2x2 */
+        grid-template-columns: repeat(2, 1fr);
         gap: 8px !important;
       }
       .btn-sun-action, #page-num {
@@ -218,20 +218,16 @@
           <p class="text-muted small mb-0">Documento disponible para lectura en línea y descarga de la versión original en formato PDF.</p>
           
           <div class="d-flex align-items-center gap-2 action-buttons-group">
-            <!-- Contador de Paginado -->
             <span id="page-num">Cargando...</span>
 
-            <!-- Botón Pág. 1 -->
             <button id="btn-first-page" class="btn-sun-action" title="Ir a la Portada / Primera Página">
               <i class="bi bi-journal-arrow-up"></i> Pág. 1
             </button>
 
-            <!-- Pantalla Completa -->
             <button id="btn-fullscreen" class="btn-sun-action">
               <i class="bi bi-arrows-angle-expand"></i> Pantalla Completa
             </button>
 
-            <!-- Descargar PDF -->
             <a id="btn-download" href="#" download class="btn-sun-action">
               <i class="bi bi-download"></i> Descargar PDF
             </a>            
@@ -269,7 +265,7 @@
 
   </main>
 
-  <!-- JS de Bootstrap 5 y jQuery (Requerido por Turn.js) -->
+  <!-- JS de Bootstrap 5 y jQuery -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -278,23 +274,22 @@
   <script src="https://cdn.jsdelivr.net/gh/blasten/turn.js/turn.min.js"></script>
 
   <script>
+    // Configuración del Worker
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
 
-    // Capturar el parámetro 'doc' O 'file' de la URL para compatibilidad universal
+    // Capturar el parámetro 'doc' O 'file'
     const urlParams = new URLSearchParams(window.location.search);
     let rawDoc = urlParams.get('doc') || urlParams.get('file');
-
-    // Decodificar la ruta o asignar valor por defecto si no viene ninguno
     let pdfPath = rawDoc ? decodeURIComponent(rawDoc) : 'pdf/estatutos.pdf';
 
-    console.log("Cargando el archivo PDF:", pdfPath);
+    console.log("Cargando archivo PDF:", pdfPath);
 
     // Asignar enlace directo de descarga
     document.getElementById('btn-download').href = pdfPath;
 
-    // Formatear el nombre del archivo para mostrarlo como título del documento
+    // Formatear el título
     try {
-      const fileName = pdfPath.split('/').pop().replace('.pdf', '').replace(/-/g, ' ');
+      const fileName = pdfPath.split('/').pop().replace(/\.pdf$/i, '').replace(/[-_]/g, ' ');
       if (fileName) {
         document.getElementById('doc-title-text').innerText = fileName.toUpperCase();
       }
@@ -317,17 +312,14 @@
         $flipbook.empty();
         const isMobile = $(window).width() <= 768;
 
-        // Obtener la proporción exacta del PDF desde la página 1
+        // Obtener proporciones de la página 1
         const firstPage = await pdfDoc.getPage(1);
         const pdfViewport = firstPage.getViewport({ scale: 1.0 });
         const aspectRatio = pdfViewport.height / pdfViewport.width;
 
-        // Obtener ancho real disponible
         const availableWidth = viewportEl.clientWidth - (isMobile ? 10 : 30);
-
         let singlePageWidth, bookWidth, bookHeight, displayMode;
 
-        // CONDICIÓN ESPECIAL: Si es móvil o si el PDF tiene 1 o 2 páginas
         if (isMobile || totalPdfPages <= 2) {
           displayMode = 'single';
           singlePageWidth = Math.min(550, availableWidth);
@@ -340,28 +332,18 @@
           bookHeight = singlePageWidth * aspectRatio;
         }
 
-        // Renderizar páginas en canvas con alta resolución
+        // Crear dinámicamente las páginas
         for (let pageNum = 1; pageNum <= totalPdfPages; pageNum++) {
-          const page = await pdfDoc.getPage(pageNum);
-          
-          const scale = (singlePageWidth / pdfViewport.width) * 2;
-          const viewport = page.getViewport({ scale: scale });
-
           const pageDiv = document.createElement('div');
           pageDiv.className = 'page';
+          pageDiv.setAttribute('id', `page-${pageNum}`);
 
           const canvas = document.createElement('canvas');
-          const context = canvas.getContext('2d');
-          canvas.height = viewport.height;
-          canvas.width = viewport.width;
-
           pageDiv.appendChild(canvas);
           $flipbook.append(pageDiv);
-
-          await page.render({ canvasContext: context, viewport: viewport }).promise;
         }
 
-        // Inicializar Turn.js
+        // Inicializar Turn.js antes de renderizar páginas pesadas
         $flipbook.turn({
           width: bookWidth,
           height: bookHeight,
@@ -377,15 +359,31 @@
           }
         });
 
+        // Renderizar el contenido de cada página en los canvas creados
+        for (let pageNum = 1; pageNum <= totalPdfPages; pageNum++) {
+          const page = await pdfDoc.getPage(pageNum);
+          const scale = (singlePageWidth / pdfViewport.width) * 2;
+          const viewport = page.getViewport({ scale: scale });
+
+          const canvas = $flipbook.find(`#page-${pageNum} canvas`)[0];
+          if (canvas) {
+            const context = canvas.getContext('2d');
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+
+            await page.render({ canvasContext: context, viewport: viewport }).promise;
+          }
+        }
+
+        // Ocultar mensaje de carga y mostrar flipbook
         loadingEl.style.display = 'none';
         $flipbook.addClass('loaded');
-
         updatePageIndicator(1);
 
       } catch (error) {
         console.error('Error al cargar el PDF:', error);
         loadingEl.className = 'alert alert-danger mb-0';
-        loadingEl.innerHTML = '<i class="bi bi-exclamation-triangle-fill me-2"></i> Error al cargar el PDF.';
+        loadingEl.innerHTML = `<i class="bi bi-exclamation-triangle-fill me-2"></i> No se pudo cargar el PDF (${pdfPath}). Verifica la ruta o abre el proyecto con un servidor local.`;
       }
     }
 
@@ -393,7 +391,7 @@
       document.getElementById('page-num').innerText = `Pág. ${page} de ${totalPdfPages}`;
     }
 
-    // Controles laterales
+    // Controles
     document.getElementById('btn-prev').addEventListener('click', () => {
       $flipbook.turn('previous');
     });
@@ -402,12 +400,10 @@
       $flipbook.turn('next');
     });
 
-    // Control Pág. 1
     document.getElementById('btn-first-page').addEventListener('click', () => {
       $flipbook.turn('page', 1);
     });
 
-    // Pantalla Completa
     document.getElementById('btn-fullscreen').addEventListener('click', () => {
       if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen();
@@ -416,7 +412,7 @@
       }
     });
 
-    // NAVEGACIÓN CON TECLADO
+    // Navegación por teclado
     document.addEventListener('keydown', (e) => {
       const activeElement = document.activeElement;
       if (activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA')) {
@@ -428,17 +424,14 @@
           e.preventDefault();
           $flipbook.turn('previous');
           break;
-
         case 'ArrowRight':
           e.preventDefault();
           $flipbook.turn('next');
           break;
-
         case 'Home':
           e.preventDefault();
           $flipbook.turn('page', 1);
           break;
-
         case 'End':
           if (totalPdfPages > 0) {
             e.preventDefault();
