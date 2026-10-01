@@ -194,8 +194,8 @@
     
     <!-- Navegación -->
     <nav aria-label="breadcrumb" class="mb-3 d-flex align-items-center gap-2">
-      <a href="index.html" class="btn btn-sm btn-outline-secondary">
-        <i class="bi bi-arrow-left"></i> Volver a Inicio
+      <a href="javascript:history.back()" class="btn btn-sm btn-outline-secondary">
+        <i class="bi bi-arrow-left"></i> Volver a la página anterior
       </a>
     </nav>
 
@@ -280,19 +280,30 @@
   <script>
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
 
-    // Capturar el parámetro 'doc' de la URL
+    // Capturar el parámetro 'doc' O 'file' de la URL para compatibilidad universal
     const urlParams = new URLSearchParams(window.location.search);
-    let rawDoc = urlParams.get('doc');
+    let rawDoc = urlParams.get('doc') || urlParams.get('file');
 
-    // Decodificar la ruta por si tiene caracteres especiales
+    // Decodificar la ruta o asignar valor por defecto si no viene ninguno
     let pdfPath = rawDoc ? decodeURIComponent(rawDoc) : 'pdf/estatutos.pdf';
 
     console.log("Cargando el archivo PDF:", pdfPath);
 
+    // Asignar enlace directo de descarga
     document.getElementById('btn-download').href = pdfPath;
 
+    // Formatear el nombre del archivo para mostrarlo como título del documento
+    try {
+      const fileName = pdfPath.split('/').pop().replace('.pdf', '').replace(/-/g, ' ');
+      if (fileName) {
+        document.getElementById('doc-title-text').innerText = fileName.toUpperCase();
+      }
+    } catch (e) {
+      console.log("Error formateando título:", e);
+    }
+
     let totalPdfPages = 0;
-    const $flipbook = $('#my-flipbook');
+    const $flipbook =$('#my-flipbook');
 
     async function initPDFViewer() {
       const loadingEl = document.getElementById('loading-status');
@@ -319,7 +330,7 @@
         // CONDICIÓN ESPECIAL: Si es móvil o si el PDF tiene 1 o 2 páginas
         if (isMobile || totalPdfPages <= 2) {
           displayMode = 'single';
-          singlePageWidth = Math.min(550, availableWidth); // Ancho óptimo para vista de página única
+          singlePageWidth = Math.min(550, availableWidth);
           bookWidth = singlePageWidth;
           bookHeight = singlePageWidth * aspectRatio;
         } else {
