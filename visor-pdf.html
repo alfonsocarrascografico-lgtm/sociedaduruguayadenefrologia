@@ -274,10 +274,10 @@
   <script src="https://cdn.jsdelivr.net/gh/blasten/turn.js/turn.min.js"></script>
 
   <script>
-    // Configuración del Worker
+    // Configuración del Worker de PDF.js
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
 
-    // Capturar el parámetro 'doc' O 'file'
+    // Capturar el parámetro 'doc' O 'file' de la URL
     const urlParams = new URLSearchParams(window.location.search);
     let rawDoc = urlParams.get('doc') || urlParams.get('file');
     let pdfPath = rawDoc ? decodeURIComponent(rawDoc) : 'pdf/estatutos.pdf';
@@ -287,7 +287,7 @@
     // Asignar enlace directo de descarga
     document.getElementById('btn-download').href = pdfPath;
 
-    // Formatear el título
+    // Formatear el nombre del archivo para mostrarlo como título
     try {
       const fileName = pdfPath.split('/').pop().replace(/\.pdf$/i, '').replace(/[-_]/g, ' ');
       if (fileName) {
@@ -297,7 +297,11 @@
       console.log("Error formateando título:", e);
     }
 
+    // Variables globales de control
+    let pdfDoc = null;
     let totalPdfPages = 0;
+    let singlePageWidth = 0;
+    let pdfViewport = null;
     const $flipbook =$('#my-flipbook');
 
     async function initPDFViewer() {
@@ -306,19 +310,19 @@
 
       try {
         const loadingTask = pdfjsLib.getDocument(pdfPath);
-        const pdfDoc = await loadingTask.promise;
+        pdfDoc = await loadingTask.promise;
         totalPdfPages = pdfDoc.numPages;
 
         $flipbook.empty();
         const isMobile = $(window).width() <= 768;
 
-        // Obtener proporciones de la página 1
+        // Obtener dimensiones base de la página 1
         const firstPage = await pdfDoc.getPage(1);
-        const pdfViewport = firstPage.getViewport({ scale: 1.0 });
+        pdfViewport = firstPage.getViewport({ scale: 1.0 });
         const aspectRatio = pdfViewport.height / pdfViewport.width;
 
         const availableWidth = viewportEl.clientWidth - (isMobile ? 10 : 30);
-        let singlePageWidth, bookWidth, bookHeight, displayMode;
+        let bookWidth, bookHeight, displayMode;
 
         if (isMobile || totalPdfPages <= 2) {
           displayMode = 'single';
@@ -332,18 +336,18 @@
           bookHeight = singlePageWidth * aspectRatio;
         }
 
-        // Crear dinámicamente las páginas
+        // Crear la estructura vacía para TODAS las páginas
         for (let pageNum = 1; pageNum <= totalPdfPages; pageNum++) {
           const pageDiv = document.createElement('div');
           pageDiv.className = 'page';
-          pageDiv.setAttribute('id', `page-${pageNum}`);
+          pageDiv.setAttribute('data-page', pageNum);
 
           const canvas = document.createElement('canvas');
           pageDiv.appendChild(canvas);
           $flipbook.append(pageDiv);
         }
 
-        // Inicializar Turn.js antes de renderizar páginas pesadas
+        // Inicializar Turn.js
         $flipbook.turn({
           width: bookWidth,
           height: bookHeight,
@@ -352,30 +356,23 @@
           acceleration: true,
           elevation: 50,
           gradients: true,
+          pages: totalPdfPages,
           when: {
-            turned: function(event, page) {
+            turning: function(event, page, view) {
               updatePageIndicator(page);
+              view.forEach(p => { if (p > 0) renderPageCanvas(p); });
+            },
+            turned: function(event, page, view) {
+              updatePageIndicator(page);
+              view.forEach(p => { if (p > 0) renderPageCanvas(p); });
             }
           }
         });
 
-        // Renderizar el contenido de cada página en los canvas creados
-        for (let pageNum = 1; pageNum <= totalPdfPages; pageNum++) {
-          const page = await pdfDoc.getPage(pageNum);
-          const scale = (singlePageWidth / pdfViewport.width) * 2;
-          const viewport = page.getViewport({ scale: scale });
+        // Renderizar las primeras páginas iniciales
+        renderPageCanvas(1);
+        if (totalPdfPages > 1) renderPageCanvas(2);
 
-          const canvas = $flipbook.find(`#page-${pageNum} canvas`)[0];
-          if (canvas) {
-            const context = canvas.getContext('2d');
-            canvas.height = viewport.height;
-            canvas.width = viewport.width;
-
-            await page.render({ canvasContext: context, viewport: viewport }).promise;
-          }
-        }
-
-        // Ocultar mensaje de carga y mostrar flipbook
         loadingEl.style.display = 'none';
         $flipbook.addClass('loaded');
         updatePageIndicator(1);
@@ -383,7 +380,33 @@
       } catch (error) {
         console.error('Error al cargar el PDF:', error);
         loadingEl.className = 'alert alert-danger mb-0';
-        loadingEl.innerHTML = `<i class="bi bi-exclamation-triangle-fill me-2"></i> No se pudo cargar el PDF (${pdfPath}). Verifica la ruta o abre el proyecto con un servidor local.`;
+        loadingEl.innerHTML = `<i class="bi bi-exclamation-triangle-fill me-2"></i> No se pudo cargar el PDF (${pdfPath}). Verifica la ruta del archivo.`;
+      }
+    }
+
+    // Función para renderizar una página individual bajo demanda
+    async function renderPageCanvas(pageNum) {
+      if (!pdfDoc || pageNum < 1 || pageNum > totalPdfPages) return;
+
+      const pageElement = $flipbook.find(`.page[data-page="${pageNum}"]`)[0];
+      if (!pageElement) return;
+
+      const canvas = pageElement.querySelector('canvas');
+      if (!canvas || canvas.getAttribute('data-rendered') === 'true') return;
+
+      try {
+        canvas.setAttribute('data-rendered', 'true');
+        const page = await pdfDoc.getPage(pageNum);
+        const scale = (singlePageWidth / pdfViewport.width) * 2;
+        const viewport = page.getViewport({ scale: scale });
+
+        const context = canvas.getContext('2d');
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+
+        await page.render({ canvasContext: context, viewport: viewport }).promise;
+      } catch (err) {
+        console.error(`Error renderizando página ${pageNum}:`, err);
       }
     }
 
@@ -412,7 +435,7 @@
       }
     });
 
-    // Navegación por teclado
+    // Navegación con teclado
     document.addEventListener('keydown', (e) => {
       const activeElement = document.activeElement;
       if (activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA')) {
